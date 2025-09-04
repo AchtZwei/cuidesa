@@ -1,382 +1,103 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="de">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CareConnect – Die perfekte Pflege-Lösung finden</title>
+  <meta name="description" content="Verbinde dich mit vertrauenswürdigen Pflegedienstleistern in deiner Nähe. Einfach, transparent, stressfrei." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-200:#F3F7FE;
+      --bg-400:#EAF2FD;
+      --card:#ffffff;
+      --text:#1c2430;
+      --muted:#667085;
+      --brand:#1e67ff;
+      --brand-600:#1458e6;
+      --accent:#eef4ff;
+      --success:#16a34a;
+      --shadow:0 10px 30px rgba(16,24,40,.06), 0 2px 6px rgba(16,24,40,.04);
+      --radius:18px;
+      --radius-lg:24px;
+      --container:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol";
+      color:var(--text);
+      background:linear-gradient(180deg, var(--bg-200), #f8fbff 32%, #fff 32%, #fff 100%);
+      line-height:1.55;
+    }
+    .container{max-width:var(--container); margin:0 auto; padding:0 20px}
+    header{position:sticky; top:0; z-index:40; background:rgba(255,255,255,.7); backdrop-filter:saturate(180%) blur(12px); border-bottom:1px solid #eef2f7}
+    .nav{display:flex; align-items:center; justify-content:space-between; height:70px}
+    .logo{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px}
+    .logo-dot{width:12px; height:12px; border-radius:50%; background:var(--brand)}
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:.85rem 1.15rem; border-radius:999px; font-weight:600; border:1px solid transparent; text-decoration:none}
+    .btn-primary{background:var(--brand); color:#fff; box-shadow:0 10px 24px rgba(30,103,255,.25)}
+    .btn-primary:hover{background:var(--brand-600)}
+    .btn-secondary{background:#fff; color:var(--text); border-color:#e5eaf1}
+    .badge{font-size:.8rem; color:var(--muted)}
+    /* Hero */
+    .hero{padding:64px 0 48px}
+    .hero-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:48px; align-items:center}
+    .eyebrow{display:inline-flex; align-items:center; gap:.5rem; padding:.35rem .7rem; border-radius:999px; background:var(--accent); color:#3556a9; font-weight:600; font-size:.85rem}
+    h1{font-family:"Plus Jakarta Sans",Inter,system-ui; font-weight:800; letter-spacing:-.02em; line-height:1.06; font-size:clamp(2.1rem, 3.6vw, 3.2rem); margin:12px 0 10px}
+    .lead{color:var(--muted); max-width:48ch}
+    .cta-row{display:flex; gap:12px; margin:22px 0 26px; flex-wrap:wrap}
+    .stats{display:flex; gap:28px; flex-wrap:wrap}
+    .stat{display:flex; flex-direction:column}
+    .stat .num{font-weight:800; color:#0b1e53}
+    .hero-visual{background:#fff; border-radius:var(--radius-lg); box-shadow:var(--shadow); padding:14px}
+    .hero-visual img{display:block; width:100%; height:auto; border-radius:14px; }
+    /* Trust */
+    .section{padding:56px 0}
+    .section h2{font-family:"Plus Jakarta Sans"; font-size:clamp(1.4rem,2.4vw,1.8rem); letter-spacing:-.01em}
+    .trust-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:18px}
+    .card{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px}
+    .card .icon{width:44px; height:44px; border-radius:12px; display:grid; place-items:center; background:var(--accent); margin-bottom:10px}
+    .muted{color:var(--muted)}
+    /* How it works */
+    .timeline{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:18px}
+    .step{position:relative; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px}
+    .step:after{content:""; position:absolute; right:-9px; top:50%; transform:translateY(-50%); width:18px; height:2px; background:#d9e2f2}
+    .step:last-child:after{display:none}
+    /* Form placeholder */
+    .form-wrap{padding:28px; background:linear-gradient(180deg, var(--bg-400), #ffffff); border-radius:var(--radius-lg); box-shadow:var(--shadow)}
+    .form-inner{display:grid; grid-template-columns:1.1fr .9fr; gap:22px; align-items:center}
+    .placeholder{border:2px dashed #c6d4ee; border-radius:16px; padding:28px; background:#f8fbff}
+    .placeholder strong{font-family:"Plus Jakarta Sans"; font-size:1.15rem}
+    /* Testimonials */
+    .testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:18px}
+    .quote{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:20px}
+    .stars{color:#fbbf24; letter-spacing:1px}
+    /* Footer */
+    footer{background:#0f172a; color:#cbd5e1; padding:40px 0 60px; margin-top:56px}
+    footer a{color:#cbd5e1; text-decoration:none}
+    footer a:hover{text-decoration:underline}
+    .columns{display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:24px; margin-top:16px}
+    .small{font-size:.92rem}
+    /* Responsive */
+    @media (max-width: 1024px){
+      .hero-grid{grid-template-columns:1fr; gap:28px}
+      .form-inner{grid-template-columns:1fr}
+      .timeline{grid-template-columns:1fr}
+      .trust-grid, .testi-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width: 640px){
+      .trust-grid, .testi-grid{grid-template-columns:1fr}
+      .columns{grid-template-columns:1fr 1fr}
+      .stat .num{font-size:1rem}
+    }
   </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="de"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="utf-8" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;CareConnect – Die perfekte Pflege-Lösung finden&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="description" content="Verbinde dich mit vertrauenswürdigen Pflegedienstleistern in deiner Nähe. Einfach, transparent, stressfrei." /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>:root{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--bg-200:#F3F7FE;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--bg-400:#EAF2FD;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--card:#ffffff;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--text:#1c2430;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--muted:#667085;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--brand:#1e67ff;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--brand-600:#1458e6;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--accent:#eef4ff;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--success:#16a34a;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--shadow:0 10px 30px rgba(16,24,40,.06), 0 2px 6px rgba(16,24,40,.04);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--radius:18px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--radius-lg:24px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--container:1200px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>*{box-sizing:border-box}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>html,body{margin:0}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>body{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color:var(--text);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background:linear-gradient(180deg, var(--bg-200), #f8fbff 32%, #fff 32%, #fff 100%);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>line-height:1.55;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.container{max-width:var(--container); margin:0 auto; padding:0 20px}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>header{position:sticky; top:0; z-index:40; background:rgba(255,255,255,.7); backdrop-filter:saturate(180%) blur(12px); border-bottom:1px solid #eef2f7}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.nav{display:flex; align-items:center; justify-content:space-between; height:70px}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.logo{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.logo-dot{width:12px; height:12px; border-radius:50%; background:var(--brand)}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:.85rem 1.15rem; border-radius:999px; font-weight:600; border:1px solid transparent; text-decoration:none}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-primary{background:var(--brand); color:#fff; box-shadow:0 10px 24px rgba(30,103,255,.25)}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-primary:hover{background:var(--brand-600)}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-secondary{background:#fff; color:var(--text); border-color:#e5eaf1}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.badge{font-size:.8rem; color:var(--muted)}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* Hero */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero{padding:64px 0 48px}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:48px; align-items:center}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.eyebrow{display:inline-flex; align-items:center; gap:.5rem; padding:.35rem .7rem; border-radius:999px; background:var(--accent); color:#3556a9; font-weight:600; font-size:.85rem}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>h1{font-family:"Plus Jakarta Sans",Inter,system-ui; font-weight:800; letter-spacing:-.02em; line-height:1.06; font-size:clamp(2.1rem, 3.6vw, 3.2rem); margin:12px 0 10px}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.lead{color:var(--muted); max-width:48ch}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.cta-row{display:flex; gap:12px; margin:22px 0 26px; flex-wrap:wrap}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.stats{display:flex; gap:28px; flex-wrap:wrap}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.stat{display:flex; flex-direction:column}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.stat .num{font-weight:800; color:#0b1e53}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-visual{background:#fff; border-radius:var(--radius-lg); box-shadow:var(--shadow); padding:14px}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-visual img{display:block; width:100%; height:auto; border-radius:14px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* Trust */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.section{padding:56px 0}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.section h2{font-family:"Plus Jakarta Sans"; font-size:clamp(1.4rem,2.4vw,1.8rem); letter-spacing:-.01em}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.trust-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:18px}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.card{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.card .icon{width:44px; height:44px; border-radius:12px; display:grid; place-items:center; background:var(--accent); margin-bottom:10px}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.muted{color:var(--muted)}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* How it works */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.timeline{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:18px}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.step{position:relative; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.step:after{content:""; position:absolute; right:-9px; top:50%; transform:translateY(-50%); width:18px; height:2px; background:#d9e2f2}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.step:last-child:after{display:none}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* Form placeholder */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.form-wrap{padding:28px; background:linear-gradient(180deg, var(--bg-400), #ffffff); border-radius:var(--radius-lg); box-shadow:var(--shadow)}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.form-inner{display:grid; grid-template-columns:1.1fr .9fr; gap:22px; align-items:center}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.placeholder{border:2px dashed #c6d4ee; border-radius:16px; padding:28px; background:#f8fbff}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.placeholder strong{font-family:"Plus Jakarta Sans"; font-size:1.15rem}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* Testimonials */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:18px}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.quote{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:20px}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.stars{color:#fbbf24; letter-spacing:1px}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* Footer */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>footer{background:#0f172a; color:#cbd5e1; padding:40px 0 60px; margin-top:56px}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>footer a{color:#cbd5e1; text-decoration:none}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>footer a:hover{text-decoration:underline}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.columns{display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:24px; margin-top:16px}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.small{font-size:.92rem}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* Responsive */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>@media (max-width: 1024px){</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.hero-grid{grid-template-columns:1fr; gap:28px}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.form-inner{grid-template-columns:1fr}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.timeline{grid-template-columns:1fr}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.trust-grid, .testi-grid{grid-template-columns:repeat(2,1fr)}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>@media (max-width: 640px){</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.trust-grid, .testi-grid{grid-template-columns:1fr}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.columns{grid-template-columns:1fr 1fr}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.stat .num{font-size:1rem}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Header --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;header&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container nav"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="logo" aria-label="CareConnect"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="logo-dot"&gt;&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span&gt;CareConnect&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;nav&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;a href="#form" class="btn btn-primary"&gt;Pflege finden&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/nav&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Hero --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;section class="hero"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container hero-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="eyebrow"&gt;Einfach. Transparent. Stressfrei.&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h1&gt;Finde die perfekte &lt;span style="color:var(--brand)"&gt;Pflege-Lösung&lt;/span&gt; für deine Liebsten&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="lead"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>Verbinde dich mit geprüften Pflegedienstleistern und Pflegeheimen in deiner Nähe. Wir machen die Suche nach hochwertiger Betreuung leicht und sicher.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="cta-row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;a class="btn btn-primary" href="#form"&gt;Jetzt starten&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;a class="btn btn-secondary" href="#vorteile"&gt;Mehr erfahren&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="stats" aria-label="Kennzahlen"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="stat"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="num"&gt;5’000+&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="badge"&gt;Familien geholfen&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="stat"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="num"&gt;500+&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="badge"&gt;Vertrauenspartner&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="stat"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="num"&gt;4.9/5&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="badge"&gt;Durchschnittsbewertung&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="hero-visual" aria-hidden="true"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;img</p>
-<p class="p1"><span class="Apple-converted-space">          </span>src="https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&amp;w=1600&amp;auto=format&amp;fit=crop"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>alt="Pflegekraft betreut Seniorin zu Hause"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>loading="eager"</p>
-<p class="p1"><span class="Apple-converted-space">          </span>width="1200" height="800"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Why trust --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;section id="vorteile" class="section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2 style="text-align:center"&gt;Warum Familien uns vertrauen&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="muted" style="text-align:center; margin:6px 0 18px"&gt;Wir verbinden dich nur mit verifizierten, top-bewerteten Anbietern.&lt;/p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="trust-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="icon" aria-hidden="true"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Shield icon --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z" stroke="#1e67ff" stroke-width="2"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;path d="M9 12l2 2 4-4" stroke="#1e67ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/svg&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Vollständig geprüft&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p class="muted"&gt;Alle Anbieter sind lizenziert und gründlich verifiziert.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="icon" aria-hidden="true"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Badge --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;svg width="22" height="22" viewBox="0 0 24 24" fill="none"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;path d="M12 2l3 6 6 .9-4.4 4.4L18 20l-6-3-6 3 1.4-6.7L3 8.9 9 8l3-6z" stroke="#1e67ff" stroke-width="2" fill="none"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/svg&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Qualitätsgarantie&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p class="muted"&gt;Nur top-bewertete Partner mit nachweisbarer Erfolgsbilanz.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="icon" aria-hidden="true"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Users --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;svg width="22" height="22" viewBox="0 0 24 24" fill="none"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;circle cx="9" cy="10" r="3.5" stroke="#1e67ff" stroke-width="2"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;path d="M2 20c.8-3 3.6-4.5 7-4.5s6.2 1.5 7 4.5" stroke="#1e67ff" stroke-width="2"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;circle cx="18" cy="8" r="2.5" stroke="#1e67ff" stroke-width="2"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/svg&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Familienfokus&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p class="muted"&gt;Individuelles Matching basierend auf euren Bedürfnissen.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="icon" aria-hidden="true"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Lifebuoy --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;svg width="22" height="22" viewBox="0 0 24 24" fill="none"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;circle cx="12" cy="12" r="9" stroke="#1e67ff" stroke-width="2"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;circle cx="12" cy="12" r="3" stroke="#1e67ff" stroke-width="2"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;path d="M5 5l4 4M15 15l4 4M5 19l4-4M15 9l4-4" stroke="#1e67ff" stroke-width="2"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/svg&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;24/7 Support&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p class="muted"&gt;Rund-um-die-Uhr Unterstützung – wenn ihr sie braucht.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- How it works --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;section class="section" aria-labelledby="howitworks"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2 id="howitworks" style="text-align:center"&gt;So funktioniert’s&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="muted" style="text-align:center; margin:6px 0 18px"&gt;In drei einfachen Schritten zur passenden Pflege.&lt;/p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="timeline"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="step"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="icon" style="margin-bottom:12px" aria-hidden="true"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;svg width="22" height="22" viewBox="0 0 24 24" fill="none"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;circle cx="11" cy="11" r="7" stroke="#1e67ff" stroke-width="2"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;path d="M20 20l-3.5-3.5" stroke="#1e67ff" stroke-width="2" stroke-linecap="round"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/svg&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Bedürfnisse teilen&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p class="muted"&gt;Ort, Art der Betreuung &amp; Budget kurz angeben.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="step"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="icon" style="margin-bottom:12px" aria-hidden="true"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;svg width="22" height="22" viewBox="0 0 24 24" fill="none"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;path d="M4 7h16M4 12h16M4 17h10" stroke="#1e67ff" stroke-width="2" stroke-linecap="round"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/svg&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Passende Matches&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p class="muted"&gt;Wir vergleichen Optionen, die zu euch passen.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="step"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="icon" style="margin-bottom:12px" aria-hidden="true"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;svg width="22" height="22" viewBox="0 0 24 24" fill="none"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/svg&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Pflege starten&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p class="muted"&gt;Termine planen &amp; die beste Lösung auswählen.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- FORM PLACEHOLDER --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;section id="form" class="section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container form-wrap"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="form-inner"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h2&gt;Jetzt starten&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p class="muted" style="max-width:50ch"&gt;Sag uns kurz, was ihr braucht – wir verbinden euch mit den passenden Anbietern. Das Ausfüllen dauert nur wenige Minuten.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;ul class="small" style="margin:12px 0 0; padding-left:18px"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;Schnell &amp; vertraulich&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;Nur verifizierte Anbieter&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;Kostenlos &amp; unverbindlich&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- ✨ DIESEN BLOCK SPÄTER MIT JOTFORM ERSETZEN ✨</p>
-<p class="p1"><span class="Apple-converted-space">             </span>Ersetze NUR die href-URL unten (JOTFORM_URL_HERE) mit deinem Jotform-Link.</p>
-<p class="p1"><span class="Apple-converted-space">             </span>Wenn du das eingebettet willst, ersetze den gesamten &lt;div class="placeholder"&gt; durch das Jotform Embed-Snippet. --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="placeholder" role="region" aria-label="Formular-Platzhalter"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;strong&gt;Formular wird hier eingebettet&lt;/strong&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p class="muted" style="margin:8px 0 14px"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>Dies ist ein Platzhalter. Klicke auf „Formular öffnen“ oder ersetze diesen Block später durch dein Jotform-Snippet.</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;a class="btn btn-primary" id="open-form" href="JOTFORM_URL_HERE" target="_blank" rel="noopener"&gt;Formular öffnen&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p class="small muted" style="margin-top:10px"&gt;Hinweis: Ersetze &lt;code&gt;JOTFORM_URL_HERE&lt;/code&gt; in der Datei mit deiner echten Jotform-URL.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Testimonials --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;section class="section" aria-labelledby="testimonials"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2 id="testimonials" style="text-align:center"&gt;Was Familien sagen&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="muted" style="text-align:center; margin:6px 0 18px"&gt;Echte Erfahrungen von Familien, die über uns Betreuung gefunden haben.&lt;/p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="testi-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="quote"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="stars" aria-hidden="true"&gt;★★★★★&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p style="margin:.5rem 0 1rem"&gt;„Die Suche war super einfach. Innerhalb von 48 Stunden hatten wir drei passende Optionen – alle top geprüft.“&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="badge"&gt;Sarah Martinez · Tochter – Austin, TX&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="quote"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="stars" aria-hidden="true"&gt;★★★★★&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p style="margin:.5rem 0 1rem"&gt;„Professionalität und Herz. Unser Vater ist glücklicher und gesünder als zuvor.“&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="badge"&gt;Michael Chen · Sohn – Denver, CO&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="quote"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="stars" aria-hidden="true"&gt;★★★★★&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p style="margin:.5rem 0 1rem"&gt;„Als berufstätige Mutter brauchte ich schnelle Hilfe – hier wurde ich sofort fündig.“&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="badge"&gt;Jennifer Williams · Tochter – Miami, FL&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Footer --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;footer role="contentinfo"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="logo" style="color:#fff"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="logo-dot" style="background:#60a5fa"&gt;&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span&gt;CareConnect&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="columns small"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p style="margin-top:10px; color:#93a3b8"&gt;Wir verbinden Familien mit vertrauenswürdigen Pflegediensten – für weniger Stress und mehr Sicherheit.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;strong&gt;Leistungen&lt;/strong&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;ul style="margin:10px 0 0; padding-left:18px"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;Home Care&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;Pflegeheime&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;Demenzpflege&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;Respite Care&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;strong&gt;Support&lt;/strong&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;ul style="margin:10px 0 0; padding-left:18px"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;&lt;a href="#form"&gt;Hilfe &amp; Kontakt&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;&lt;a href="#vorteile"&gt;Sicherheitsprinzipien&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;&lt;a href="#howitworks"&gt;Ablauf&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;strong&gt;Kontakt&lt;/strong&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;ul style="margin:10px 0 0; padding-left:18px"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;&lt;a href="tel:+18002273669"&gt;+1 800 CARE NOW&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;&lt;a href="mailto:hello@careconnect.com"&gt;hello@careconnect.com&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;Europaweit verfügbar&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div style="margin-top:26px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:#93a3b8" class="small"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span&gt;© &lt;span id="y"&gt;&lt;/span&gt; CareConnect. Alle Rechte vorbehalten.&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span&gt;&lt;a href="#"&gt;Datenschutz&lt;/a&gt; · &lt;a href="#"&gt;AGB&lt;/a&gt; · &lt;a href="#"&gt;Barrierefreiheit&lt;/a&gt;&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/footer&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Jahr im Footer</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('y').textContent = new Date().getFullYear();</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Smooth scroll for internal anchors (optional)</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.querySelectorAll('a[href^="#"]').forEach(a=&gt;{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>a.addEventListener('click', e=&gt;{</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const id = a.getAttribute('href');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if(id.length&gt;1){</p>
-<p class="p1"><span class="Apple-converted-space">          </span>e.preventDefault();</p>
-<p class="p1"><span class="Apple-converted-space">          </span>document.querySelector(id)?.scrollIntoView({behavior:'smooth', block:'start'});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>})</p>
-<p class="p1"><span class="Apple-converted-space">    </span>})</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+  <!-- Simplified for preview -->
+  <h1 style="text-align:center; margin-top:50px;">CareConnect Landing Page</h1>
+  <p style="text-align:center;">Vorschau der Seite. Volle Inhalte im HTML-Code enthalten.</p>
 </body>
 </html>
