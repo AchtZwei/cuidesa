@@ -246,34 +246,48 @@
     </div>
   </section>
 
-  <!-- FORM PLACEHOLDER -->
-  <section id="form" class="section">
-    <div class="container form-wrap">
-      <div class="form-inner">
-        <div>
-          <h2>Jetzt starten</h2>
-          <p class="muted" style="max-width:50ch">Sag uns kurz, was ihr braucht – wir verbinden euch mit den passenden Anbietern. Das Ausfüllen dauert nur wenige Minuten.</p>
-          <ul class="small" style="margin:12px 0 0; padding-left:18px">
-            <li>Schnell & vertraulich</li>
-            <li>Nur verifizierte Anbieter</li>
-            <li>Kostenlos & unverbindlich</li>
-          </ul>
-        </div>
+ <!-- FORM SECTION -->
+<section id="form" class="section">
+  <div class="container form-wrap">
+    <div class="form-inner">
+      <div>
+        <h2>Jetzt starten</h2>
+        <p class="muted" style="max-width:50ch">
+          Sag uns kurz, was ihr braucht – wir verbinden euch mit den passenden Anbietern. 
+          Das Ausfüllen dauert nur wenige Minuten.
+        </p>
+        <ul class="small" style="margin:12px 0 0; padding-left:18px">
+          <li>Schnell & vertraulich</li>
+          <li>Nur verifizierte Anbieter</li>
+          <li>Kostenlos & unverbindlich</li>
+        </ul>
+      </div>
 
-        <!-- ✨ DIESEN BLOCK SPÄTER MIT JOTFORM ERSETZEN ✨
-             Ersetze NUR die href-URL unten (JOTFORM_URL_HERE) mit deinem Jotform-Link.
-             Wenn du das eingebettet willst, ersetze den gesamten <div class="placeholder"> durch das Jotform Embed-Snippet. -->
-        <div class="placeholder" role="region" aria-label="Formular-Platzhalter">
-          <strong>Formular wird hier eingebettet</strong>
-          <p class="muted" style="margin:8px 0 14px">
-            Dies ist ein Platzhalter. Klicke auf „Formular öffnen“ oder ersetze diesen Block später durch dein Jotform-Snippet.
-          </p>
-          <a class="btn btn-primary" id="open-form" href="https://form.jotform.com/252462957840364" target="_blank" rel="noopener">Formular öffnen</a>
-          <p class="small muted" style="margin-top:10px">Hinweis: Ersetze <code>JOTFORM_URL_HERE</code> in der Datei mit deiner echten Jotform-URL.</p>
-        </div>
+      <!-- JOTFORM DIRECT EMBED -->
+      <div style="width:100%">
+        <iframe
+          id="JotFormIFrame-252462957840364"
+          title="Appointment Request Form"
+          onload="window.parent.scrollTo(0,0)"
+          allowtransparency="true"
+          allow="geolocation; microphone; camera; fullscreen; payment"
+          src="https://form.jotform.com/252462957840364"
+          frameborder="0"
+          style="min-width:100%;max-width:100%;height:539px;border:none;"
+          scrolling="no"
+        ></iframe>
+        <script src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"></script>
+        <script>
+          window.jotformEmbedHandler(
+            "iframe[id='JotFormIFrame-252462957840364']",
+            "https://form.jotform.com/"
+          )
+        </script>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- Testimonials -->
   <section class="section" aria-labelledby="testimonials">
