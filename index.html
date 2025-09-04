@@ -461,6 +461,81 @@
         }
       })
     })
+
+
+  (() => {
+    const track = document.getElementById('reviewsTrack');
+    if (!track) return;
+
+    const carousel = track.parentElement;
+    let perView = getPerView();
+    let index = 0;
+    let autoTimer;
+
+    // Klone erste N Karten für nahtloses Looping
+    function setupClones(){
+      // alte Clones entfernen, falls Resize
+      [...track.querySelectorAll('.review.__clone')].forEach(n=>n.remove());
+      const firstN = [...track.querySelectorAll('.review')].slice(0, perView).map(card=>{
+        const clone = card.cloneNode(true);
+        clone.classList.add('__clone');
+        return clone;
+      });
+      firstN.forEach(c=>track.appendChild(c));
+    }
+
+    function getPerView(){
+      if (window.matchMedia('(max-width:640px)').matches) return 1;
+      if (window.matchMedia('(max-width:1024px)').matches) return 2;
+      return 3;
+    }
+
+    function move(){
+      index++;
+      const total = track.children.length; // inkl. Clones
+      const step = 100 / perView;
+      track.style.transition = 'transform .6s ease';
+      track.style.transform = `translateX(-${index * step}%)`;
+
+      // Wenn wir am Ende (inkl. Clones) sind: hart zurücksetzen
+      const origCount = track.querySelectorAll('.review:not(.__clone)').length;
+      if (index === origCount){
+        // Nach Ende der Transition sofort zurückspringen
+        setTimeout(() => {
+          track.style.transition = 'none';
+          track.style.transform = 'translateX(0)';
+          index = 0;
+        }, 620);
+      }
+    }
+
+    function start(){ stop(); autoTimer = setInterval(move, 4000); }
+    function stop(){ if (autoTimer) clearInterval(autoTimer); }
+
+    // Pause bei Hover/Focus
+    carousel.addEventListener('mouseenter', stop);
+    carousel.addEventListener('mouseleave', start);
+    carousel.addEventListener('focusin', stop);
+    carousel.addEventListener('focusout', start);
+
+    // Recalculate on resize
+    const onResize = () => {
+      const newPerView = getPerView();
+      if (newPerView !== perView){
+        perView = newPerView;
+        index = 0;
+        track.style.transition = 'none';
+        track.style.transform = 'translateX(0)';
+        setupClones();
+      }
+    };
+    window.addEventListener('resize', onResize);
+
+    // Init
+    setupClones();
+    start();
+  })();
+
   </script>
 </body>
 </html>
