@@ -96,8 +96,271 @@
   </style>
 </head>
 <body>
-  <!-- Simplified for preview -->
-  <h1 style="text-align:center; margin-top:50px;">CareConnect Landing Page</h1>
-  <p style="text-align:center;">Vorschau der Seite. Volle Inhalte im HTML-Code enthalten.</p>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="logo" aria-label="CareConnect">
+        <span class="logo-dot"></span>
+        <span>CareConnect</span>
+      </div>
+      <nav>
+        <a href="#form" class="btn btn-primary">Pflege finden</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Einfach. Transparent. Stressfrei.</span>
+        <h1>Finde die perfekte <span style="color:var(--brand)">Pflege-Lösung</span> für deine Liebsten</h1>
+        <p class="lead">
+          Verbinde dich mit geprüften Pflegedienstleistern und Pflegeheimen in deiner Nähe. Wir machen die Suche nach hochwertiger Betreuung leicht und sicher.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#form">Jetzt starten</a>
+          <a class="btn btn-secondary" href="#vorteile">Mehr erfahren</a>
+        </div>
+        <div class="stats" aria-label="Kennzahlen">
+          <div class="stat">
+            <span class="num">5’000+</span>
+            <span class="badge">Familien geholfen</span>
+          </div>
+          <div class="stat">
+            <span class="num">500+</span>
+            <span class="badge">Vertrauenspartner</span>
+          </div>
+          <div class="stat">
+            <span class="num">4.9/5</span>
+            <span class="badge">Durchschnittsbewertung</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <img
+          src="https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=1600&auto=format&fit=crop"
+          alt="Pflegekraft betreut Seniorin zu Hause"
+          loading="eager"
+          width="1200" height="800">
+      </div>
+    </div>
+  </section>
+
+  <!-- Why trust -->
+  <section id="vorteile" class="section">
+    <div class="container">
+      <h2 style="text-align:center">Warum Familien uns vertrauen</h2>
+      <p class="muted" style="text-align:center; margin:6px 0 18px">Wir verbinden dich nur mit verifizierten, top-bewerteten Anbietern.</p>
+
+      <div class="trust-grid">
+        <div class="card">
+          <div class="icon" aria-hidden="true">
+            <!-- Shield icon -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z" stroke="#1e67ff" stroke-width="2"/>
+              <path d="M9 12l2 2 4-4" stroke="#1e67ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Vollständig geprüft</h3>
+          <p class="muted">Alle Anbieter sind lizenziert und gründlich verifiziert.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon" aria-hidden="true">
+            <!-- Badge -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2l3 6 6 .9-4.4 4.4L18 20l-6-3-6 3 1.4-6.7L3 8.9 9 8l3-6z" stroke="#1e67ff" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <h3>Qualitätsgarantie</h3>
+          <p class="muted">Nur top-bewertete Partner mit nachweisbarer Erfolgsbilanz.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon" aria-hidden="true">
+            <!-- Users -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <circle cx="9" cy="10" r="3.5" stroke="#1e67ff" stroke-width="2"/>
+              <path d="M2 20c.8-3 3.6-4.5 7-4.5s6.2 1.5 7 4.5" stroke="#1e67ff" stroke-width="2"/>
+              <circle cx="18" cy="8" r="2.5" stroke="#1e67ff" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>Familienfokus</h3>
+          <p class="muted">Individuelles Matching basierend auf euren Bedürfnissen.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon" aria-hidden="true">
+            <!-- Lifebuoy -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="9" stroke="#1e67ff" stroke-width="2"/>
+              <circle cx="12" cy="12" r="3" stroke="#1e67ff" stroke-width="2"/>
+              <path d="M5 5l4 4M15 15l4 4M5 19l4-4M15 9l4-4" stroke="#1e67ff" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>24/7 Support</h3>
+          <p class="muted">Rund-um-die-Uhr Unterstützung – wenn ihr sie braucht.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="section" aria-labelledby="howitworks">
+    <div class="container">
+      <h2 id="howitworks" style="text-align:center">So funktioniert’s</h2>
+      <p class="muted" style="text-align:center; margin:6px 0 18px">In drei einfachen Schritten zur passenden Pflege.</p>
+
+      <div class="timeline">
+        <div class="step">
+          <div class="icon" style="margin-bottom:12px" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <circle cx="11" cy="11" r="7" stroke="#1e67ff" stroke-width="2"/>
+              <path d="M20 20l-3.5-3.5" stroke="#1e67ff" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Bedürfnisse teilen</h3>
+          <p class="muted">Ort, Art der Betreuung & Budget kurz angeben.</p>
+        </div>
+        <div class="step">
+          <div class="icon" style="margin-bottom:12px" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M4 7h16M4 12h16M4 17h10" stroke="#1e67ff" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Passende Matches</h3>
+          <p class="muted">Wir vergleichen Optionen, die zu euch passen.</p>
+        </div>
+        <div class="step">
+          <div class="icon" style="margin-bottom:12px" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Pflege starten</h3>
+          <p class="muted">Termine planen & die beste Lösung auswählen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM PLACEHOLDER -->
+  <section id="form" class="section">
+    <div class="container form-wrap">
+      <div class="form-inner">
+        <div>
+          <h2>Jetzt starten</h2>
+          <p class="muted" style="max-width:50ch">Sag uns kurz, was ihr braucht – wir verbinden euch mit den passenden Anbietern. Das Ausfüllen dauert nur wenige Minuten.</p>
+          <ul class="small" style="margin:12px 0 0; padding-left:18px">
+            <li>Schnell & vertraulich</li>
+            <li>Nur verifizierte Anbieter</li>
+            <li>Kostenlos & unverbindlich</li>
+          </ul>
+        </div>
+
+        <!-- ✨ DIESEN BLOCK SPÄTER MIT JOTFORM ERSETZEN ✨
+             Ersetze NUR die href-URL unten (JOTFORM_URL_HERE) mit deinem Jotform-Link.
+             Wenn du das eingebettet willst, ersetze den gesamten <div class="placeholder"> durch das Jotform Embed-Snippet. -->
+        <div class="placeholder" role="region" aria-label="Formular-Platzhalter">
+          <strong>Formular wird hier eingebettet</strong>
+          <p class="muted" style="margin:8px 0 14px">
+            Dies ist ein Platzhalter. Klicke auf „Formular öffnen“ oder ersetze diesen Block später durch dein Jotform-Snippet.
+          </p>
+          <a class="btn btn-primary" id="open-form" href="JOTFORM_URL_HERE" target="_blank" rel="noopener">Formular öffnen</a>
+          <p class="small muted" style="margin-top:10px">Hinweis: Ersetze <code>JOTFORM_URL_HERE</code> in der Datei mit deiner echten Jotform-URL.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section" aria-labelledby="testimonials">
+    <div class="container">
+      <h2 id="testimonials" style="text-align:center">Was Familien sagen</h2>
+      <p class="muted" style="text-align:center; margin:6px 0 18px">Echte Erfahrungen von Familien, die über uns Betreuung gefunden haben.</p>
+
+      <div class="testi-grid">
+        <div class="quote">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <p style="margin:.5rem 0 1rem">„Die Suche war super einfach. Innerhalb von 48 Stunden hatten wir drei passende Optionen – alle top geprüft.“</p>
+          <div class="badge">Sarah Martinez · Tochter – Austin, TX</div>
+        </div>
+        <div class="quote">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <p style="margin:.5rem 0 1rem">„Professionalität und Herz. Unser Vater ist glücklicher und gesünder als zuvor.“</p>
+          <div class="badge">Michael Chen · Sohn – Denver, CO</div>
+        </div>
+        <div class="quote">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <p style="margin:.5rem 0 1rem">„Als berufstätige Mutter brauchte ich schnelle Hilfe – hier wurde ich sofort fündig.“</p>
+          <div class="badge">Jennifer Williams · Tochter – Miami, FL</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="logo" style="color:#fff">
+        <span class="logo-dot" style="background:#60a5fa"></span>
+        <span>CareConnect</span>
+      </div>
+
+      <div class="columns small">
+        <div>
+          <p style="margin-top:10px; color:#93a3b8">Wir verbinden Familien mit vertrauenswürdigen Pflegediensten – für weniger Stress und mehr Sicherheit.</p>
+        </div>
+        <div>
+          <strong>Leistungen</strong>
+          <ul style="margin:10px 0 0; padding-left:18px">
+            <li>Home Care</li>
+            <li>Pflegeheime</li>
+            <li>Demenzpflege</li>
+            <li>Respite Care</li>
+          </ul>
+        </div>
+        <div>
+          <strong>Support</strong>
+          <ul style="margin:10px 0 0; padding-left:18px">
+            <li><a href="#form">Hilfe & Kontakt</a></li>
+            <li><a href="#vorteile">Sicherheitsprinzipien</a></li>
+            <li><a href="#howitworks">Ablauf</a></li>
+          </ul>
+        </div>
+        <div>
+          <strong>Kontakt</strong>
+          <ul style="margin:10px 0 0; padding-left:18px">
+            <li><a href="tel:+18002273669">+1 800 CARE NOW</a></li>
+            <li><a href="mailto:hello@careconnect.com">hello@careconnect.com</a></li>
+            <li>Europaweit verfügbar</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:26px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:#93a3b8" class="small">
+        <span>© <span id="y"></span> CareConnect. Alle Rechte vorbehalten.</span>
+        <span><a href="#">Datenschutz</a> · <a href="#">AGB</a> · <a href="#">Barrierefreiheit</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Jahr im Footer
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Smooth scroll for internal anchors (optional)
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        if(id.length>1){
+          e.preventDefault();
+          document.querySelector(id)?.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      })
+    })
+  </script>
 </body>
 </html>
