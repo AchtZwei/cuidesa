@@ -71,10 +71,38 @@
     .form-inner{display:grid; grid-template-columns:1.1fr .9fr; gap:22px; align-items:center}
     .placeholder{border:2px dashed #c6d4ee; border-radius:16px; padding:28px; background:#f8fbff}
     .placeholder strong{font-family:"Plus Jakarta Sans"; font-size:1.15rem}
-    /* Testimonials */
-    .testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:18px}
-    .quote{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:20px}
-    .stars{color:#fbbf24; letter-spacing:1px}
+/* Reviews Carousel */
+.reviews-carousel{
+  --gap: 18px;
+  --card-radius: 18px;
+  --perView: 3; /* Desktop default */
+  overflow: hidden;
+  position: relative;
+  padding: 2px; /* für saubere Kanten mit shadow */
+}
+.reviews-track{
+  display: flex;
+  gap: var(--gap);
+  will-change: transform;
+  transition: transform .6s ease;
+}
+.review{
+  flex: 0 0 calc((100% - (var(--gap) * (var(--perView) - 1))) / var(--perView));
+  background: var(--card);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+.review p{ margin:.5rem 0 1rem; }
+.stars{ color:#fbbf24; letter-spacing:1px }
+
+@media (max-width:1024px){
+  .reviews-carousel{ --perView: 2; }
+}
+@media (max-width:640px){
+  .reviews-carousel{ --perView: 1; }
+}
+
     /* Footer */
     footer{background:#0f172a; color:#cbd5e1; padding:40px 0 60px; margin-top:56px}
     footer a{color:#cbd5e1; text-decoration:none}
@@ -275,31 +303,103 @@
 
 
 
-  <!-- Testimonials -->
-  <section class="section" aria-labelledby="testimonials">
-    <div class="container">
-      <h2 id="testimonials" style="text-align:center">Was Familien sagen</h2>
-      <p class="muted" style="text-align:center; margin:6px 0 18px">Echte Erfahrungen von Familien, die über uns Betreuung gefunden haben.</p>
+ <!-- TESTIMONIALS (AUTO-CAROUSEL) -->
+<section class="section" aria-labelledby="testimonials">
+  <div class="container">
+    <h2 id="testimonials" style="text-align:center">Was Familien sagen</h2>
+    <p class="muted" style="text-align:center; margin:6px 0 18px">
+      Echte Erfahrungen von Familien, die über uns Betreuung gefunden haben.
+    </p>
 
-      <div class="testi-grid">
-        <div class="quote">
+    <div class="reviews-carousel" aria-roledescription="carousel">
+      <div class="reviews-track" id="reviewsTrack">
+        <!-- 15+ Reviews; 3 sichtbar (Desktop), 2 (Tablet), 1 (Mobile) -->
+
+        <!-- 🇦🇱 Albanisch (6 = 40%) -->
+        <article class="review">
           <div class="stars" aria-hidden="true">★★★★★</div>
-          <p style="margin:.5rem 0 1rem">„Die Suche war super einfach. Innerhalb von 48 Stunden hatten wir drei passende Optionen – alle top geprüft.“</p>
-          <div class="badge">Sarah Martinez · Tochter – Austin, TX</div>
-        </div>
-        <div class="quote">
-          <div class="stars" aria-hidden="true">★★★★★</div>
-          <p style="margin:.5rem 0 1rem">„Professionalität und Herz. Unser Vater ist glücklicher und gesünder als zuvor.“</p>
-          <div class="badge">Michael Chen · Sohn – Denver, CO</div>
-        </div>
-        <div class="quote">
-          <div class="stars" aria-hidden="true">★★★★★</div>
-          <p style="margin:.5rem 0 1rem">„Als berufstätige Mutter brauchte ich schnelle Hilfe – hier wurde ich sofort fündig.“</p>
-          <div class="badge">Jennifer Williams · Tochter – Miami, FL</div>
-        </div>
+          <p>„Sehr schnelle Rückmeldung und drei passende Optionen innerhalb eines Tages.“</p>
+          <span class="badge">Arben Krasniqi · Pristina</span>
+        </article>
+        <article class="review">
+          <div class="stars">★★★★★</div>
+          <p>„Die Betreuung ist professionell, freundlich und zuverlässig. Danke!“</p>
+          <span class="badge">Lira Berisha · Basel</span>
+        </article>
+        <article class="review">
+          <div class="stars">★★★★★</div>
+          <p>„Meine Großmutter fühlt sich sicherer denn je – tolle Pflegekraft.“</p>
+          <span class="badge">Gentian Kola · Zürich</span>
+        </article>
+        <article class="review">
+          <div class="stars">★★★★★</div>
+          <p>„Transparente Kommunikation, faire Preise und sehr menschlich.“</p>
+          <span class="badge">Aulona Hoxha · Luzern</span>
+        </article>
+        <article class="review">
+          <div class="stars">★★★★★</div>
+          <p>„Schnelles Matching, die Auswahl war wirklich hochwertig kuratiert.“</p>
+          <span class="badge">Driton Shala · Bern</span>
+        </article>
+        <article class="review">
+          <div class="stars">★★★★★</div>
+          <p>„Wir hatten endlich das Gefühl, verstanden zu werden. Klare Empfehlung.“</p>
+          <span class="badge">Elira Gashi · St. Gallen</span>
+        </article>
+
+        <!-- 🇮🇹 Italienisch (3 = 20%) -->
+        <article class="review">
+          <div class="stars">★★★★★</div>
+          <p>„Organizzazione impeccabile e assistenti molto premurose.“</p>
+          <span class="badge">Marco Bianchi · Milano</span>
+        </article>
+        <article class="review">
+          <div class="stars">★★★★★</div>
+          <p>„In pochi giorni abbiamo trovato l’assistenza giusta per mio padre.“</p>
+          <span class="badge">Giulia Rossi · Torino</span>
+        </article>
+        <article class="review">
+          <div class="stars">★★★★★</div>
+          <p>„Servizio rapido, chiaro e davvero affidabile.“</p>
+          <span class="badge">Luca Conti · Bologna</span>
+        </article>
+
+        <!-- 🇨🇭 Schweizerisch (6 = 40%) -->
+        <article class="review">
+          <div class="stars">★★★★★</div>
+          <p>„Innert 48h hatten wir zwei Besichtigungen – super Service.“</p>
+          <span class="badge">Lara Meier · Zürich</span>
+        </article>
+        <article class="review">
+          <div class="stars">★★★★★</div>
+          <p>„Sehr sorgfältige Abklärung der Bedürfnisse meiner Mutter.“</p>
+          <span class="badge">Jonas Keller · Winterthur</span>
+        </article>
+        <article class="review">
+          <div class="stars">★★★★★</div>
+          <p>„Professionell und herzlich – genau die Mischung, die man will.“</p>
+          <span class="badge">Céline Dubois · Lausanne</span>
+        </article>
+        <article class="review">
+          <div class="stars">★★★★★</div>
+          <p>„Top Kommunikation und verlässliche Planung der Einsätze.“</p>
+          <span class="badge">Markus Steiner · Bern</span>
+        </article>
+        <article class="review">
+          <div class="stars">★★★★★</div>
+          <p>„Hat uns viel Zeit und Nerven gespart. Danke!“</p>
+          <span class="badge">Nadine Vogel · Basel</span>
+        </article>
+        <article class="review">
+          <div class="stars">★★★★★</div>
+          <p>„Rasch, freundlich, kompetent – absolut empfehlenswert.“</p>
+          <span class="badge">Fabio Bernasconi · Lugano</span>
+        </article>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- Footer -->
   <footer role="contentinfo">
