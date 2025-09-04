@@ -71,30 +71,38 @@
     .form-inner{display:grid; grid-template-columns:1.1fr .9fr; gap:22px; align-items:center}
     .placeholder{border:2px dashed #c6d4ee; border-radius:16px; padding:28px; background:#f8fbff}
     .placeholder strong{font-family:"Plus Jakarta Sans"; font-size:1.15rem}
-/* Reviews Carousel */
+
+/* Reviews Carousel – kompakt nach Inhalt */
 .reviews-carousel{
   --gap: 18px;
   --card-radius: 18px;
-  --perView: 3; /* Desktop default */
+  --perView: 3;
   overflow: hidden;
   position: relative;
-  padding: 2px; /* für saubere Kanten mit shadow */
 }
+
 .reviews-track{
   display: flex;
   gap: var(--gap);
+  align-items: flex-start;      /* <— verhindert „Strecken“ in die Höhe */
   will-change: transform;
   transition: transform .6s ease;
 }
+
 .review{
   flex: 0 0 calc((100% - (var(--gap) * (var(--perView) - 1))) / var(--perView));
   background: var(--card);
   border-radius: var(--card-radius);
   box-shadow: var(--shadow);
-  padding: 20px;
+  padding: 16px 18px;           /* etwas kompakter */
+  font-size: .95rem;
+  line-height: 1.45;
+  height: auto;                 /* <— passt sich Textlänge an */
+  /* keine min/max-height */
 }
-.review p{ margin:.5rem 0 1rem; }
-.stars{ color:#fbbf24; letter-spacing:1px }
+
+.review p{ margin: .5rem 0 1rem; }
+.stars{ color:#fbbf24; letter-spacing:1px; font-size: 1rem; }
 
 @media (max-width:1024px){
   .reviews-carousel{ --perView: 2; }
@@ -102,6 +110,7 @@
 @media (max-width:640px){
   .reviews-carousel{ --perView: 1; }
 }
+
 
     /* Footer */
     footer{background:#0f172a; color:#cbd5e1; padding:40px 0 60px; margin-top:56px}
