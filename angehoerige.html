@@ -787,7 +787,7 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
           <p class="fhint">Kostenlos. Unverbindlich. Innert 24 Stunden.</p>
           <div class="input-grp"><label>Vorname und Name</label><input type="text" id="iname" placeholder="Maria Muster" oninput="ckC()"></div>
           <div class="input-grp"><label>Telefonnummer</label><input type="tel" id="iphone" placeholder="+41 79 123 45 67" oninput="ckC()"></div>
-          <div class="input-grp" style="margin-bottom:28px;"><label>E-Mail (optional)</label><input type="email" placeholder="maria@beispiel.ch"></div>
+          <div class="input-grp" style="margin-bottom:28px;"><label>E-Mail (optional)</label><input type="email" id="iemail" placeholder="maria@beispiel.ch"></div>
           <div class="form-nav"><button class="btn-back" onclick="back(6)">← Zurück</button><button class="btn-next" id="n6" onclick="done()" disabled>Anspruch prüfen lassen →</button></div>
         </div>
 
@@ -923,7 +923,7 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
         <p class="fhint">Kostenlos. Unverbindlich. Innert 24 Stunden.</p>
         <div class="input-grp"><label>Vorname und Name</label><input type="text" id="m-name" placeholder="Maria Muster" oninput="mckC()"></div>
         <div class="input-grp"><label>Telefonnummer</label><input type="tel" id="m-phone" placeholder="+41 79 123 45 67" oninput="mckC()"></div>
-        <div class="input-grp" style="margin-bottom:28px;"><label>E-Mail (optional)</label><input type="email" placeholder="maria@beispiel.ch"></div>
+        <div class="input-grp" style="margin-bottom:28px;"><label>E-Mail (optional)</label><input type="email" id="m-email" placeholder="maria@beispiel.ch"></div>
         <div class="form-nav"><button class="btn-back" onclick="mback(6)">← Zurück</button><button class="btn-next" id="mn6" onclick="mdone()" disabled>Anspruch prüfen lassen →</button></div>
       </div>
 
@@ -938,6 +938,9 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
 </div>
 
 <script>
+  // ↓ Google Apps Script URL — nach dem Deployment hier eintragen
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwEgloU9EMJKmpwNi4H6_fAtCf7tlg5owwgjCiZdUEKe1YK6MzeaeLBkMtHRXf6ShU/exec';
+
   // Scroll reveal
   const obs = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}}),{threshold:0.1});
   document.querySelectorAll('.sr').forEach(el=>obs.observe(el));
@@ -973,14 +976,83 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
   }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-  // Modal form logic
+  // ---- INLINE FORM ----
+  const FP = [17,33,50,67,83,100];
+  function fupd(n) {
+    document.getElementById('prog').style.width = FP[n-1]+'%';
+    document.getElementById('step-pct').textContent = FP[n-1]+'%';
+    document.getElementById('step-lbl').textContent = `Schritt ${n} von 6`;
+  }
+  function pick(b, s) {
+    b.parentElement.querySelectorAll('.choice').forEach(x=>x.classList.remove('sel'));
+    b.classList.add('sel');
+    const nx = document.getElementById('n'+s);
+    if (nx) nx.disabled = false;
+  }
+  function multi(b) {
+    b.classList.toggle('sel');
+    document.getElementById('n4').disabled = document.querySelectorAll('#m4 .sel').length === 0;
+  }
+  function setH(v) { document.getElementById('hrs').innerHTML = v+' <span>Std. / Woche</span>'; }
+  function ckK() { document.getElementById('n5').disabled = document.getElementById('kanton').value.trim().length < 2; }
+  function ckC() {
+    const n = document.getElementById('iname').value.trim();
+    const p = document.getElementById('iphone').value.trim();
+    document.getElementById('n6').disabled = !(n.length > 2 && p.length > 6);
+  }
+  function go(s) {
+    document.getElementById('s'+s).classList.remove('active');
+    document.getElementById('s'+(s+1)).classList.add('active');
+    fupd(s+1);
+    window.scrollTo({top: document.getElementById('pruefung').offsetTop - 80, behavior: 'smooth'});
+  }
+  function back(s) {
+    document.getElementById('s'+s).classList.remove('active');
+    document.getElementById('s'+(s-1)).classList.add('active');
+    fupd(s-1);
+  }
+  async function done() {
+    const btn = document.getElementById('n6');
+    btn.disabled = true;
+    btn.textContent = 'Wird gesendet...';
+    const payload = {
+      situation:    document.querySelector('#s1 .sel strong')?.textContent || '',
+      stunden:      document.getElementById('hrs')?.textContent.replace(/\s.*/, '') || '',
+      beziehung:    document.querySelector('#s3 .sel strong')?.textContent || '',
+      taetigkeiten: [...document.querySelectorAll('#m4 .sel strong')].map(b=>b.textContent).join(', '),
+      kanton:       document.getElementById('kanton')?.value || '',
+      name:         document.getElementById('iname')?.value || '',
+      telefon:      document.getElementById('iphone')?.value || '',
+      email:        document.getElementById('iemail')?.value || ''
+    };
+    try {
+      if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'DEINE_APPS_SCRIPT_URL_HIER') {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      }
+      document.getElementById('s6').classList.remove('active');
+      document.getElementById('suc').classList.add('active');
+      document.getElementById('prog').style.width = '100%';
+      document.getElementById('step-pct').textContent = '✓';
+      document.getElementById('step-lbl').textContent = 'Anfrage gesendet';
+    } catch (err) {
+      console.warn('Übertragung fehlgeschlagen:', err);
+      btn.disabled = false;
+      btn.textContent = 'Anspruch prüfen lassen →';
+    }
+  }
+
+  // ---- MODAL FORM ----
   const MP = [17,33,50,67,83,100];
   function mupd(n) {
     document.getElementById('m-prog').style.width = MP[n-1]+'%';
     document.getElementById('m-step-pct').textContent = MP[n-1]+'%';
     document.getElementById('m-step-lbl').textContent = `Schritt ${n} von 6`;
   }
-  function mpick(b,s) {
+  function mpick(b, s) {
     b.parentElement.querySelectorAll('.choice').forEach(x=>x.classList.remove('sel'));
     b.classList.add('sel');
     const nx = document.getElementById('mn'+s);
@@ -1008,37 +1080,38 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
     document.getElementById('ms'+(s-1)).classList.add('active');
     mupd(s-1);
   }
-  // ↓ Deine Google Apps Script URL hier einfügen
-  const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwEgloU9EMJKmpwNi4H6_fAtCf7tlg5owwgjCiZdUEKe1YK6MzeaeLBkMtHRXf6ShU/exec';
-
-  function mdone() {
-    // Daten sammeln
+  async function mdone() {
+    const btn = document.getElementById('mn6');
+    btn.disabled = true;
+    btn.textContent = 'Wird gesendet...';
     const payload = {
-      situation:    document.querySelector('#mm1 .sel strong')?.textContent || document.querySelector('#ms1 .sel strong')?.textContent || '',
+      situation:    document.querySelector('#ms1 .sel strong')?.textContent || '',
       stunden:      document.getElementById('m-hrs')?.textContent.replace(/\s.*/, '') || '',
       beziehung:    document.querySelector('#ms3 .sel strong')?.textContent || '',
       taetigkeiten: [...document.querySelectorAll('#mm4 .sel strong')].map(b=>b.textContent).join(', '),
       kanton:       document.getElementById('m-kanton')?.value || '',
       name:         document.getElementById('m-name')?.value || '',
-      telefon:      document.getElementById('m-phone')?.value || ''
+      telefon:      document.getElementById('m-phone')?.value || '',
+      email:        document.getElementById('m-email')?.value || ''
     };
-
-    // Ans Sheet senden (fire & forget — User sieht sofort Erfolg)
-    if (SHEETS_URL !== 'DEINE_APPS_SCRIPT_URL_HIER') {
-      fetch(SHEETS_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      }).catch(err => console.warn('Sheet-Übertragung fehlgeschlagen:', err));
+    try {
+      if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'DEINE_APPS_SCRIPT_URL_HIER') {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      }
+      document.getElementById('ms6').classList.remove('active');
+      document.getElementById('m-suc').classList.add('active');
+      document.getElementById('m-prog').style.width = '100%';
+      document.getElementById('m-step-pct').textContent = '✓';
+      document.getElementById('m-step-lbl').textContent = 'Anfrage gesendet';
+    } catch (err) {
+      console.warn('Übertragung fehlgeschlagen:', err);
+      btn.disabled = false;
+      btn.textContent = 'Anspruch prüfen lassen →';
     }
-
-    // Erfolgsscreen zeigen
-    document.getElementById('ms6').classList.remove('active');
-    document.getElementById('m-suc').classList.add('active');
-    document.getElementById('m-prog').style.width = '100%';
-    document.getElementById('m-step-pct').textContent = '✓';
-    document.getElementById('m-step-lbl').textContent = 'Anfrage gesendet';
   }
 </script>
 </body>
