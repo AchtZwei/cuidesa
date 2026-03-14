@@ -1011,7 +1011,7 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
     document.getElementById('s'+(s-1)).classList.add('active');
     fupd(s-1);
   }
-  async function done() {
+  function done() {
     const btn = document.getElementById('n6');
     btn.disabled = true;
     btn.textContent = 'Wird gesendet...';
@@ -1025,24 +1025,21 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
       telefon:      document.getElementById('iphone')?.value || '',
       email:        document.getElementById('iemail')?.value || ''
     };
-    try {
-      if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'DEINE_APPS_SCRIPT_URL_HIER') {
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify(payload)
-        });
-      }
-      document.getElementById('s6').classList.remove('active');
-      document.getElementById('suc').classList.add('active');
-      document.getElementById('prog').style.width = '100%';
-      document.getElementById('step-pct').textContent = '✓';
-      document.getElementById('step-lbl').textContent = 'Anfrage gesendet';
-    } catch (err) {
-      console.warn('Übertragung fehlgeschlagen:', err);
-      btn.disabled = false;
-      btn.textContent = 'Anspruch prüfen lassen →';
+    // Daten im Hintergrund senden (fire & forget)
+    if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'DEINE_APPS_SCRIPT_URL_HIER') {
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(payload)
+      }).catch(err => console.warn('Sheet-Übertragung fehlgeschlagen:', err));
     }
+    // Erfolgsscreen sofort zeigen
+    document.getElementById('s6').classList.remove('active');
+    document.getElementById('suc').classList.add('active');
+    document.getElementById('prog').style.width = '100%';
+    document.getElementById('step-pct').textContent = '✓';
+    document.getElementById('step-lbl').textContent = 'Anfrage gesendet';
   }
 
   // ---- MODAL FORM ----
@@ -1080,7 +1077,7 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
     document.getElementById('ms'+(s-1)).classList.add('active');
     mupd(s-1);
   }
-  async function mdone() {
+  function mdone() {
     const btn = document.getElementById('mn6');
     btn.disabled = true;
     btn.textContent = 'Wird gesendet...';
@@ -1094,24 +1091,21 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
       telefon:      document.getElementById('m-phone')?.value || '',
       email:        document.getElementById('m-email')?.value || ''
     };
-    try {
-      if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'DEINE_APPS_SCRIPT_URL_HIER') {
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify(payload)
-        });
-      }
-      document.getElementById('ms6').classList.remove('active');
-      document.getElementById('m-suc').classList.add('active');
-      document.getElementById('m-prog').style.width = '100%';
-      document.getElementById('m-step-pct').textContent = '✓';
-      document.getElementById('m-step-lbl').textContent = 'Anfrage gesendet';
-    } catch (err) {
-      console.warn('Übertragung fehlgeschlagen:', err);
-      btn.disabled = false;
-      btn.textContent = 'Anspruch prüfen lassen →';
+    // Daten im Hintergrund senden (fire & forget)
+    if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'DEINE_APPS_SCRIPT_URL_HIER') {
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(payload)
+      }).catch(err => console.warn('Sheet-Übertragung fehlgeschlagen:', err));
     }
+    // Erfolgsscreen sofort zeigen
+    document.getElementById('ms6').classList.remove('active');
+    document.getElementById('m-suc').classList.add('active');
+    document.getElementById('m-prog').style.width = '100%';
+    document.getElementById('m-step-pct').textContent = '✓';
+    document.getElementById('m-step-lbl').textContent = 'Anfrage gesendet';
   }
 </script>
 </body>
