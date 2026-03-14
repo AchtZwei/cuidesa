@@ -149,7 +149,25 @@ nav {
   border-left: 1px solid var(--border-soft);
   display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
   padding: 80px 80px 80px 60px;
+  position: relative;
+  overflow: hidden;
 }
+.hero-right::before {
+  content: '';
+  position: absolute;
+  inset: -16px;
+  background: url('img/hero-pflegerin.jpg') center/cover no-repeat;
+  filter: blur(10px);
+  z-index: 0;
+}
+.hero-right::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(238, 246, 240, 0.70);
+  z-index: 0;
+}
+.hero-right > * { position: relative; z-index: 1; }
 .quote-card {
   background: var(--white); border: 1.5px solid var(--border);
   border-radius: 14px; padding: 32px;
