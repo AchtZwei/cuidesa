@@ -1029,7 +1029,7 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
       if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'DEINE_APPS_SCRIPT_URL_HIER') {
         await fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'text/plain' },
           body: JSON.stringify(payload)
         });
       }
@@ -1098,7 +1098,7 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
       if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'DEINE_APPS_SCRIPT_URL_HIER') {
         await fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'text/plain' },
           body: JSON.stringify(payload)
         });
       }
