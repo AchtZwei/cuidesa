@@ -65,13 +65,10 @@ function doPost(e) {
     // Formulardaten parsen
     var data = JSON.parse(e.postData.contents);
 
-    // Eindeutige ID generieren (CUI-YYYYMMDD-XXXX)
+    // Eindeutige ID generieren (C-001, C-002, ...)
     var now = new Date();
-    var datePart = now.getFullYear().toString()
-      + ('0' + (now.getMonth() + 1)).slice(-2)
-      + ('0' + now.getDate()).slice(-2);
-    var randPart = Math.floor(1000 + Math.random() * 9000);
-    var leadId = 'CUI-' + datePart + '-' + randPart;
+    var rowCount = Math.max(0, sheet.getLastRow() - 1); // Header abziehen
+    var leadId = 'C-' + ('00' + (rowCount + 1)).slice(-3);
 
     // Neue Zeile einfügen
     sheet.appendRow([
