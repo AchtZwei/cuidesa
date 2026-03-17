@@ -34,8 +34,8 @@
  *
  * SPALTEN IM SHEET:
  * -----------------
- * A: Timestamp | B: Pflegestatus | C: Stunden/Woche | D: Beziehung
- * E: Tätigkeiten | F: Kanton/PLZ | G: Name | H: Telefon | I: E-Mail
+ * A: ID | B: Timestamp | C: Pflegestatus | D: Stunden/Woche | E: Beziehung
+ * F: Tätigkeiten | G: Kanton/PLZ | H: Name | I: Telefon | J: E-Mail
  */
 
 // ============================================================
@@ -49,6 +49,7 @@ function doPost(e) {
     // Header-Zeile anlegen, falls das Sheet noch leer ist
     if (sheet.getLastRow() === 0) {
       sheet.appendRow([
+        'ID',
         'Timestamp',
         'Pflegestatus',
         'Stunden/Woche',
@@ -64,9 +65,18 @@ function doPost(e) {
     // Formulardaten parsen
     var data = JSON.parse(e.postData.contents);
 
+    // Eindeutige ID generieren (CUI-YYYYMMDD-XXXX)
+    var now = new Date();
+    var datePart = now.getFullYear().toString()
+      + ('0' + (now.getMonth() + 1)).slice(-2)
+      + ('0' + now.getDate()).slice(-2);
+    var randPart = Math.floor(1000 + Math.random() * 9000);
+    var leadId = 'CUI-' + datePart + '-' + randPart;
+
     // Neue Zeile einfügen
     sheet.appendRow([
-      new Date(),                        // Timestamp
+      leadId,                            // ID
+      now,                               // Timestamp
       data.situation    || '',           // Pflegestatus
       data.stunden      || '',           // Stunden/Woche
       data.beziehung    || '',           // Beziehung
