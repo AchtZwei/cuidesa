@@ -62,7 +62,7 @@ nav {
 }
 .nav-links a:hover, .nav-links a.active { color: var(--ink); }
 .nav-links a.active { font-weight: 700; }
-\.nav-cta { margin-right: 110px;
+\.nav-cta {
   background: var(--green); color: white;
   padding: 10px 22px; border-radius: 8px;
   font-size: 14px; font-weight: 700; text-decoration: none;
@@ -487,7 +487,7 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
 }
 
 .lang-switch {
-  position: fixed; top: 12px; right: 16px; z-index: 200;
+  position: relative; z-index: 200;
 }
 .lang-selected {
   display: flex; align-items: center; gap: 7px;
@@ -587,6 +587,7 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
     <a href="#system" data-i18n="nav_how">Wie es funktioniert</a>
     <a href="#pruefung" data-i18n="nav_consult">Kostenlose Beratung</a>
   </div>
+  <button onclick="openModal()" class="nav-cta" data-i18n="nav_cta">Anspruch prüfen →</button>
   <div class="lang-switch" id="langSwitch">
     <div class="lang-selected" onclick="toggleLangMenu()">
       <span id="lang-flag">🇩🇪</span>
@@ -602,7 +603,6 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
       </div>
     </div>
   </div>
-  <button onclick="openModal()" class="nav-cta" data-i18n="nav_cta">Anspruch prüfen →</button>
 </nav>
 
 <!-- HERO -->
