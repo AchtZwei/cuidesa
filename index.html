@@ -486,10 +486,32 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
   .calc-right { padding: 28px 24px; }
 }
 
-.lang-switch { display: flex; gap: 4px; align-items: center; }
-.lang-btn { padding: 5px 10px; border-radius: 6px; border: 1.5px solid var(--border); background: transparent; cursor: pointer; font-size: 12px; font-weight: 700; color: var(--ink-light); letter-spacing: 0.05em; transition: all 0.15s; }
-.lang-btn.active { background: var(--green); color: white; border-color: var(--green); }
-.lang-btn:hover:not(.active) { border-color: var(--green); color: var(--green); }
+.lang-switch {
+  position: fixed; top: 12px; right: 16px; z-index: 200;
+}
+.lang-selected {
+  display: flex; align-items: center; gap: 7px;
+  padding: 6px 12px 6px 10px; border-radius: 8px;
+  border: 1.5px solid var(--border); background: white;
+  cursor: pointer; font-size: 13px; font-weight: 700; color: var(--ink);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07); transition: border-color 0.15s;
+  user-select: none;
+}
+.lang-selected:hover { border-color: var(--green); }
+.lang-selected .lang-arrow { font-size: 10px; color: var(--ink-light); margin-left: 2px; }
+.lang-dropdown {
+  display: none; position: absolute; top: calc(100% + 6px); right: 0;
+  background: white; border: 1.5px solid var(--border); border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10); overflow: hidden; min-width: 130px;
+}
+.lang-switch.open .lang-dropdown { display: block; }
+.lang-option {
+  display: flex; align-items: center; gap: 9px;
+  padding: 10px 14px; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--ink);
+  transition: background 0.12s;
+}
+.lang-option:hover { background: var(--bg); }
+.lang-option.active { color: var(--green); background: var(--green-light); }
 
 /* SCROLL REVEAL */
 .sr { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
@@ -565,9 +587,20 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
     <a href="#system" data-i18n="nav_how">Wie es funktioniert</a>
     <a href="#pruefung" data-i18n="nav_consult">Kostenlose Beratung</a>
   </div>
-  <div class="lang-switch">
-    <button class="lang-btn active" data-lang="de" onclick="setLang('de')">DE</button>
-    <button class="lang-btn" data-lang="sq" onclick="setLang('sq')">SQ</button>
+  <div class="lang-switch" id="langSwitch">
+    <div class="lang-selected" onclick="toggleLangMenu()">
+      <span id="lang-flag">🇩🇪</span>
+      <span id="lang-label">DE</span>
+      <span class="lang-arrow">▼</span>
+    </div>
+    <div class="lang-dropdown">
+      <div class="lang-option active" data-lang="de" onclick="setLang('de')">
+        🇩🇪 <span>Deutsch</span>
+      </div>
+      <div class="lang-option" data-lang="al" onclick="setLang('sq')">
+        🇦🇱 <span>Shqip</span>
+      </div>
+    </div>
   </div>
   <button onclick="openModal()" class="nav-cta" data-i18n="nav_cta">Anspruch prüfen →</button>
 </nav>
@@ -1305,7 +1338,7 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
       const key = el.getAttribute('data-i18n-placeholder');
       if (T[key] !== undefined) el.placeholder = T[key];
     });
-    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-lang') === lang));
+    const isDE = lang === 'de'; document.getElementById('lang-flag').textContent = isDE ? '🇩🇪' : '🇦🇱'; document.getElementById('lang-label').textContent = isDE ? 'DE' : 'AL'; document.querySelectorAll('.lang-option').forEach(o => o.classList.toggle('active', o.getAttribute('data-lang') === (isDE ? 'de' : 'al'))); document.getElementById('langSwitch').classList.remove('open');
     // Re-run calc to update dynamic text
     calcUpdate();
   }
@@ -1326,6 +1359,9 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
     document.getElementById('c-weeks').textContent = net === 0 ? T.calc_sofort : T.calc_weeks_fmt.replace('{w}', wochen.toFixed(1));
     document.getElementById('c-year').textContent = 'CHF ' + jahresverdienst.toLocaleString('de-CH');
   };
+
+  function toggleLangMenu() { document.getElementById('langSwitch').classList.toggle('open'); }
+  document.addEventListener('click', e => { if (!e.target.closest('#langSwitch')) document.getElementById('langSwitch').classList.remove('open'); });
 
   // Apply saved language on load
   if (currentLang === 'sq') setLang('sq');
