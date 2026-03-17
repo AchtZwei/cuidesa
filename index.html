@@ -725,7 +725,7 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
         </div>
         <div class="kurs-fact">
           <span class="kf-val">CHF 25–35/h</span>
-          <span class="kf-lbl">durchschnittlicher Lohn</span>
+          <span class="kf-lbl" data-i18n="kf4_lbl">durchschnittlicher Lohn</span>
         </div>
       </div>
     </div>
@@ -773,7 +773,7 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
 
     <div class="kurs-note kurs-note-guarantee sr d2">
       <span class="kurs-note-icon">✅</span>
-      <p><strong>Cuidesa-Garantie:</strong> Wenn deine Anstellung über Cuidesa vermittelt wird, garantieren wir, dass die Spitex mindestens <strong>50% der Kurskosten</strong> übernimmt — ohne Wenn und Aber.</p>
+      <p data-i18n-html="kurs_guarantee"><strong>Cuidesa-Garantie:</strong> Wenn deine Anstellung über Cuidesa vermittelt wird, garantieren wir, dass die Spitex mindestens <strong>50% der Kurskosten</strong> übernimmt — ohne Wenn und Aber.</p>
     </div>
   </div>
 </section>
@@ -1230,13 +1230,14 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
       who_r6_title: 'Du hast Wohnsitz in der Schweiz', who_r6_sub: 'Du bist in der Schweiz gemeldet und kannst ein Arbeitsverhältnis eingehen',
       kurs_tag: 'Was du wissen solltest', kurs_h2: 'Ein Kurs. <em>Einmal.</em><br>Amortisiert in Wochen.',
       kurs_sub: 'Für die formelle Anstellung via Spitex brauchst du einen anerkannten Pflegekurs. Er dauert 5 Tage, kostet rund CHF 2\'000 — und rentiert sich bereits nach wenigen Wochen Lohn.',
-      kf1_lbl: 'Tage Dauer', kf2_lbl: 'CHF Kurskosten', kf3_lbl: 'Übernahme durch Spitex möglich',
+      kf1_lbl: 'Tage Dauer', kf2_lbl: 'CHF Kurskosten', kf3_lbl: 'Übernahme durch Spitex möglich', kf4_lbl: 'durchschnittlicher Lohn',
       calc_title: 'Kostenrechner', calc_desc: 'Wie schnell amortisieren sich die Kurskosten bei deinem Lohn?',
       calc_lohn_lbl: 'Monatlicher Lohn', calc_cover_lbl: 'Kurskosten-Übernahme durch Spitex',
       calc_range1_min: 'CHF 500', calc_range1_max: 'CHF 3\'000', calc_range2_min: '0% (selbst)', calc_range2_max: '100% (Spitex)',
       calc_net_lbl: 'Deine Nettokosten', calc_weeks_lbl: 'Amortisiert in', calc_weeks_sub: 'danach verdienst du jeden Monat netto',
       calc_year_lbl: 'Jahresverdienst (nach Kurs)', calc_cta: 'Jetzt Anspruch prüfen →',
       kurs_note: 'Viele Spitex-Organisationen übernehmen 50% oder sogar 100% der Kurskosten und ziehen diese einfach von den ersten Lohnabrechnungen ab — ohne Vorauszahlung deinerseits.',
+      kurs_guarantee: '<strong>Cuidesa-Garantie:</strong> Wenn deine Anstellung über Cuidesa vermittelt wird, garantieren wir, dass die Spitex mindestens <strong>50% der Kurskosten</strong> übernimmt — ohne Wenn und Aber.',
       funnel_tag: 'Kostenlose Prüfung', funnel_h2: 'Prüfe deinen Anspruch<br>in 2 Minuten.',
       funnel_sub: '6 Fragen. Unverbindlich. Wir melden uns innert 24h mit einer klaren Einschätzung.',
       s1_q: 'Pflegst du aktuell jemanden in deiner Familie?', s1_hint: 'Wir meinen regelmässige, direkte Pflegetätigkeit.',
@@ -1303,13 +1304,14 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
       who_r6_title: 'Ke vendbanim në Zvicër', who_r6_sub: 'Je i regjistruar në Zvicër dhe mund të lidhësh një marrëdhënie pune',
       kurs_tag: 'Çfarë duhet të dish', kurs_h2: 'Një kurs. <em>Njëherë.</em><br>Amortizimi brenda javësh.',
       kurs_sub: 'Për punësimin zyrtar nëpërmjet Spitex, të nevojitet një kurs kujdesi i njohur. Zgjat 5 ditë, kushton rreth CHF 2\'000 — dhe amortizet pas disa javësh pagë.',
-      kf1_lbl: 'Ditë kohëzgjatje', kf2_lbl: 'CHF kostoja e kursit', kf3_lbl: 'Mbulim nga Spitex i mundur',
+      kf1_lbl: 'Ditë kohëzgjatje', kf2_lbl: 'CHF kostoja e kursit', kf3_lbl: 'Mbulim nga Spitex i mundur', kf4_lbl: 'paga mesatare',
       calc_title: 'Kalkulator kostosh', calc_desc: 'Sa shpejt amortizet kostoja e kursit me pagën tënde?',
       calc_lohn_lbl: 'Paga mujore', calc_cover_lbl: 'Mbulim i kostove të kursit nga Spitex',
       calc_range1_min: 'CHF 500', calc_range1_max: 'CHF 3\'000', calc_range2_min: '0% (vetë)', calc_range2_max: '100% (Spitex)',
       calc_net_lbl: 'Kostot e tua neto', calc_weeks_lbl: 'Amortizimi brenda', calc_weeks_sub: 'pastaj fiton çdo muaj neto',
       calc_year_lbl: 'Fitim vjetor (pas kursit)', calc_cta: 'Kontrollo të drejtën tani →',
       kurs_note: 'Shumë organizata Spitex mbulojnë 50% ose madje 100% të kostove të kursit dhe i zbresin thjesht nga pagesat e para të pagës — pa paradhënie nga ana jote.',
+      kurs_guarantee: '<strong>Garancia Cuidesa:</strong> Nëse punësimi yt ndërmjetësohet nga Cuidesa, garantojmë që Spitex do të mbulojë të paktën <strong>50% të kostove të kursit</strong> — pa asnjë kusht.',
       funnel_tag: 'Kontroll falas', funnel_h2: 'Kontrollo të drejtën tënde<br>në 2 minuta.',
       funnel_sub: '6 pyetje. Pa detyrime. Ne kontaktojmë brenda 24h me një vlerësim të qartë.',
       s1_q: 'A kujdesesh aktualisht për dikë në familjen tënde?', s1_hint: 'Nënkuptojmë aktivitet të rregullt, të drejtpërdrejtë kujdesi.',
