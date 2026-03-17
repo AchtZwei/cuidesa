@@ -804,7 +804,7 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
           <p class="fhint">Kostenlos. Unverbindlich. Innert 24 Stunden.</p>
           <div class="input-grp"><label>Vorname und Name</label><input type="text" id="iname" placeholder="Maria Muster" oninput="ckC()"></div>
           <div class="input-grp"><label>Telefonnummer</label><input type="tel" id="iphone" placeholder="+41 79 123 45 67" oninput="ckC()"></div>
-          <div class="input-grp" style="margin-bottom:28px;"><label>E-Mail (optional)</label><input type="email" id="iemail" placeholder="maria@beispiel.ch"></div>
+          <div class="input-grp" style="margin-bottom:28px;"><label>E-Mail</label><input type="email" id="iemail" placeholder="maria@beispiel.ch" oninput="ckC()"></div>
           <div class="form-nav"><button class="btn-back" onclick="back(6)">← Zurück</button><button class="btn-next" id="n6" onclick="done()" disabled>Anspruch prüfen lassen →</button></div>
         </div>
 
@@ -941,7 +941,7 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
         <p class="fhint">Kostenlos. Unverbindlich. Innert 24 Stunden.</p>
         <div class="input-grp"><label>Vorname und Name</label><input type="text" id="m-name" placeholder="Maria Muster" oninput="mckC()"></div>
         <div class="input-grp"><label>Telefonnummer</label><input type="tel" id="m-phone" placeholder="+41 79 123 45 67" oninput="mckC()"></div>
-        <div class="input-grp" style="margin-bottom:28px;"><label>E-Mail (optional)</label><input type="email" id="m-email" placeholder="maria@beispiel.ch"></div>
+        <div class="input-grp" style="margin-bottom:28px;"><label>E-Mail</label><input type="email" id="m-email" placeholder="maria@beispiel.ch" oninput="mckC()"></div>
         <div class="form-nav"><button class="btn-back" onclick="mback(6)">← Zurück</button><button class="btn-next" id="mn6" onclick="mdone()" disabled>Anspruch prüfen lassen →</button></div>
       </div>
 
@@ -1016,7 +1016,8 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
   function ckC() {
     const n = document.getElementById('iname').value.trim();
     const p = document.getElementById('iphone').value.trim();
-    document.getElementById('n6').disabled = !(n.length > 2 && p.length > 6);
+    const e = document.getElementById('iemail').value.trim();
+    document.getElementById('n6').disabled = !(n.length > 2 && p.length > 6 && e.includes('@'));
   }
   function go(s) {
     document.getElementById('s'+s).classList.remove('active');
@@ -1082,7 +1083,8 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
   function mckC() {
     const n = document.getElementById('m-name').value.trim();
     const p = document.getElementById('m-phone').value.trim();
-    document.getElementById('mn6').disabled = !(n.length > 2 && p.length > 6);
+    const e = document.getElementById('m-email').value.trim();
+    document.getElementById('mn6').disabled = !(n.length > 2 && p.length > 6 && e.includes('@'));
   }
   function mgo(s) {
     document.getElementById('ms'+s).classList.remove('active');
