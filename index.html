@@ -617,7 +617,7 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
       <div class="sys-card">
         <div class="sys-icon">🏥</div>
         <h3>Krankenkasse (KVG)</h3>
-        <p>Pflichtleistungen wie Körperpflege, Medikamentengabe und Überwachung sind krankenkassenpflichtig – auch wenn Angehörige sie erbringen.</p>
+        <p>Grundpflege wie Körperpflege, Mobilität und Betreuung sind krankenkassenpflichtig — auch wenn Angehörige diese Leistungen erbringen. Voraussetzung ist die formelle Anstellung über eine anerkannte Spitex-Organisation.</p>
       </div>
       <div class="sys-card">
         <div class="sys-icon">⚖️</div>
@@ -650,7 +650,7 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
       <div class="who-row"><div class="who-check">✓</div><div class="who-text"><strong>Du pflegst regelmässig</strong><span>Mindestens ein paar Stunden pro Woche zuhause bei der pflegebedürftigen Person</span></div></div>
       <div class="who-row"><div class="who-check">✓</div><div class="who-text"><strong>Du pflegst Eltern, Partner oder Geschwister</strong><span>Die pflegebedürftige Person ist dein Angehöriger – Verwandtschaft oder Lebenspartner</span></div></div>
       <div class="who-row"><div class="who-check">✓</div><div class="who-text"><strong>Die pflegebedürftige Person ist KVG-versichert</strong><span>Fast alle Personen mit Wohnsitz in der Schweiz erfüllen diese Voraussetzung</span></div></div>
-      <div class="who-row"><div class="who-check">✓</div><div class="who-text"><strong>Du hilfst bei körperlicher Pflege</strong><span>Waschen, anziehen, Medikamente, Mobilität – nicht nur Kochen oder Putzen</span></div></div>
+      <div class="who-row"><div class="who-check">✓</div><div class="who-text"><strong>Du hilfst bei körperlicher Pflege</strong><span>Waschen, anziehen, Mobilität, Ernährung — nicht nur Kochen oder Putzen</span></div></div>
       <div class="who-row"><div class="who-check">✓</div><div class="who-text"><strong>Keine Pflegeheimanmeldung liegt vor</strong><span>Die gepflegte Person lebt zuhause – nicht stationär in einem Pflegeheim</span></div></div>
       <div class="who-row"><div class="who-check">✓</div><div class="who-text"><strong>Du hast Wohnsitz in der Schweiz</strong><span>Du bist in der Schweiz gemeldet und kannst ein Arbeitsverhältnis eingehen</span></div></div>
     </div>
@@ -658,13 +658,13 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
 </section>
 
 <!-- PFLEGEKURS -->
-<section class="kurs-sec">
+<section class="kurs-sec" id="kostenrechner">
   <div class="kurs-inner">
     <div class="kurs-top sr">
       <div class="kurs-top-text">
         <p class="sec-tag">Was du wissen solltest</p>
         <h2 class="kurs-h2">Ein Kurs. <em>Einmal.</em><br>Amortisiert in Wochen.</h2>
-        <p class="kurs-sub">Die meisten Spitex-Organisationen verlangen innerhalb des ersten Jahres einen anerkannten Pflegekurs. Das ist der einzige Aufwand — danach läuft alles.</p>
+        <p class="kurs-sub">Für die formelle Anstellung via Spitex brauchst du einen anerkannten Pflegekurs. Er dauert 5 Tage, kostet rund CHF 2'000 — und rentiert sich bereits nach wenigen Wochen Lohn.</p>
       </div>
       <div class="kurs-facts">
         <div class="kurs-fact">
@@ -785,9 +785,9 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
           <p class="fhint">Mehrere Antworten möglich.</p>
           <div class="choices" id="m4">
             <button class="choice" onclick="multi(this)"><span class="choice-ico">🛁</span><div class="choice-lbl"><strong>Körperpflege</strong><small>Waschen, anziehen, Mundhygiene</small></div></button>
-            <button class="choice" onclick="multi(this)"><span class="choice-ico">💊</span><div class="choice-lbl"><strong>Medikamente</strong><small>Verabreichen, kontrollieren</small></div></button>
-            <button class="choice" onclick="multi(this)"><span class="choice-ico">🚶</span><div class="choice-lbl"><strong>Mobilität</strong><small>Gehen, Transfer, Rollstuhl</small></div></button>
-            <button class="choice" onclick="multi(this)"><span class="choice-ico">🌙</span><div class="choice-lbl"><strong>Nächtliche Betreuung</strong><small>Aufstehen, Überwachung</small></div></button>
+            <button class="choice" onclick="multi(this)"><span class="choice-ico">🚶</span><div class="choice-lbl"><strong>Mobilität &amp; Transfer</strong><small>Gehen begleiten, Lagern, Rollstuhl</small></div></button>
+            <button class="choice" onclick="multi(this)"><span class="choice-ico">🍽️</span><div class="choice-lbl"><strong>Ernährung</strong><small>Essen eingeben, Trinken reichen, Mahlzeiten vorbereiten</small></div></button>
+            <button class="choice" onclick="multi(this)"><span class="choice-ico">🌙</span><div class="choice-lbl"><strong>Nächtliche Betreuung</strong><small>Aufstehen, Überwachung, Orientierungshilfe</small></div></button>
           </div>
           <div class="form-nav"><button class="btn-back" onclick="back(4)">← Zurück</button><button class="btn-next" id="n4" onclick="go(4)" disabled>Weiter →</button></div>
         </div>
@@ -857,8 +857,9 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
     </div>
     <div class="ft-col">
       <h4>Rechtliches</h4>
-      <a href="mailto:hallo@cuidesa.ch">Kontakt</a>
-      <a href="#">Datenschutz</a>
+      <a href="mailto:info@cuidesa.ch">Kontakt</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/agb.html">AGB</a>
       <a href="#">Impressum</a>
     </div>
   </div>
@@ -921,9 +922,9 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
         <p class="fhint">Mehrere Antworten möglich.</p>
         <div class="choices" id="mm4">
           <button class="choice" onclick="mmulti(this)"><span class="choice-ico">🛁</span><div class="choice-lbl"><strong>Körperpflege</strong><small>Waschen, anziehen, Mundhygiene</small></div></button>
-          <button class="choice" onclick="mmulti(this)"><span class="choice-ico">💊</span><div class="choice-lbl"><strong>Medikamente</strong><small>Verabreichen, kontrollieren</small></div></button>
-          <button class="choice" onclick="mmulti(this)"><span class="choice-ico">🚶</span><div class="choice-lbl"><strong>Mobilität</strong><small>Gehen, Transfer, Rollstuhl</small></div></button>
-          <button class="choice" onclick="mmulti(this)"><span class="choice-ico">🌙</span><div class="choice-lbl"><strong>Nächtliche Betreuung</strong><small>Aufstehen, Überwachung</small></div></button>
+          <button class="choice" onclick="mmulti(this)"><span class="choice-ico">🚶</span><div class="choice-lbl"><strong>Mobilität &amp; Transfer</strong><small>Gehen begleiten, Lagern, Rollstuhl</small></div></button>
+          <button class="choice" onclick="mmulti(this)"><span class="choice-ico">🍽️</span><div class="choice-lbl"><strong>Ernährung</strong><small>Essen eingeben, Trinken reichen, Mahlzeiten vorbereiten</small></div></button>
+          <button class="choice" onclick="mmulti(this)"><span class="choice-ico">🌙</span><div class="choice-lbl"><strong>Nächtliche Betreuung</strong><small>Aufstehen, Überwachung, Orientierungshilfe</small></div></button>
         </div>
         <div class="form-nav"><button class="btn-back" onclick="mback(4)">← Zurück</button><button class="btn-next" id="mn4" onclick="mgo(4)" disabled>Weiter →</button></div>
       </div>
