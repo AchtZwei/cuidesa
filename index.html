@@ -601,19 +601,24 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
   font-size: 13px; font-weight: 600; color: var(--ink-light);
   text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px;
 }
-.nc-hours-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
-}
-.nc-hour-btn {
-  background: var(--white); border: 2px solid var(--border);
-  border-radius: 12px; padding: 12px 6px;
-  cursor: pointer; text-align: center; transition: all 0.2s;
-}
-.nc-hour-btn:active { transform: scale(0.95); }
-.nc-hour-btn.selected { border-color: var(--green-mid); background: var(--green-light); }
-.nc-hb-num { font-size: 18px; font-weight: 700; color: var(--ink); }
-.nc-hb-label { font-size: 11px; color: var(--ink-light); }
 .nc-mt16 { margin-top: 16px; }
+.nc-dropdown-wrap { position: relative; }
+.nc-dropdown-wrap select {
+  width: 100%; appearance: none; -webkit-appearance: none;
+  background: var(--white); border: 2px solid var(--border);
+  border-radius: 14px; padding: 16px 48px 16px 18px;
+  font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 500;
+  color: var(--ink); cursor: pointer; outline: none; transition: border-color 0.2s;
+}
+.nc-dropdown-wrap select:focus,
+.nc-dropdown-wrap select.has-value {
+  border-color: var(--green-mid); background: var(--green-light);
+}
+.nc-dropdown-wrap::after {
+  content: '▾'; position: absolute; right: 18px; top: 50%;
+  transform: translateY(-50%); color: var(--green-mid);
+  font-size: 18px; pointer-events: none;
+}
 .nc-hint {
   background: var(--white); border: 1px solid var(--border);
   border-radius: 12px; padding: 14px 16px; margin-top: 16px;
@@ -823,23 +828,19 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
       <div class="nc-section">
         <div class="nc-section-title">Seit wann pflegst du bereits?</div>
         <p style="font-size:13px;color:var(--ink-light);margin-bottom:14px;line-height:1.5;">All diese Zeit – ohne einen Franken dafür zu erhalten.</p>
-        <div class="nc-hours-grid">
-          <div class="nc-hour-btn" onclick="ncSelectSeit(this, 6)">
-            <div class="nc-hb-num">6 Mt.</div>
-            <div class="nc-hb-label">~halbes Jahr</div>
-          </div>
-          <div class="nc-hour-btn" onclick="ncSelectSeit(this, 12)">
-            <div class="nc-hb-num">1 Jahr</div>
-            <div class="nc-hb-label"></div>
-          </div>
-          <div class="nc-hour-btn" onclick="ncSelectSeit(this, 24)">
-            <div class="nc-hb-num">2 Jahre</div>
-            <div class="nc-hb-label"></div>
-          </div>
-          <div class="nc-hour-btn" onclick="ncSelectSeit(this, 60)">
-            <div class="nc-hb-num">5+ Jahre</div>
-            <div class="nc-hb-label"></div>
-          </div>
+        <div class="nc-dropdown-wrap">
+          <select id="nc-seit-select" onchange="ncSelectSeit(this.value)">
+            <option value="">Bitte wählen…</option>
+            <option value="1">1 Monat</option>
+            <option value="3">3 Monate</option>
+            <option value="6">6 Monate</option>
+            <option value="12">1 Jahr</option>
+            <option value="18">1.5 Jahre</option>
+            <option value="24">2 Jahre</option>
+            <option value="36">3 Jahre</option>
+            <option value="48">4 Jahre</option>
+            <option value="60">5+ Jahre</option>
+          </select>
         </div>
       </div>
 
@@ -847,23 +848,18 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
       <div class="nc-section nc-mt16">
         <div class="nc-section-title">Wie viele Stunden pflegst du pro Woche?</div>
         <p style="font-size:13px;color:var(--ink-light);margin-bottom:14px;line-height:1.5;">Diese Stunden machst du bereits – nur noch ohne Lohn.</p>
-        <div class="nc-hours-grid">
-          <div class="nc-hour-btn" onclick="ncSelectHours(this, 10)">
-            <div class="nc-hb-num">10h</div>
-            <div class="nc-hb-label">~2h/Tag</div>
-          </div>
-          <div class="nc-hour-btn" onclick="ncSelectHours(this, 20)">
-            <div class="nc-hb-num">20h</div>
-            <div class="nc-hb-label">~3h/Tag</div>
-          </div>
-          <div class="nc-hour-btn" onclick="ncSelectHours(this, 30)">
-            <div class="nc-hb-num">30h</div>
-            <div class="nc-hb-label">~4h/Tag</div>
-          </div>
-          <div class="nc-hour-btn" onclick="ncSelectHours(this, 42)">
-            <div class="nc-hb-num">42h</div>
-            <div class="nc-hb-label">~6h/Tag</div>
-          </div>
+        <div class="nc-dropdown-wrap">
+          <select id="nc-stunden-select" onchange="ncSelectHours(this.value)">
+            <option value="">Bitte wählen…</option>
+            <option value="5">5 Stunden/Woche (~1h/Tag)</option>
+            <option value="10">10 Stunden/Woche (~2h/Tag)</option>
+            <option value="15">15 Stunden/Woche (~2.5h/Tag)</option>
+            <option value="20">20 Stunden/Woche (~3h/Tag)</option>
+            <option value="25">25 Stunden/Woche (~3.5h/Tag)</option>
+            <option value="30">30 Stunden/Woche (~4h/Tag)</option>
+            <option value="35">35 Stunden/Woche (~5h/Tag)</option>
+            <option value="42">42 Stunden/Woche (Vollzeit)</option>
+          </select>
         </div>
       </div>
 
@@ -1151,18 +1147,17 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
   // Kostenrechner
   let ncLohn = 30, ncStunden = 0, ncSeit = 0;
 
-  function ncSelectSeit(el, value) {
-    document.querySelectorAll('.nc-hour-btn').forEach(b => b.classList.remove('selected'));
-    el.classList.add('selected');
-    ncSeit = value;
-    if (ncStunden > 0) el.closest('.nc-wrapper').querySelectorAll('.nc-hour-btn[data-h]').forEach(b => { if (parseInt(b.dataset.h) === ncStunden) b.classList.add('selected'); });
+  function ncSelectSeit(value) {
+    ncSeit = parseInt(value) || 0;
+    const sel = document.getElementById('nc-seit-select');
+    sel.classList.toggle('has-value', ncSeit > 0);
     ncUpdateResult();
   }
 
-  function ncSelectHours(el, value) {
-    el.dataset.h = value;
-    el.classList.add('selected');
-    ncStunden = value;
+  function ncSelectHours(value) {
+    ncStunden = parseInt(value) || 0;
+    const sel = document.getElementById('nc-stunden-select');
+    sel.classList.toggle('has-value', ncStunden > 0);
     ncUpdateResult();
   }
 
