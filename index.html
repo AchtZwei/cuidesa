@@ -1199,7 +1199,7 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
       hint.style.display = 'flex';
       const hintText = document.getElementById('nc-hint-text');
       if (nettokosten === 0) {
-        hintText.innerHTML = '<strong>Spitex übernimmt alle Kosten.</strong> Du startest ohne Eigenaufwand – und verdienst danach monatlich ' + ncFormatChf(monatslohn) + '.';
+        hintText.innerHTML = '<strong>Spitex übernimmt die vollen Kurskosten</strong> – du musst nichts vorauszahlen. Die CHF 2\'000 werden dir monatlich in kleinen Raten vom Lohn abgezogen, ähnlich wie ein zinsloses Darlehen. Du verdienst trotzdem ab dem ersten Tag: ' + ncFormatChf(monatslohn) + ' pro Monat.';
       } else if (wochen < 4) {
         hintText.innerHTML = 'Schon nach <strong>weniger als einem Monat</strong> hast du die Kurskosten wieder verdient. Das Risiko ist minimal.';
       } else if (wochen < 10) {
