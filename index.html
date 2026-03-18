@@ -614,50 +614,50 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
 .nc-hb-num { font-size: 18px; font-weight: 700; color: var(--ink); }
 .nc-hb-label { font-size: 11px; color: var(--ink-light); }
 .nc-mt16 { margin-top: 16px; }
-.nc-slider-row {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 14px; padding: 18px 16px; margin-top: 4px;
-}
-.nc-slider-row label {
-  font-size: 13px; font-weight: 500; color: var(--ink);
-  display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 12px;
-}
-.nc-slider-row label span {
-  background: var(--green-light); color: var(--green-mid);
-  font-weight: 600; font-size: 13px;
-  padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border);
-}
 .nc-hint {
   background: var(--white); border: 1px solid var(--border);
   border-radius: 12px; padding: 14px 16px; margin-top: 16px;
   display: flex; gap: 10px; align-items: flex-start;
 }
-.nc-hint-green { background: var(--green-light); }
 .nc-hint-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
 .nc-hint p { font-size: 13px; color: var(--ink-light); line-height: 1.5; }
 .nc-hint p strong { color: var(--ink); }
-.nc-result-box {
-  background: var(--ink); border-radius: 20px;
-  margin-top: 24px; padding: 28px 24px; color: white;
-  animation: ncFadeUp 0.4s ease;
+.nc-result-split {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-top: 20px;
 }
-@keyframes ncFadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
+.nc-result-past, .nc-result-future {
+  border-radius: 18px; padding: 20px 16px;
 }
-.nc-result-row {
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  padding-bottom: 18px; margin-bottom: 18px;
+.nc-result-past {
+  background: #2a1a1a; border: 1px solid #5c2a2a;
 }
-.nc-result-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-.nc-r-label {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-  text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 6px;
+.nc-result-future {
+  background: var(--ink); border: 1px solid #2d5a3d;
 }
-.nc-r-value { font-family: 'DM Serif Display', serif; font-size: 38px; color: white; line-height: 1; }
-.nc-r-green { color: #74c69d; }
-.nc-r-sub { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 4px; }
+.nc-rs-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: rgba(255,255,255,0.5);
+  margin-bottom: 10px; line-height: 1.4;
+}
+.nc-rs-value {
+  font-family: 'DM Serif Display', serif;
+  font-size: 26px; color: #e07070; line-height: 1.1; margin-bottom: 6px;
+}
+.nc-rs-value.nc-rs-green { color: #74c69d; }
+.nc-rs-sub { font-size: 11px; color: rgba(255,255,255,0.4); line-height: 1.4; }
+.nc-detail-box {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 14px; padding: 16px 18px; margin-top: 12px;
+}
+.nc-detail-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink-light); margin-bottom: 10px;
+}
+.nc-detail-value {
+  font-size: 28px; font-family: 'DM Serif Display', serif; color: var(--green-mid);
+}
+.nc-detail-sub { font-size: 12px; color: var(--ink-light); margin-top: 4px; }
 </style>
 </head>
 <body>
@@ -819,77 +819,73 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
         <div class="nc-step-label" id="nc-step-label">Schritt 1 von 2</div>
       </div>
 
-      <!-- Stunden -->
+      <!-- Seit wann -->
       <div class="nc-section">
-        <div class="nc-section-title">Wie viele Stunden pflegst du bereits pro Woche?</div>
-        <p style="font-size:13px;color:var(--ink-light);margin-bottom:14px;line-height:1.5;">Diese Stunden machst du bereits – nur noch ohne Lohn. Mit Spitex-Anstellung wirst du dafür bezahlt.</p>
+        <div class="nc-section-title">Seit wann pflegst du bereits?</div>
+        <p style="font-size:13px;color:var(--ink-light);margin-bottom:14px;line-height:1.5;">All diese Zeit – ohne einen Franken dafür zu erhalten.</p>
         <div class="nc-hours-grid">
-          <div class="nc-hour-btn" onclick="selectHours(this, 10)">
+          <div class="nc-hour-btn" onclick="ncSelectSeit(this, 6)">
+            <div class="nc-hb-num">6 Mt.</div>
+            <div class="nc-hb-label">~halbes Jahr</div>
+          </div>
+          <div class="nc-hour-btn" onclick="ncSelectSeit(this, 12)">
+            <div class="nc-hb-num">1 Jahr</div>
+            <div class="nc-hb-label"></div>
+          </div>
+          <div class="nc-hour-btn" onclick="ncSelectSeit(this, 24)">
+            <div class="nc-hb-num">2 Jahre</div>
+            <div class="nc-hb-label"></div>
+          </div>
+          <div class="nc-hour-btn" onclick="ncSelectSeit(this, 60)">
+            <div class="nc-hb-num">5+ Jahre</div>
+            <div class="nc-hb-label"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stunden -->
+      <div class="nc-section nc-mt16">
+        <div class="nc-section-title">Wie viele Stunden pflegst du pro Woche?</div>
+        <p style="font-size:13px;color:var(--ink-light);margin-bottom:14px;line-height:1.5;">Diese Stunden machst du bereits – nur noch ohne Lohn.</p>
+        <div class="nc-hours-grid">
+          <div class="nc-hour-btn" onclick="ncSelectHours(this, 10)">
             <div class="nc-hb-num">10h</div>
             <div class="nc-hb-label">~2h/Tag</div>
           </div>
-          <div class="nc-hour-btn" onclick="selectHours(this, 20)">
+          <div class="nc-hour-btn" onclick="ncSelectHours(this, 20)">
             <div class="nc-hb-num">20h</div>
             <div class="nc-hb-label">~3h/Tag</div>
           </div>
-          <div class="nc-hour-btn" onclick="selectHours(this, 30)">
+          <div class="nc-hour-btn" onclick="ncSelectHours(this, 30)">
             <div class="nc-hb-num">30h</div>
             <div class="nc-hb-label">~4h/Tag</div>
           </div>
-          <div class="nc-hour-btn" onclick="selectHours(this, 42)">
+          <div class="nc-hour-btn" onclick="ncSelectHours(this, 42)">
             <div class="nc-hb-num">42h</div>
             <div class="nc-hb-label">~6h/Tag</div>
           </div>
         </div>
       </div>
 
-      <!-- Spitex Übernahme -->
-      <div class="nc-section nc-mt16">
-        <div class="nc-section-title">Kurskosten-Übernahme durch Spitex</div>
-        <div class="nc-slider-row">
-          <label>
-            Übernahme durch Spitex
-            <span id="nc-spitex-label">–</span>
-          </label>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
-            <div class="nc-hour-btn" id="nc-spitex-50" onclick="updateSpitex(50)" style="padding:14px 8px">
-              <div class="nc-hb-num">50%</div>
-              <div class="nc-hb-label">Teilübernahme</div>
-            </div>
-            <div class="nc-hour-btn" id="nc-spitex-100" onclick="updateSpitex(100)" style="padding:14px 8px">
-              <div class="nc-hb-num">100%</div>
-              <div class="nc-hb-label">Vollübernahme</div>
-            </div>
-          </div>
+      <!-- Ergebnis Split -->
+      <div class="nc-result-split" id="nc-result-box">
+        <div class="nc-result-past">
+          <div class="nc-rs-label">💸 Was du verpasst hast</div>
+          <div class="nc-rs-value" id="nc-res-verpasst">–</div>
+          <div class="nc-rs-sub" id="nc-res-verpasst-sub">Bitte Angaben machen</div>
+        </div>
+        <div class="nc-result-future">
+          <div class="nc-rs-label">🟢 Was ab jetzt möglich ist</div>
+          <div class="nc-rs-value nc-rs-green" id="nc-res-zukunft">–</div>
+          <div class="nc-rs-sub" id="nc-res-zukunft-sub">pro Jahr</div>
         </div>
       </div>
 
-      <div class="nc-hint nc-hint-green">
-        <div class="nc-hint-icon">✅</div>
-        <p><strong style="color:var(--green-mid)">Cuidesa-Garantie:</strong> Wenn deine Anstellung über Cuidesa vermittelt wird, garantieren wir, dass die Spitex mindestens <strong style="color:var(--green-mid)">50% der Kurskosten</strong> übernimmt – ohne Wenn und Aber.</p>
-      </div>
-
-      <!-- Ergebnis -->
-      <div class="nc-result-box" id="nc-result-box">
-        <div class="nc-result-row">
-          <div class="nc-r-label">Dein bisheriger Lohn dafür</div>
-          <div class="nc-r-value" style="font-size:28px;color:rgba(255,255,255,0.3)">CHF 0</div>
-          <div class="nc-r-sub">Du pflegst bereits – aber noch gratis</div>
-        </div>
-        <div class="nc-result-row">
-          <div class="nc-r-label">Dein Lohn mit Spitex-Anstellung</div>
-          <div class="nc-r-value nc-r-green" id="nc-res-lohn" style="font-size:28px">CHF –</div>
-          <div class="nc-r-sub" id="nc-res-lohn-sub">Bitte Stunden wählen</div>
-        </div>
-        <div class="nc-result-row">
-          <div class="nc-r-label">Kurskosten amortisiert in</div>
-          <div class="nc-r-value" id="nc-res-wochen" style="font-size:32px">–</div>
-          <div class="nc-r-sub">Kursgebühr: <span id="nc-res-kosten">CHF 2'000</span> nach Spitex-Beitrag</div>
-        </div>
-        <div class="nc-result-row">
-          <div class="nc-r-label">Jahresverdienst (nach Kurs)</div>
-          <div class="nc-r-value" id="nc-res-jahr" style="font-size:28px">CHF –</div>
-        </div>
+      <!-- Monatslohn Detail -->
+      <div class="nc-detail-box" id="nc-detail-box" style="display:none">
+        <div class="nc-detail-label">Dein monatlicher Lohn ab jetzt</div>
+        <div class="nc-detail-value" id="nc-res-monat">–</div>
+        <div class="nc-detail-sub" id="nc-res-monat-sub"></div>
       </div>
 
       <div class="nc-hint" id="nc-hint-box" style="display:none">
@@ -1153,21 +1149,20 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
   document.querySelectorAll('.sr').forEach(el=>obs.observe(el));
 
   // Kostenrechner
-  let ncLohn = 30, ncStunden = 0, ncSpitex = 0;
-  const NC_KURSKOSTEN = 2000;
+  let ncLohn = 30, ncStunden = 0, ncSeit = 0;
 
-  function selectHours(el, value) {
+  function ncSelectSeit(el, value) {
     document.querySelectorAll('.nc-hour-btn').forEach(b => b.classList.remove('selected'));
     el.classList.add('selected');
-    ncStunden = value;
+    ncSeit = value;
+    if (ncStunden > 0) el.closest('.nc-wrapper').querySelectorAll('.nc-hour-btn[data-h]').forEach(b => { if (parseInt(b.dataset.h) === ncStunden) b.classList.add('selected'); });
     ncUpdateResult();
   }
 
-  function updateSpitex(val) {
-    ncSpitex = parseInt(val);
-    document.getElementById('nc-spitex-label').textContent = ncSpitex + '%';
-    document.getElementById('nc-spitex-50').classList.toggle('selected', ncSpitex === 50);
-    document.getElementById('nc-spitex-100').classList.toggle('selected', ncSpitex === 100);
+  function ncSelectHours(el, value) {
+    el.dataset.h = value;
+    el.classList.add('selected');
+    ncStunden = value;
     ncUpdateResult();
   }
 
@@ -1175,43 +1170,47 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
     const dot1 = document.getElementById('nc-dot1');
     const dot2 = document.getElementById('nc-dot2');
     const label = document.getElementById('nc-step-label');
-    if (ncStunden > 0) {
+
+    if (ncSeit > 0 && ncStunden > 0) {
       dot1.className = 'nc-step-dot done';
       dot2.className = 'nc-step-dot active';
-      label.textContent = 'Fast fertig!';
+      label.textContent = 'Dein Resultat ✓';
+    } else if (ncSeit > 0) {
+      dot1.className = 'nc-step-dot done';
+      dot2.className = 'nc-step-dot active';
+      label.textContent = 'Schritt 2 von 2';
     } else {
       dot1.className = 'nc-step-dot active';
       dot2.className = 'nc-step-dot';
       label.textContent = 'Schritt 1 von 2';
     }
-    const nettokosten = NC_KURSKOSTEN * (1 - ncSpitex / 100);
-    document.getElementById('nc-res-kosten').textContent = ncFormatChf(nettokosten);
-    if (ncStunden > 0) {
+
+    if (ncSeit > 0 && ncStunden > 0) {
       const monatslohn = ncLohn * ncStunden * 4.33;
-      document.getElementById('nc-res-lohn').textContent = ncFormatChf(monatslohn);
-      document.getElementById('nc-res-lohn-sub').textContent =
-        `${ncLohn} CHF/h × ${ncStunden}h/Woche × 4.33 Wochen`;
-      const wochen = nettokosten / (monatslohn / 4.33);
-      document.getElementById('nc-res-wochen').textContent =
-        nettokosten === 0 ? 'Sofort 🎉' : `~${wochen.toFixed(1)} Wochen`;
-      document.getElementById('nc-res-jahr').textContent = ncFormatChf(monatslohn * 12);
-      const hint = document.getElementById('nc-hint-box');
-      hint.style.display = 'flex';
-      const hintText = document.getElementById('nc-hint-text');
-      if (nettokosten === 0) {
-        hintText.innerHTML = '<strong>Spitex übernimmt die vollen Kurskosten</strong> – du musst nichts vorauszahlen. Die CHF 2\'000 werden dir monatlich in kleinen Raten vom Lohn abgezogen, ähnlich wie ein zinsloses Darlehen. Du verdienst trotzdem ab dem ersten Tag: ' + ncFormatChf(monatslohn) + ' pro Monat.';
-      } else if (wochen < 4) {
-        hintText.innerHTML = 'Schon nach <strong>weniger als einem Monat</strong> hast du die Kurskosten wieder verdient. Das Risiko ist minimal.';
-      } else if (wochen < 10) {
-        hintText.innerHTML = 'Nach etwa <strong>' + wochen.toFixed(0) + ' Wochen</strong> hast du die Investition wieder drin – danach bleibt alles als Verdienst.';
-      } else {
-        hintText.innerHTML = 'Tipp: Mehr Stunden oder ein höherer Spitex-Beitrag können die Amortisationszeit deutlich verkürzen.';
-      }
+      const verpasst = monatslohn * ncSeit;
+      const jahresverdienst = monatslohn * 12;
+
+      document.getElementById('nc-res-verpasst').textContent = ncFormatChf(verpasst);
+      document.getElementById('nc-res-verpasst-sub').textContent =
+        `${ncSeit} Monate × ${ncFormatChf(monatslohn)}/Mt. – gratis gearbeitet`;
+
+      document.getElementById('nc-res-zukunft').textContent = ncFormatChf(jahresverdienst);
+      document.getElementById('nc-res-zukunft-sub').textContent = 'pro Jahr mit Spitex-Anstellung';
+
+      document.getElementById('nc-res-monat').textContent = ncFormatChf(monatslohn);
+      document.getElementById('nc-res-monat-sub').textContent =
+        `${ncLohn} CHF/h × ${ncStunden}h/Woche`;
+
+      document.getElementById('nc-detail-box').style.display = 'block';
+      document.getElementById('nc-hint-box').style.display = 'flex';
+      document.getElementById('nc-hint-text').innerHTML =
+        `Du hast <strong>${ncFormatChf(verpasst)}</strong> liegen gelassen. Hör jetzt auf, gratis zu pflegen.`;
     } else {
-      document.getElementById('nc-res-lohn').textContent = 'CHF –';
-      document.getElementById('nc-res-lohn-sub').textContent = 'Bitte Stunden wählen';
-      document.getElementById('nc-res-wochen').textContent = '–';
-      document.getElementById('nc-res-jahr').textContent = 'CHF –';
+      document.getElementById('nc-res-verpasst').textContent = '–';
+      document.getElementById('nc-res-verpasst-sub').textContent = 'Bitte Angaben machen';
+      document.getElementById('nc-res-zukunft').textContent = '–';
+      document.getElementById('nc-res-zukunft-sub').textContent = 'pro Jahr';
+      document.getElementById('nc-detail-box').style.display = 'none';
       document.getElementById('nc-hint-box').style.display = 'none';
     }
   }
