@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cuidesa — Werde für deine Pflege bezahlt</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Lora:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Lora:ital@1&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -578,6 +578,86 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
   .ft-top { grid-template-columns: 1fr 1fr; gap: 28px; }
   .ft-bottom { flex-direction: column; gap: 8px; }
 }
+
+/* NEW CALCULATOR */
+.nc-wrapper {
+  background: var(--bg-soft);
+  border-radius: 20px;
+  padding: 28px 24px;
+}
+.nc-steps {
+  display: flex; align-items: center;
+  gap: 6px; margin-bottom: 20px;
+}
+.nc-step-dot {
+  width: 28px; height: 4px; border-radius: 2px;
+  background: var(--border); transition: background 0.3s;
+}
+.nc-step-dot.active { background: var(--green-mid); }
+.nc-step-dot.done { background: #74c69d; }
+.nc-step-label { font-size: 12px; color: var(--ink-light); margin-left: 8px; }
+.nc-section { margin-top: 20px; }
+.nc-section-title {
+  font-size: 13px; font-weight: 600; color: var(--ink-light);
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px;
+}
+.nc-hours-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+}
+.nc-hour-btn {
+  background: var(--white); border: 2px solid var(--border);
+  border-radius: 12px; padding: 12px 6px;
+  cursor: pointer; text-align: center; transition: all 0.2s;
+}
+.nc-hour-btn:active { transform: scale(0.95); }
+.nc-hour-btn.selected { border-color: var(--green-mid); background: var(--green-light); }
+.nc-hb-num { font-size: 18px; font-weight: 700; color: var(--ink); }
+.nc-hb-label { font-size: 11px; color: var(--ink-light); }
+.nc-mt16 { margin-top: 16px; }
+.nc-slider-row {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 14px; padding: 18px 16px; margin-top: 4px;
+}
+.nc-slider-row label {
+  font-size: 13px; font-weight: 500; color: var(--ink);
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 12px;
+}
+.nc-slider-row label span {
+  background: var(--green-light); color: var(--green-mid);
+  font-weight: 600; font-size: 13px;
+  padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border);
+}
+.nc-hint {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px 16px; margin-top: 16px;
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.nc-hint-green { background: var(--green-light); }
+.nc-hint-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.nc-hint p { font-size: 13px; color: var(--ink-light); line-height: 1.5; }
+.nc-hint p strong { color: var(--ink); }
+.nc-result-box {
+  background: var(--ink); border-radius: 20px;
+  margin-top: 24px; padding: 28px 24px; color: white;
+  animation: ncFadeUp 0.4s ease;
+}
+@keyframes ncFadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.nc-result-row {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 18px; margin-bottom: 18px;
+}
+.nc-result-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.nc-r-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 6px;
+}
+.nc-r-value { font-family: 'DM Serif Display', serif; font-size: 38px; color: white; line-height: 1; }
+.nc-r-green { color: #74c69d; }
+.nc-r-sub { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 4px; }
 </style>
 </head>
 <body>
@@ -731,44 +811,93 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
     </div>
 
     <!-- KOSTENRECHNER -->
-    <div class="calc-card sr d1">
-      <div class="calc-left">
-        <p class="calc-title" data-i18n="calc_title">Kostenrechner</p>
-        <p class="calc-desc" data-i18n="calc_desc">Wie schnell amortisieren sich die Kurskosten bei deinem Lohn?</p>
+    <div class="nc-wrapper sr d1">
+      <!-- Schritt-Indikator -->
+      <div class="nc-steps">
+        <div class="nc-step-dot active" id="nc-dot1"></div>
+        <div class="nc-step-dot" id="nc-dot2"></div>
+        <div class="nc-step-label" id="nc-step-label">Schritt 1 von 2</div>
+      </div>
 
-        <div class="calc-row">
-          <div class="calc-row-label">
-            <span data-i18n="calc_lohn_lbl">Monatlicher Lohn</span>
-            <span class="calc-val-badge" id="c-lohn-badge">CHF 1'500</span>
+      <!-- Stunden -->
+      <div class="nc-section">
+        <div class="nc-section-title">Wie viele Stunden pflegst du bereits pro Woche?</div>
+        <p style="font-size:13px;color:var(--ink-light);margin-bottom:14px;line-height:1.5;">Diese Stunden machst du bereits – nur noch ohne Lohn. Mit Spitex-Anstellung wirst du dafür bezahlt.</p>
+        <div class="nc-hours-grid">
+          <div class="nc-hour-btn" onclick="selectHours(this, 10)">
+            <div class="nc-hb-num">10h</div>
+            <div class="nc-hb-label">~2h/Tag</div>
           </div>
-          <input type="range" min="500" max="3000" step="100" value="1500" oninput="calcUpdate()" id="c-lohn" class="calc-slider">
-          <div class="range-labs"><span data-i18n="calc_range1_min">CHF 500</span><span data-i18n="calc_range1_max">CHF 3'000</span></div>
-        </div>
-
-        <div class="calc-row">
-          <div class="calc-row-label">
-            <span data-i18n="calc_cover_lbl">Kurskosten-Übernahme durch Spitex</span>
-            <span class="calc-val-badge" id="c-cover-badge">0%</span>
+          <div class="nc-hour-btn" onclick="selectHours(this, 20)">
+            <div class="nc-hb-num">20h</div>
+            <div class="nc-hb-label">~3h/Tag</div>
           </div>
-          <input type="range" min="0" max="100" step="50" value="0" oninput="calcUpdate()" id="c-cover" class="calc-slider">
-          <div class="range-labs"><span data-i18n="calc_range2_min">0% (selbst)</span><span data-i18n="calc_range2_max">100% (Spitex)</span></div>
+          <div class="nc-hour-btn" onclick="selectHours(this, 30)">
+            <div class="nc-hb-num">30h</div>
+            <div class="nc-hb-label">~4h/Tag</div>
+          </div>
+          <div class="nc-hour-btn" onclick="selectHours(this, 42)">
+            <div class="nc-hb-num">42h</div>
+            <div class="nc-hb-label">~6h/Tag</div>
+          </div>
         </div>
       </div>
 
-      <div class="calc-right">
-        <div class="calc-result-box">
-          <div class="calc-result-label" data-i18n="calc_net_lbl">Deine Nettokosten</div>
-          <div class="calc-result-cost" id="c-net">CHF 2'000</div>
-          <div class="calc-divider"></div>
-          <div class="calc-result-label" data-i18n="calc_weeks_lbl">Amortisiert in</div>
-          <div class="calc-result-weeks" id="c-weeks">~5.6 Wochen</div>
-          <div class="calc-result-sub" id="c-sub" data-i18n="calc_weeks_sub">danach verdienst du jeden Monat netto</div>
-          <div class="calc-divider"></div>
-          <div class="calc-result-label" data-i18n="calc_year_lbl">Jahresverdienst (nach Kurs)</div>
-          <div class="calc-result-year" id="c-year">CHF 18'000</div>
+      <!-- Spitex Übernahme -->
+      <div class="nc-section nc-mt16">
+        <div class="nc-section-title">Kurskosten-Übernahme durch Spitex</div>
+        <div class="nc-slider-row">
+          <label>
+            Übernahme durch Spitex
+            <span id="nc-spitex-label">–</span>
+          </label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
+            <div class="nc-hour-btn" id="nc-spitex-50" onclick="updateSpitex(50)" style="padding:14px 8px">
+              <div class="nc-hb-num">50%</div>
+              <div class="nc-hb-label">Teilübernahme</div>
+            </div>
+            <div class="nc-hour-btn" id="nc-spitex-100" onclick="updateSpitex(100)" style="padding:14px 8px">
+              <div class="nc-hb-num">100%</div>
+              <div class="nc-hb-label">Vollübernahme</div>
+            </div>
+          </div>
         </div>
-        <button onclick="openModal()" class="btn-green" style="width:100%; justify-content:center; margin-top:16px;" data-i18n="calc_cta">Jetzt Anspruch prüfen →</button>
       </div>
+
+      <div class="nc-hint nc-hint-green">
+        <div class="nc-hint-icon">✅</div>
+        <p><strong style="color:var(--green-mid)">Cuidesa-Garantie:</strong> Wenn deine Anstellung über Cuidesa vermittelt wird, garantieren wir, dass die Spitex mindestens <strong style="color:var(--green-mid)">50% der Kurskosten</strong> übernimmt – ohne Wenn und Aber.</p>
+      </div>
+
+      <!-- Ergebnis -->
+      <div class="nc-result-box" id="nc-result-box">
+        <div class="nc-result-row">
+          <div class="nc-r-label">Dein bisheriger Lohn dafür</div>
+          <div class="nc-r-value" style="font-size:28px;color:rgba(255,255,255,0.3)">CHF 0</div>
+          <div class="nc-r-sub">Du pflegst bereits – aber noch gratis</div>
+        </div>
+        <div class="nc-result-row">
+          <div class="nc-r-label">Dein Lohn mit Spitex-Anstellung</div>
+          <div class="nc-r-value nc-r-green" id="nc-res-lohn" style="font-size:28px">CHF –</div>
+          <div class="nc-r-sub" id="nc-res-lohn-sub">Bitte Stunden wählen</div>
+        </div>
+        <div class="nc-result-row">
+          <div class="nc-r-label">Kurskosten amortisiert in</div>
+          <div class="nc-r-value" id="nc-res-wochen" style="font-size:32px">–</div>
+          <div class="nc-r-sub">Kursgebühr: <span id="nc-res-kosten">CHF 2'000</span> nach Spitex-Beitrag</div>
+        </div>
+        <div class="nc-result-row">
+          <div class="nc-r-label">Jahresverdienst (nach Kurs)</div>
+          <div class="nc-r-value" id="nc-res-jahr" style="font-size:28px">CHF –</div>
+        </div>
+      </div>
+
+      <div class="nc-hint" id="nc-hint-box" style="display:none">
+        <div class="nc-hint-icon">💡</div>
+        <p id="nc-hint-text"></p>
+      </div>
+
+      <button onclick="openModal()" class="btn-green" style="width:100%; justify-content:center; margin-top:20px;">Jetzt Anspruch prüfen →</button>
     </div>
 
     <div class="kurs-note kurs-note-guarantee sr d2">
@@ -1024,21 +1153,74 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
   document.querySelectorAll('.sr').forEach(el=>obs.observe(el));
 
   // Kostenrechner
-  function calcUpdate() {
-    const lohn = parseInt(document.getElementById('c-lohn').value);
-    const cover = parseInt(document.getElementById('c-cover').value);
-    const kurskosten = 2000;
-    const net = Math.round(kurskosten * (1 - cover / 100));
-    const wochen = net === 0 ? 0 : (net / (lohn / 4.33));
-    const jahresverdienst = lohn * 12;
+  let ncLohn = 30, ncStunden = 0, ncSpitex = 0;
+  const NC_KURSKOSTEN = 2000;
 
-    document.getElementById('c-lohn-badge').textContent = 'CHF ' + lohn.toLocaleString('de-CH');
-    document.getElementById('c-cover-badge').textContent = cover + '%';
-    document.getElementById('c-net').textContent = net === 0 ? 'CHF 0 — übernommen' : 'CHF ' + net.toLocaleString('de-CH');
-    document.getElementById('c-weeks').textContent = net === 0 ? 'Sofort' : '~' + wochen.toFixed(1) + ' Wochen';
-    document.getElementById('c-year').textContent = 'CHF ' + jahresverdienst.toLocaleString('de-CH');
+  function selectHours(el, value) {
+    document.querySelectorAll('.nc-hour-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    ncStunden = value;
+    ncUpdateResult();
   }
-  calcUpdate();
+
+  function updateSpitex(val) {
+    ncSpitex = parseInt(val);
+    document.getElementById('nc-spitex-label').textContent = ncSpitex + '%';
+    document.getElementById('nc-spitex-50').classList.toggle('selected', ncSpitex === 50);
+    document.getElementById('nc-spitex-100').classList.toggle('selected', ncSpitex === 100);
+    ncUpdateResult();
+  }
+
+  function ncUpdateResult() {
+    const dot1 = document.getElementById('nc-dot1');
+    const dot2 = document.getElementById('nc-dot2');
+    const label = document.getElementById('nc-step-label');
+    if (ncStunden > 0) {
+      dot1.className = 'nc-step-dot done';
+      dot2.className = 'nc-step-dot active';
+      label.textContent = 'Fast fertig!';
+    } else {
+      dot1.className = 'nc-step-dot active';
+      dot2.className = 'nc-step-dot';
+      label.textContent = 'Schritt 1 von 2';
+    }
+    const nettokosten = NC_KURSKOSTEN * (1 - ncSpitex / 100);
+    document.getElementById('nc-res-kosten').textContent = ncFormatChf(nettokosten);
+    if (ncStunden > 0) {
+      const monatslohn = ncLohn * ncStunden * 4.33;
+      document.getElementById('nc-res-lohn').textContent = ncFormatChf(monatslohn);
+      document.getElementById('nc-res-lohn-sub').textContent =
+        `${ncLohn} CHF/h × ${ncStunden}h/Woche × 4.33 Wochen`;
+      const wochen = nettokosten / (monatslohn / 4.33);
+      document.getElementById('nc-res-wochen').textContent =
+        nettokosten === 0 ? 'Sofort 🎉' : `~${wochen.toFixed(1)} Wochen`;
+      document.getElementById('nc-res-jahr').textContent = ncFormatChf(monatslohn * 12);
+      const hint = document.getElementById('nc-hint-box');
+      hint.style.display = 'flex';
+      const hintText = document.getElementById('nc-hint-text');
+      if (nettokosten === 0) {
+        hintText.innerHTML = '<strong>Spitex übernimmt alle Kosten.</strong> Du startest ohne Eigenaufwand – und verdienst danach monatlich ' + ncFormatChf(monatslohn) + '.';
+      } else if (wochen < 4) {
+        hintText.innerHTML = 'Schon nach <strong>weniger als einem Monat</strong> hast du die Kurskosten wieder verdient. Das Risiko ist minimal.';
+      } else if (wochen < 10) {
+        hintText.innerHTML = 'Nach etwa <strong>' + wochen.toFixed(0) + ' Wochen</strong> hast du die Investition wieder drin – danach bleibt alles als Verdienst.';
+      } else {
+        hintText.innerHTML = 'Tipp: Mehr Stunden oder ein höherer Spitex-Beitrag können die Amortisationszeit deutlich verkürzen.';
+      }
+    } else {
+      document.getElementById('nc-res-lohn').textContent = 'CHF –';
+      document.getElementById('nc-res-lohn-sub').textContent = 'Bitte Stunden wählen';
+      document.getElementById('nc-res-wochen').textContent = '–';
+      document.getElementById('nc-res-jahr').textContent = 'CHF –';
+      document.getElementById('nc-hint-box').style.display = 'none';
+    }
+  }
+
+  function ncFormatChf(val) {
+    if (val === 0) return "CHF 0";
+    return "CHF " + Math.round(val).toLocaleString('de-CH').replace(/,/g, "'");
+  }
+  ncUpdateResult();
 
   // Modal open/close
   function openModal() {
