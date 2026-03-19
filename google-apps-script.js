@@ -34,7 +34,7 @@
  *
  * SPALTEN IM SHEET:
  * -----------------
- * A: ID | B: Timestamp | C: Pflegestatus | D: Stunden/Woche | E: Beziehung
+ * A: ID (CU-JJ-XXXX) | B: Timestamp | C: Pflegestatus | D: Stunden/Woche | E: Beziehung
  * F: Tätigkeiten | G: Kanton/PLZ | H: Name | I: Telefon | J: E-Mail
  */
 
@@ -65,10 +65,8 @@ function doPost(e) {
     // Formulardaten parsen
     var data = JSON.parse(e.postData.contents);
 
-    // Eindeutige ID generieren (C-001, C-002, ...)
     var now = new Date();
-    var rowCount = Math.max(0, sheet.getLastRow() - 1); // Header abziehen
-    var leadId = 'C-' + ('00' + (rowCount + 1)).slice(-3);
+    var leadId = data.anfragenId || 'CU-??';
 
     // Neue Zeile einfügen
     sheet.appendRow([

@@ -1108,14 +1108,11 @@ footer { background: var(--ink); padding: 60px 80px 36px; }
   // ↓ Google Apps Script URL — nach dem Deployment hier eintragen
   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3NtxyeD_UwqilD-Vt6SitHrtwdef6OWl_rL_nbGk8pXM63Noatjj7WQrnpT06oeo/exec';
 
-  // Generiert eine eindeutige numerische Anfragen-ID (Format: JJMMTTXXXXX)
+  // Generiert eine eindeutige Anfragen-ID (Format: CU-JJ-XXXX)
   function generateAnfragenId() {
-    const now = new Date();
-    const yy = String(now.getFullYear()).slice(2);
-    const mm = String(now.getMonth() + 1).padStart(2, '0');
-    const dd = String(now.getDate()).padStart(2, '0');
-    const rand = String(Math.floor(Math.random() * 90000) + 10000); // 5-stellig
-    return yy + mm + dd + rand; // z. B. "2603141842"
+    const yy = String(new Date().getFullYear()).slice(2);
+    const rand = String(Math.floor(Math.random() * 9000) + 1000); // 4-stellig
+    return 'CU-' + yy + '-' + rand; // z. B. "CU-26-4831"
   }
 
   // Scroll reveal
