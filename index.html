@@ -53,18 +53,6 @@
     color: var(--slate); letter-spacing: 0.01em;
   }
   .logo span { color: var(--terra); }
-  .subnav {
-    position: fixed; top: 72px; left: 0; right: 0; z-index: 99;
-    background: var(--terra);
-    display: flex; align-items: center; justify-content: center;
-    height: 36px;
-    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
-    text-transform: uppercase; color: rgba(255,255,255,0.92);
-    gap: 0.75rem;
-  }
-  .subnav::before, .subnav::after {
-    content: ''; display: block; width: 20px; height: 1px; background: rgba(255,255,255,0.5);
-  }
   nav ul { list-style: none; display: flex; gap: 2rem; }
   nav ul a { text-decoration: none; color: var(--slate-light); font-size: 0.875rem; font-weight: 500; letter-spacing: 0.01em; transition: color 0.2s; }
   nav ul a:hover { color: var(--terra); }
@@ -82,7 +70,7 @@
     min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding-top: 108px;
+    padding-top: 72px;
     background: var(--cream);
     overflow: hidden;
   }
@@ -493,9 +481,6 @@
 </style>
 </head>
 <body>
-
-<!-- SUBNAV BANNER -->
-<div class="subnav">Für pflegende Angehörige · Schweiz</div>
 
 <!-- NAV -->
 <nav>
