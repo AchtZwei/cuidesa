@@ -26,7 +26,7 @@
     --border: #D8D0C4;
   }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 
   body {
     font-family: 'Source Sans 3', sans-serif;
@@ -76,7 +76,7 @@
   }
   .hero-left {
     display: flex; flex-direction: column; justify-content: center;
-    padding: 8% 6% 8% 8%;
+    padding: 6rem 6% 6rem 8%;
     position: relative;
   }
   .hero-eyebrow {
@@ -455,12 +455,14 @@
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  .hero-left > * { animation: fadeUp 0.7s ease both; }
-  .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
-  .hero-left > *:nth-child(2) { animation-delay: 0.2s; }
-  .hero-left > *:nth-child(3) { animation-delay: 0.3s; }
-  .hero-left > *:nth-child(4) { animation-delay: 0.4s; }
-  .hero-left > *:nth-child(5) { animation-delay: 0.5s; }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-left > * { animation: fadeUp 0.7s ease both; }
+    .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+    .hero-left > *:nth-child(2) { animation-delay: 0.2s; }
+    .hero-left > *:nth-child(3) { animation-delay: 0.3s; }
+    .hero-left > *:nth-child(4) { animation-delay: 0.4s; }
+    .hero-left > *:nth-child(5) { animation-delay: 0.5s; }
+  }
 
   /* ─── RESPONSIVE ──────────────────────────────────────── */
   @media (max-width: 900px) {
