@@ -140,15 +140,17 @@
   }
 
   .hero-right {
-    background: var(--slate);
+    background: var(--cream);
     position: relative; overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
+    display: flex; align-items: flex-end; justify-content: center;
   }
-  .hero-right::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 30% 70%, rgba(196,99,74,0.25) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 20%, rgba(143,168,156,0.15) 0%, transparent 50%);
+  .hero-right::before { display: none; }
+  .hero-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
   }
   .hero-card {
     background: rgba(250,247,242,0.06);
@@ -540,20 +542,7 @@
     </div>
   </div>
   <div class="hero-right">
-    <div class="hero-card">
-      <div class="hero-card-badge">Erfahrungsbericht</div>
-      <div class="hero-card-quote">
-        Ich hatte keine Ahnung, dass ich dafür Geld bekommen könnte. Cuidesa hat das in 48 Stunden geklärt.
-      </div>
-      <div class="hero-card-author">
-        <strong>Sandra M.</strong>
-        Winterthur · pflegt ihre Mutter seit 3 Jahren
-      </div>
-      <div class="hero-card-amount">
-        <div class="amount-num">CHF 2'400</div>
-        <div class="amount-unit">&nbsp;/ Mt. monatliche Entlöhnung</div>
-      </div>
-    </div>
+    <img src="img/hero-photo.png" alt="Pflegende Angehörige mit ihrer Mutter" class="hero-photo">
   </div>
 </section>
 
