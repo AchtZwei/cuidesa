@@ -10,20 +10,20 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --cream: #F5F0E8;
-    --warm-white: #FAF7F2;
-    --terra: #C4634A;
-    --terra-dark: #A0503A;
-    --terra-light: #E8896E;
-    --slate: #1E2D2F;
-    --slate-mid: #2E4245;
-    --slate-light: #4A6266;
-    --gold: #D4A853;
-    --gold-light: #E8C878;
-    --sage: #8FA89C;
-    --text: #1E2D2F;
-    --muted: #6B7E80;
-    --border: #D8D0C4;
+    --cream: #EEF4FB;
+    --warm-white: #F4F8FD;
+    --terra: #1A6DB5;
+    --terra-dark: #145A99;
+    --terra-light: #4A9DD4;
+    --slate: #0B1F3A;
+    --slate-mid: #163253;
+    --slate-light: #2E5A84;
+    --gold: #2196C4;
+    --gold-light: #56B8DC;
+    --sage: #6A9FC0;
+    --text: #0B1F3A;
+    --muted: #4A6E8A;
+    --border: #B8D4EA;
   }
 
   html { scroll-behavior: smooth; scroll-padding-top: 72px; }
@@ -43,7 +43,7 @@
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 5%;
     height: 72px;
-    background: rgba(250,247,242,0.92);
+    background: rgba(244,248,253,0.95);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
@@ -153,8 +153,8 @@
     display: block;
   }
   .hero-card {
-    background: rgba(250,247,242,0.06);
-    border: 1px solid rgba(250,247,242,0.12);
+    background: rgba(180,210,240,0.08);
+    border: 1px solid rgba(180,210,240,0.18);
     border-radius: 4px;
     padding: 2.5rem;
     max-width: 340px;
@@ -287,7 +287,7 @@
   }
   .calc-range {
     width: 100%; height: 4px; appearance: none;
-    background: rgba(250,247,242,0.2); border-radius: 2px; outline: none; cursor: pointer;
+    background: rgba(180,210,240,0.25); border-radius: 2px; outline: none; cursor: pointer;
     margin-bottom: 0.5rem;
   }
   .calc-range::-webkit-slider-thumb {
@@ -303,8 +303,8 @@
   .calc-slider-labels { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--sage); margin-bottom: 0; }
   .calc-result { position: sticky; top: 120px; }
   .calc-display {
-    background: rgba(250,247,242,0.05);
-    border: 1px solid rgba(250,247,242,0.12);
+    background: rgba(180,210,240,0.06);
+    border: 1px solid rgba(180,210,240,0.18);
     padding: 2.5rem; border-radius: 4px;
   }
   .calc-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.5rem; }
@@ -313,11 +313,11 @@
     font-size: 3.5rem; font-weight: 700; color: var(--gold); line-height: 1;
   }
   .calc-sub { font-size: 0.85rem; color: var(--sage); margin-top: 0.5rem; font-weight: 300; }
-  .calc-divider { border: none; border-top: 1px solid rgba(250,247,242,0.1); margin: 1.5rem 0; }
+  .calc-divider { border: none; border-top: 1px solid rgba(180,210,240,0.15); margin: 1.5rem 0; }
   .calc-row { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem; }
   .calc-row span:first-child { color: var(--sage); font-weight: 300; }
   .calc-row span:last-child { color: var(--cream); font-weight: 500; }
-  .calc-missed { margin-top: 1.5rem; padding: 1rem; background: rgba(196,99,74,0.15); border: 1px solid rgba(196,99,74,0.3); border-radius: 2px; }
+  .calc-missed { margin-top: 1.5rem; padding: 1rem; background: rgba(26,109,181,0.12); border: 1px solid rgba(26,109,181,0.3); border-radius: 2px; }
   .calc-missed-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terra-light); margin-bottom: 0.25rem; }
   .calc-missed-num { font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700; color: var(--terra-light); }
 
@@ -377,7 +377,7 @@
   footer ul a:hover { color: var(--cream); }
   .footer-bottom {
     background: var(--slate); padding: 1.5rem 8%;
-    border-top: 1px solid rgba(250,247,242,0.08);
+    border-top: 1px solid rgba(180,210,240,0.12);
     font-size: 0.8rem; color: var(--muted);
     display: flex; justify-content: space-between; align-items: center;
   }
