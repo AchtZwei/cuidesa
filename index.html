@@ -763,6 +763,7 @@
         <button class="quiz-opt toggle" onclick="toggleOpt(this)">🍽️ Ernährung<span>Essen eingeben, Trinken reichen</span></button>
         <button class="quiz-opt toggle" onclick="toggleOpt(this)">🌙 Nächtliche Betreuung<span>Aufstehen, Überwachung</span></button>
       </div>
+      <div id="step4-error" style="display:none;color:#c0392b;font-size:0.8rem;margin-top:0.5rem;"></div>
       <div class="quiz-nav">
         <button class="quiz-back" onclick="prevStep(4)">← Zurück</button>
         <button class="quiz-next" onclick="nextStep(4)">Weiter →</button>
@@ -802,6 +803,7 @@
         <option>Zug</option>
         <option>Zürich</option>
       </select>
+      <div id="step5-error" style="display:none;color:#c0392b;font-size:0.8rem;margin-top:0.5rem;"></div>
       <div class="quiz-nav">
         <button class="quiz-back" onclick="prevStep(5)">← Zurück</button>
         <button class="quiz-next" onclick="nextStep(5)">Weiter →</button>
@@ -1062,16 +1064,30 @@
   }
 
   function nextStep(from) {
-    // Collect data for slider/input steps before advancing
-    if (from === 2) {
-      quizData.stunden = document.getElementById('hoursSlider').value + ' Std./Woche';
-    }
+    // Validate before advancing
     if (from === 4) {
       const selected = [...document.querySelectorAll('#step4-opts .quiz-opt.selected')];
+      const err = document.getElementById('step4-error');
+      if (selected.length === 0) {
+        err.textContent = 'Bitte mindestens eine Tätigkeit auswählen.';
+        err.style.display = 'block'; return;
+      }
+      err.style.display = 'none';
       quizData.taetigkeiten = selected.map(b => b.firstChild.textContent.trim().replace(/^[^\s]+\s/, '')).join(', ');
     }
     if (from === 5) {
-      quizData.kanton = document.getElementById('kantonInput').value;
+      const kanton = document.getElementById('kantonInput').value;
+      const err = document.getElementById('step5-error');
+      if (!kanton) {
+        err.textContent = 'Bitte einen Kanton auswählen.';
+        err.style.display = 'block'; return;
+      }
+      err.style.display = 'none';
+      quizData.kanton = kanton;
+    }
+    // Collect slider data
+    if (from === 2) {
+      quizData.stunden = document.getElementById('hoursSlider').value + ' Std./Woche';
     }
     showStep(from < totalSteps ? from + 1 : from);
   }
