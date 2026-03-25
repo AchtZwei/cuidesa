@@ -78,61 +78,69 @@
     font-size: 0.8rem; color: #fff;
     display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;
   }
+  .lang-switcher { display:flex; gap:0.25rem; align-items:center; margin-left:auto; }
+  .lang-btn { background:none; border:1px solid var(--border); color:var(--muted); cursor:pointer; padding:0.3rem 0.65rem; font-size:0.75rem; font-weight:600; border-radius:2px; transition:all 0.2s; font-family:'Source Sans 3',sans-serif; letter-spacing:0.05em; }
+  .lang-btn.active,.lang-btn:hover { background:var(--terra); border-color:var(--terra); color:#fff; }
 </style>
 </head>
 <body>
 
 <nav>
   <a class="logo" href="/"><span>Cuide</span>sa</a>
+  <div class="lang-switcher">
+    <button data-lang-btn="de" class="lang-btn">DE</button>
+    <button data-lang-btn="sq" class="lang-btn">SQ</button>
+  </div>
 </nav>
 
 <main>
-  <h1>Allgemeine Geschäftsbedingungen (AGB)</h1>
-  <p class="meta">Cuidesa – Ermir Krasniqi, Romanshorn TG &nbsp;|&nbsp; Stand: März 2026</p>
+  <h1 data-i18n="agb.title">Allgemeine Geschäftsbedingungen (AGB)</h1>
+  <p class="meta" data-i18n="agb.meta">Cuidesa – Ermir Krasniqi, Romanshorn TG &nbsp;|&nbsp; Stand: März 2026</p>
 
-  <h2>1. Geltungsbereich</h2>
-  <p>Diese AGB regeln die Nutzung der Plattform Cuidesa (www.cuidesa.ch) sowie die Geschäftsbeziehungen zwischen Cuidesa, vertreten durch Ermir Krasniqi, und Spitex-Organisationen oder anderen Partnern (nachfolgend „Kunden" genannt). Mit der Nutzung der Plattform oder dem Bezug von Dienstleistungen erklärt sich der Kunde mit diesen AGB einverstanden.</p>
+  <h2 data-i18n="agb.h1">1. Geltungsbereich</h2>
+  <p data-i18n="agb.p1">Diese AGB regeln die Nutzung der Plattform Cuidesa (www.cuidesa.ch) sowie die Geschäftsbeziehungen zwischen Cuidesa, vertreten durch Ermir Krasniqi, und Spitex-Organisationen oder anderen Partnern (nachfolgend „Kunden" genannt). Mit der Nutzung der Plattform oder dem Bezug von Dienstleistungen erklärt sich der Kunde mit diesen AGB einverstanden.</p>
 
-  <h2>2. Leistungen</h2>
-  <p>Cuidesa ist eine Onlineplattform zur Lead-Generierung im Bereich Angehörigenpflege. Die Plattform vermittelt Kontaktanfragen von pflegenden Angehörigen an geprüfte Spitex-Organisationen in der Schweiz. Cuidesa stellt den Partnern die generierten Leads in Rechnung. Cuidesa ist kein Pflegedienstleister und erbringt keine Pflegeleistungen selbst. Cuidesa übernimmt keine Anstellung von Pflegepersonen und ist nicht Teil des Vertragsverhältnisses zwischen Angehörigen und Spitex-Organisation.</p>
+  <h2 data-i18n="agb.h2">2. Leistungen</h2>
+  <p data-i18n="agb.p2">Cuidesa ist eine Onlineplattform zur Lead-Generierung im Bereich Angehörigenpflege. Die Plattform vermittelt Kontaktanfragen von pflegenden Angehörigen an geprüfte Spitex-Organisationen in der Schweiz. Cuidesa stellt den Partnern die generierten Leads in Rechnung. Cuidesa ist kein Pflegedienstleister und erbringt keine Pflegeleistungen selbst. Cuidesa übernimmt keine Anstellung von Pflegepersonen und ist nicht Teil des Vertragsverhältnisses zwischen Angehörigen und Spitex-Organisation.</p>
 
-  <h2>3. Vertragsabschluss</h2>
-  <p>Ein Vertrag zwischen Cuidesa und dem Kunden entsteht durch die Annahme eines Angebots oder den Erhalt und die Nutzung der vermittelten Leads. Der Kunde verpflichtet sich, die übermittelten Leads ausschliesslich für eigene geschäftliche Zwecke zu verwenden und nicht an Dritte weiterzugeben.</p>
+  <h2 data-i18n="agb.h3">3. Vertragsabschluss</h2>
+  <p data-i18n="agb.p3">Ein Vertrag zwischen Cuidesa und dem Kunden entsteht durch die Annahme eines Angebots oder den Erhalt und die Nutzung der vermittelten Leads. Der Kunde verpflichtet sich, die übermittelten Leads ausschliesslich für eigene geschäftliche Zwecke zu verwenden und nicht an Dritte weiterzugeben.</p>
 
-  <h2>4. Preise und Zahlung</h2>
-  <p>Cuidesa stellt die Leistungen per Rechnung aus. Die Zahlung ist innert 14 Tagen ab Rechnungsdatum fällig, sofern nichts anderes vereinbart wurde. Alle Preise verstehen sich in Schweizer Franken (CHF), exkl. MwSt. (Einzelfirma ohne MwSt.-Pflicht unter CHF 100'000 Umsatz).</p>
+  <h2 data-i18n="agb.h4">4. Preise und Zahlung</h2>
+  <p data-i18n="agb.p4">Cuidesa stellt die Leistungen per Rechnung aus. Die Zahlung ist innert 14 Tagen ab Rechnungsdatum fällig, sofern nichts anderes vereinbart wurde. Alle Preise verstehen sich in Schweizer Franken (CHF), exkl. MwSt. (Einzelfirma ohne MwSt.-Pflicht unter CHF 100'000 Umsatz).</p>
 
-  <h2>5. Qualität der Leads</h2>
-  <p>Cuidesa prüft eingehende Anfragen auf Plausibilität, übernimmt jedoch keine Garantie für die Richtigkeit oder Vollständigkeit der Angaben der Interessenten. Ein Lead gilt als vermittelt sobald die Kontaktdaten übermittelt wurden — unabhängig davon ob eine Anstellung zustande kommt.</p>
+  <h2 data-i18n="agb.h5">5. Qualität der Leads</h2>
+  <p data-i18n="agb.p5">Cuidesa prüft eingehende Anfragen auf Plausibilität, übernimmt jedoch keine Garantie für die Richtigkeit oder Vollständigkeit der Angaben der Interessenten. Ein Lead gilt als vermittelt sobald die Kontaktdaten übermittelt wurden — unabhängig davon ob eine Anstellung zustande kommt.</p>
 
-  <h2>6. Haftung</h2>
-  <p>Cuidesa übernimmt keine Garantie dafür, dass eine Anfrage zu einer formellen Anstellung oder einem Vertragsabschluss führt. Jegliche Haftung für entgangenen Gewinn, Folgeschäden oder indirekte Schäden ist ausgeschlossen.</p>
+  <h2 data-i18n="agb.h6">6. Haftung</h2>
+  <p data-i18n="agb.p6">Cuidesa übernimmt keine Garantie dafür, dass eine Anfrage zu einer formellen Anstellung oder einem Vertragsabschluss führt. Jegliche Haftung für entgangenen Gewinn, Folgeschäden oder indirekte Schäden ist ausgeschlossen.</p>
 
-  <h2>7. Datenschutz</h2>
-  <p>Cuidesa behandelt alle personenbezogenen Daten gemäss den geltenden Datenschutzbestimmungen (DSG/DSGVO). Details sind in der <a href="/datenschutz.html">Datenschutzerklärung</a> geregelt.</p>
+  <h2 data-i18n="agb.h7">7. Datenschutz</h2>
+  <p data-i18n="agb.p7">Cuidesa behandelt alle personenbezogenen Daten gemäss den geltenden Datenschutzbestimmungen (DSG/DSGVO). Details sind in der <a href="/datenschutz.html">Datenschutzerklärung</a> geregelt.</p>
 
-  <h2>8. Änderungen</h2>
-  <p>Cuidesa behält sich das Recht vor, diese AGB jederzeit zu ändern. Massgeblich ist die zum Zeitpunkt der Nutzung gültige Fassung.</p>
+  <h2 data-i18n="agb.h8">8. Änderungen</h2>
+  <p data-i18n="agb.p8">Cuidesa behält sich das Recht vor, diese AGB jederzeit zu ändern. Massgeblich ist die zum Zeitpunkt der Nutzung gültige Fassung.</p>
 
-  <h2>9. Gerichtsstand und anwendbares Recht</h2>
-  <p>Es gilt schweizerisches Recht. Gerichtsstand ist Romanshorn TG, soweit keine zwingenden gesetzlichen Bestimmungen vorgehen.</p>
+  <h2 data-i18n="agb.h9">9. Gerichtsstand und anwendbares Recht</h2>
+  <p data-i18n="agb.p9">Es gilt schweizerisches Recht. Gerichtsstand ist Romanshorn TG, soweit keine zwingenden gesetzlichen Bestimmungen vorgehen.</p>
 
-  <p class="footer-note">Cuidesa – Ermir Krasniqi, Romanshorn TG &nbsp;|&nbsp; <a href="mailto:info@cuidesa.ch">info@cuidesa.ch</a></p>
+  <p class="footer-note"><span data-i18n="agb.footer.note">Cuidesa – Ermir Krasniqi, Romanshorn TG</span> &nbsp;|&nbsp; <a href="mailto:info@cuidesa.ch">info@cuidesa.ch</a></p>
 </main>
 
 <footer>
   <div class="footer-logo"><span>Cuide</span>sa</div>
   <div class="footer-links">
-    <a href="/">Startseite</a>
-    <a href="/datenschutz.html">Datenschutz</a>
-    <a href="/impressum.html">Impressum</a>
+    <a href="/" data-i18n="footer.startseite">Startseite</a>
+    <a href="/datenschutz.html" data-i18n="footer.datenschutz">Datenschutz</a>
+    <a href="/impressum.html" data-i18n="footer.impressum">Impressum</a>
     <a href="mailto:info@cuidesa.ch">info@cuidesa.ch</a>
   </div>
 </footer>
 <div class="footer-bottom">
-  <div>© 2025 Cuidesa. Alle Rechte vorbehalten.</div>
-  <div>Für pflegende Angehörige in der Schweiz</div>
+  <div data-i18n="footer.copy">© 2025 Cuidesa. Alle Rechte vorbehalten.</div>
+  <div data-i18n="footer.tagline">Für pflegende Angehörige in der Schweiz</div>
 </div>
 
+<script src="lang.js"></script>
 </body>
 </html>

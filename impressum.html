@@ -71,23 +71,30 @@
     font-size: 0.8rem; color: #fff;
     display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;
   }
+  .lang-switcher { display:flex; gap:0.25rem; align-items:center; margin-left:auto; }
+  .lang-btn { background:none; border:1px solid var(--border); color:var(--muted); cursor:pointer; padding:0.3rem 0.65rem; font-size:0.75rem; font-weight:600; border-radius:2px; transition:all 0.2s; font-family:'Source Sans 3',sans-serif; letter-spacing:0.05em; }
+  .lang-btn.active,.lang-btn:hover { background:var(--terra); border-color:var(--terra); color:#fff; }
 </style>
 </head>
 <body>
 
 <nav>
   <a class="logo" href="/"><span>Cuide</span>sa</a>
+  <div class="lang-switcher">
+    <button data-lang-btn="de" class="lang-btn">DE</button>
+    <button data-lang-btn="sq" class="lang-btn">SQ</button>
+  </div>
 </nav>
 
 <main>
-  <h1>Impressum</h1>
+  <h1 data-i18n="imp.title">Impressum</h1>
 
-  <h2>Betreiber</h2>
+  <h2 data-i18n="imp.h1">Betreiber</h2>
   <p>Ermir Krasniqi</p>
   <p>Obere Neustrasse 4</p>
   <p>Schweiz</p>
 
-  <h2>Kontakt</h2>
+  <h2 data-i18n="imp.h2">Kontakt</h2>
   <p>Telefon: <a href="tel:+41766986236">+41 76 698 62 36</a></p>
   <p>E-Mail: <a href="mailto:info@cuidesa.ch">info@cuidesa.ch</a></p>
 </main>
@@ -95,16 +102,17 @@
 <footer>
   <div class="footer-logo"><span>Cuide</span>sa</div>
   <div class="footer-links">
-    <a href="/">Startseite</a>
-    <a href="/datenschutz.html">Datenschutz</a>
-    <a href="/agb.html">AGB</a>
+    <a href="/" data-i18n="footer.startseite">Startseite</a>
+    <a href="/datenschutz.html" data-i18n="footer.datenschutz">Datenschutz</a>
+    <a href="/agb.html" data-i18n="footer.agb">AGB</a>
     <a href="mailto:info@cuidesa.ch">info@cuidesa.ch</a>
   </div>
 </footer>
 <div class="footer-bottom">
-  <div>© 2025 Cuidesa. Alle Rechte vorbehalten.</div>
-  <div>Für pflegende Angehörige in der Schweiz</div>
+  <div data-i18n="footer.copy">© 2025 Cuidesa. Alle Rechte vorbehalten.</div>
+  <div data-i18n="footer.tagline">Für pflegende Angehörige in der Schweiz</div>
 </div>
 
+<script src="lang.js"></script>
 </body>
 </html>
