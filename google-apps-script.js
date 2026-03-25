@@ -71,14 +71,17 @@ function doPost(e) {
 function createLeadPDF(data, leadId, now) {
   var datum = Utilities.formatDate(now, 'Europe/Zurich', 'dd. MMMM yyyy');
 
-  var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><style>'
-    + 'body{font-family:Georgia,serif;color:#0B1F3A;margin:0;padding:40px 50px;font-size:13px;background:#fff;}'
+  var html = '<!DOCTYPE html><html><head><meta charset="UTF-8">'
+    + '<link rel="preconnect" href="https://fonts.googleapis.com">'
+    + '<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">'
+    + '<style>'
+    + 'body{font-family:"Source Sans 3",sans-serif;color:#0B1F3A;margin:0;padding:40px 50px;font-size:13px;background:#fff;}'
     + '.header{border-bottom:3px solid #1A6DB5;padding-bottom:18px;margin-bottom:30px;}'
-    + '.logo{font-size:30px;font-weight:bold;color:#0B1F3A;display:inline;}'
+    + '.logo{font-family:"Lora",serif;font-size:30px;font-weight:bold;color:#0B1F3A;display:inline;}'
     + '.logo-accent{color:#1A6DB5;}'
     + '.header-meta{float:right;text-align:right;font-size:11px;color:#4A6E8A;margin-top:4px;}'
     + '.badge{display:inline-block;background:#1A6DB5;color:#fff;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-top:14px;}'
-    + 'h1{font-size:19px;color:#0B1F3A;margin:0 0 4px 0;}'
+    + 'h1{font-family:"Lora",serif;font-size:19px;color:#0B1F3A;margin:0 0 4px 0;}'
     + '.subtitle{color:#4A6E8A;font-size:12px;margin:0 0 28px 0;}'
     + '.section{margin-bottom:22px;}'
     + '.section-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#1A6DB5;'
