@@ -64,9 +64,6 @@
     transition: background 0.2s !important;
   }
   .nav-cta:hover { background: var(--terra) !important; color: var(--cream) !important; }
-  .lang-switcher { display:flex; gap:0.25rem; align-items:center; margin-left:auto; }
-  .lang-btn { background:none; border:1px solid var(--border); color:var(--muted); cursor:pointer; padding:0.3rem 0.65rem; font-size:0.75rem; font-weight:600; border-radius:2px; transition:all 0.2s; font-family:'Source Sans 3',sans-serif; letter-spacing:0.05em; }
-  .lang-btn.active,.lang-btn:hover { background:var(--terra); border-color:var(--terra); color:#fff; }
 
   /* ─── HERO ────────────────────────────────────────────── */
   .hero {
@@ -565,47 +562,42 @@
 <nav>
   <div class="logo">Cuide<span>sa</span></div>
   <ul>
-    <li><a href="#how" data-i18n="nav.how">Wie es funktioniert</a></li>
-    <li><a href="#eligibility" data-i18n="nav.eligibility">Wer hat Anspruch</a></li>
-    <li><a href="#calc" data-i18n="nav.calc">Rechner</a></li>
-    <li><a href="#contact" class="nav-cta" data-i18n="nav.cta">Kostenlos prüfen</a></li>
+    <li><a href="#how">Wie es funktioniert</a></li>
+    <li><a href="#eligibility">Wer hat Anspruch</a></li>
+    <li><a href="#calc">Rechner</a></li>
+    <li><a href="#contact" class="nav-cta">Kostenlos prüfen</a></li>
   </ul>
-  <div class="lang-switcher">
-    <button data-lang-btn="de" class="lang-btn">DE</button>
-    <button data-lang-btn="sq" class="lang-btn">SQ</button>
-  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero" style="padding:0;">
   <div class="hero-left">
-    <div class="hero-eyebrow" data-i18n="hero.eyebrow">Für pflegende Angehörige in der Schweiz</div>
-    <h1 class="hero-title" data-i18n="hero.title">
+<h1 class="hero-title">
       Du pflegst.<br>
       <em>Wusstest du,</em><br>
       dass du dafür<br>bezahlt werden kannst?
     </h1>
-    <p class="hero-lead" data-i18n="hero.lead">
+    <p class="hero-lead">
       Über <strong>300'000 Menschen</strong> in der Schweiz pflegen Angehörige zuhause –
       die meisten kostenlos und ohne Unterstützung. Dabei haben viele Anspruch
       auf eine offizielle Entlöhnung.
     </p>
     <div class="hero-actions">
-      <a href="#contact" class="btn-primary" data-i18n="hero.cta">Anspruch jetzt prüfen — kostenlos</a>
-      <a href="#calc" class="btn-ghost" data-i18n="hero.ghost">Zum Rechner →</a>
+      <a href="#contact" class="btn-primary">Anspruch jetzt prüfen — kostenlos</a>
+      <a href="#calc" class="btn-ghost">Zum Rechner →</a>
     </div>
     <div class="hero-stats">
       <div>
         <div class="stat-num">300'000<sup>+</sup></div>
-        <div class="stat-label" data-i18n="stat1.label">Betroffene in der Schweiz</div>
+        <div class="stat-label">Betroffene in der Schweiz</div>
       </div>
       <div>
         <div class="stat-num">~60<sup>%</sup></div>
-        <div class="stat-label" data-i18n="stat3.label">Pflegende bekommen nichts</div>
+        <div class="stat-label">Kennen ihren Anspruch nicht</div>
       </div>
       <div>
         <div class="stat-num">3'000<sup></sup></div>
-        <div class="stat-label" data-i18n="stat2.label">CHF pro Monat verdienst möglich</div>
+        <div class="stat-label">CHF pro Monat verdienst möglich</div>
       </div>
     </div>
   </div>
@@ -617,36 +609,49 @@
 <!-- HOW IT WORKS -->
 <section id="how" class="how">
   <div class="how-left">
-    <div class="section-eyebrow" data-i18n="how.eyebrow">Wie es funktioniert</div>
-    <h2 class="section-title" data-i18n="how.title">3 Schritte. <em>Kein Aufwand.</em></h2>
-    <p class="how-lead" data-i18n="how.lead">Wir erledigen den Rest – du pflegst.</p>
+    <div class="section-eyebrow">Das System dahinter</div>
+    <h2 class="section-title">Das Schweizer Pflegesystem zahlt. <em>Du musst es nur beantragen.</em></h2>
+    <p class="how-lead">
+      Krankenkasse, IV und Ergänzungsleistungen finanzieren Pflegeleistungen.
+      Wenn du diese formal über eine anerkannte Spitex-Organisation erbringst,
+      fliesst das Geld an dich.
+    </p>
   </div>
   <div class="how-steps">
     <div class="step">
       <div class="step-num">01</div>
       <div>
-        <div class="step-icon">📋</div>
-        <div class="step-title" data-i18n="how.step1.title">Anspruch online prüfen</div>
-        <div class="step-desc" data-i18n="how.step1.desc">Fülle unser 2-Minuten-Formular aus. Wir prüfen, ob du Anspruch auf eine Entlöhnung hast.</div>
-        <span class="step-highlight" data-i18n="how.step1.highlight">100% kostenlos</span>
+        <div class="step-icon">🏥</div>
+        <div class="step-title">Krankenkasse (KVG)</div>
+        <div class="step-desc">Grundpflege wie Körperpflege, Mobilität und Betreuung sind krankenkassenpflichtig – auch wenn Angehörige diese Leistungen erbringen.</div>
+        <span class="step-highlight">KVG-finanziert</span>
       </div>
     </div>
     <div class="step">
       <div class="step-num">02</div>
       <div>
-        <div class="step-icon">📞</div>
-        <div class="step-title" data-i18n="how.step2.title">Persönliche Beratung erhalten</div>
-        <div class="step-desc" data-i18n="how.step2.desc">Unser Team meldet sich innert 24 Stunden und erklärt dir genau, wie die Entlöhnung funktioniert.</div>
-        <span class="step-highlight" data-i18n="how.step2.highlight">Innert 24 Stunden</span>
+        <div class="step-icon">⚖️</div>
+        <div class="step-title">IV & Ergänzungsleistungen</div>
+        <div class="step-desc">Bei Pflegebedürftigkeit durch Invalidität oder im Alter können zusätzliche Mittel der IV und Ergänzungsleistungen fliessen.</div>
+        <span class="step-highlight">Zusätzliche Mittel</span>
       </div>
     </div>
     <div class="step">
       <div class="step-num">03</div>
       <div>
         <div class="step-icon">🤝</div>
-        <div class="step-title" data-i18n="how.step3.title">Angestellt werden & Lohn erhalten</div>
-        <div class="step-desc" data-i18n="how.step3.desc">Wir vermitteln dich an eine geprüfte Spitex-Organisation in deiner Region. Du wirst offiziell angestellt und erhältst einen Monatslohn.</div>
-        <span class="step-highlight" data-i18n="how.step3.highlight">CHF 35–45 / Stunde</span>
+        <div class="step-title">Anstellung via Spitex</div>
+        <div class="step-desc">Eine anerkannte Spitex stellt dich formal an, rechnet mit der Krankenkasse ab – und bezahlt dich für deine Pflegearbeit.</div>
+        <span class="step-highlight">Bis zu CHF 3'000/Mt.</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div>
+        <div class="step-icon">✓</div>
+        <div class="step-title">Cuidesa begleitet dich</div>
+        <div class="step-desc">Wir prüfen deinen Anspruch, finden den passenden Spitex-Partner in deiner Region und begleiten den gesamten Prozess.</div>
+        <span class="step-highlight">Kostenlos & unverbindlich</span>
       </div>
     </div>
   </div>
@@ -655,80 +660,79 @@
 <!-- ELIGIBILITY -->
 <section id="eligibility" class="eligibility">
   <div style="max-width: 600px;">
-    <div class="section-eyebrow" data-i18n="elig.eyebrow">Voraussetzungen</div>
-    <h2 class="section-title" data-i18n="elig.title">Wer hat <em>Anspruch?</em></h2>
-    <p style="margin-top:1rem; color:var(--muted); font-size:0.95rem; font-weight:300;" data-i18n="elig.subtitle">Fast jeder pflegende Angehörige. Hier sind die Kriterien:</p>
+    <div class="section-eyebrow">Wer hat Anspruch</div>
+    <h2 class="section-title">Du kommst wahrscheinlich in Frage, <em>wenn…</em></h2>
   </div>
   <div class="eligibility-grid">
     <div class="crit">
       <div class="crit-check">✓</div>
-      <div class="crit-title" data-i18n="elig.c1.title">Du pflegst regelmässig</div>
-      <div class="crit-desc" data-i18n="elig.c1.desc">Mindestens ein paar Stunden pro Woche zuhause bei der pflegebedürftigen Person.</div>
+      <div class="crit-title">Du pflegst regelmässig</div>
+      <div class="crit-desc">Mindestens ein paar Stunden pro Woche zuhause bei der pflegebedürftigen Person.</div>
     </div>
     <div class="crit">
       <div class="crit-check">✓</div>
-      <div class="crit-title" data-i18n="elig.c2.title">Die Person ist pflegebedürftig</div>
-      <div class="crit-desc" data-i18n="elig.c2.desc">Alter, Krankheit oder Behinderung – eine anerkannte Pflegebedürftigkeit liegt vor.</div>
+      <div class="crit-title">Eltern, Partner oder Geschwister</div>
+      <div class="crit-desc">Die pflegebedürftige Person ist dein Angehöriger – Verwandtschaft oder Lebenspartner.</div>
     </div>
     <div class="crit">
       <div class="crit-check">✓</div>
-      <div class="crit-title" data-i18n="elig.c3.title">Du bist Angehörige/r</div>
-      <div class="crit-desc" data-i18n="elig.c3.desc">Familienmitglied, Partner/in oder Lebenspartner/in – eine persönliche Beziehung besteht.</div>
+      <div class="crit-title">KVG-versichert</div>
+      <div class="crit-desc">Fast alle Personen mit Wohnsitz in der Schweiz erfüllen diese Voraussetzung.</div>
     </div>
     <div class="crit">
       <div class="crit-check">✓</div>
-      <div class="crit-title" data-i18n="elig.c4.title">Du lebst in der Schweiz</div>
-      <div class="crit-desc" data-i18n="elig.c4.desc">Wohnsitz in der Schweiz ist Voraussetzung für den Spitex-Anschluss.</div>
+      <div class="crit-title">Körperliche Pflege</div>
+      <div class="crit-desc">Waschen, anziehen, Mobilität, Ernährung — nicht nur Kochen oder Putzen.</div>
     </div>
     <div class="crit">
       <div class="crit-check">✓</div>
-      <div class="crit-title" data-i18n="elig.c5.title">Keine aktuelle Anstellung</div>
-      <div class="crit-desc" data-i18n="elig.c5.desc">Du pflegst bisher unentgeltlich – ohne offizielle Anstellung als Pflegeperson.</div>
+      <div class="crit-title">Zuhause gepflegt</div>
+      <div class="crit-desc">Die gepflegte Person lebt zuhause – nicht stationär in einem Pflegeheim.</div>
     </div>
     <div class="crit">
       <div class="crit-check">✓</div>
-      <div class="crit-title" data-i18n="elig.c6.title">Bereitschaft zur Anstellung</div>
-      <div class="crit-desc" data-i18n="elig.c6.desc">Du bist bereit, dich offiziell bei einer Spitex-Organisation anstellen zu lassen.</div>
+      <div class="crit-title">Wohnsitz Schweiz</div>
+      <div class="crit-desc">Du bist in der Schweiz gemeldet und kannst ein Arbeitsverhältnis eingehen.</div>
     </div>
   </div>
 </section>
 
 <!-- CALCULATOR -->
 <section id="calc" class="calc-section">
-  <div class="section-eyebrow" data-i18n="calc.eyebrow">Dein stiller Verlust</div>
-  <h2 class="section-title" data-i18n="calc.title">Jede Stunde Pflege hat einen Preis. <em>Du bekommst ihn nur noch nicht.</em></h2>
+  <div class="section-eyebrow">Dein stiller Verlust</div>
+  <h2 class="section-title">Jede Stunde Pflege hat einen Preis. <em>Du bekommst ihn nur noch nicht.</em></h2>
   <div class="calc-inner">
     <div class="calc-controls">
       <div class="calc-group">
-        <label data-i18n="calc.dur.label">Seit wann pflegst du bereits?</label>
+        <label>Seit wann pflegst du bereits?</label>
         <div class="calc-slider-val" id="durVal">1 Jahr</div>
         <input type="range" class="calc-range" id="duration" min="0" max="8" value="3" oninput="updateDurLabel(); updateCalc()">
-        <div class="calc-slider-labels"><span data-i18n="calc.dur.min">1 Monat</span><span data-i18n="calc.dur.max">5+ Jahre</span></div>
+        <div class="calc-slider-labels"><span>1 Monat</span><span>5+ Jahre</span></div>
       </div>
       <div class="calc-group">
-        <label data-i18n="calc.hrs.label">Stunden pro Woche</label>
+        <label>Stunden pro Woche</label>
         <div class="calc-slider-val" id="hrsVal">10 Std. / Woche</div>
         <input type="range" class="calc-range" id="hours" min="1" max="42" value="10" step="1" oninput="updateHrsLabel(); updateCalc()">
-        <div class="calc-slider-labels"><span data-i18n="calc.hrs.min">1 Std.</span><span data-i18n="calc.hrs.max">42 Std. (Vollzeit)</span></div>
+        <div class="calc-slider-labels"><span>1 Std.</span><span>42 Std. (Vollzeit)</span></div>
       </div>
     </div>
     <div class="calc-result">
       <div class="calc-display">
         <div id="calc-monthly-section">
-          <div class="calc-label" data-i18n="calc.monthly.label">Dein monatlicher Lohn ab jetzt</div>
+          <div class="calc-label">Dein monatlicher Lohn ab jetzt</div>
           <div class="calc-big" id="monthly-amount">—</div>
-          <div class="calc-sub" id="monthly-note" data-i18n="calc.monthly.default">Wähle Angaben links</div>
+          <div class="calc-sub" id="monthly-note">Wähle Angaben links</div>
         </div>
         <hr class="calc-divider">
-        <div class="calc-row"><span data-i18n="calc.hourly.label">Stundenlohn (Spitex)</span><span data-i18n="calc.hourly.val">ca. CHF 35–45 / Std.</span></div>
+        <div class="calc-row"><span>Stundenlohn (Spitex)</span><span>ca. CHF 35–45 / Std.</span></div>
         <div id="yearly-row" style="display:none">
-          <div class="calc-row"><span data-i18n="calc.yearly.label">Pro Jahr</span><span id="yearly-amount">—</span></div>
+          <div class="calc-row"><span>Pro Jahr</span><span id="yearly-amount">—</span></div>
         </div>
         <div class="calc-missed" id="missed-section" style="display:none">
-          <div class="calc-missed-label" data-i18n="calc.missed.label">Was du bisher verpasst hast</div>
+          <div class="calc-missed-label">Was du bisher verpasst hast</div>
           <div class="calc-missed-num" id="missed-amount">—</div>
         </div>
-        <a href="#contact" class="btn-primary" data-i18n="calc.cta" style="display:block; text-align:center; margin-top:1.75rem; background:var(--terra); color:#fff; padding:0.9rem 1.5rem; font-size:0.9rem; letter-spacing:0.02em; text-decoration:none; border-radius:2px;">
+        <a href="#contact" class="btn-primary" style="display:block; text-align:center; margin-top:1.75rem; background:var(--terra); color:#fff; padding:0.9rem 1.5rem; font-size:0.9rem; letter-spacing:0.02em; text-decoration:none; border-radius:2px;">
           Jetzt keine Entlöhnung mehr verpassen
         </a>
       </div>
@@ -739,9 +743,9 @@
 <!-- CTA / CONTACT -->
 <section id="contact" class="cta-section">
   <div>
-    <div class="cta-eyebrow" data-i18n="cta.eyebrow">Kostenlose Prüfung</div>
-    <h2 class="cta-title" data-i18n="cta.title">Prüfe deinen Anspruch in <em>2 Minuten.</em></h2>
-    <p class="cta-desc" data-i18n="cta.desc">6 Fragen. Unverbindlich. Wir melden uns innert 24h mit einer klaren Einschätzung deines Anspruchs und dem passenden Spitex-Partner.</p>
+    <div class="cta-eyebrow">Kostenlose Prüfung</div>
+    <h2 class="cta-title">Prüfe deinen Anspruch in <em>2 Minuten.</em></h2>
+    <p class="cta-desc">6 Fragen. Unverbindlich. Wir melden uns innert 24h mit einer klaren Einschätzung deines Anspruchs und dem passenden Spitex-Partner.</p>
   </div>
   <div class="quiz-container">
     <!-- Progress bar -->
@@ -752,65 +756,64 @@
 
     <!-- Step 1 -->
     <div class="quiz-step active" id="step1">
-      <div class="quiz-question" data-i18n="quiz.step1.q">Pflegst du aktuell jemanden zuhause?</div>
-      <div class="quiz-sub" data-i18n="quiz.step1.sub">Körperliche oder psychische Unterstützung zählt.</div>
+      <div class="quiz-question">Pflegst du aktuell jemanden in deiner Familie?</div>
+      <div class="quiz-sub">Wir meinen regelmässige, direkte Pflegetätigkeit.</div>
       <div class="quiz-options">
-        <button class="quiz-opt" data-i18n="quiz.step1.opt1" onclick="quizPickAndNext(this, 1, 'Ja, ein paar Stunden pro Woche')">Ja, ein paar Stunden pro Woche<span>Ich helfe regelmässig, aber nicht täglich</span></button>
-        <button class="quiz-opt" data-i18n="quiz.step1.opt2" onclick="quizPickAndNext(this, 1, 'Ja, täglich / fast täglich')">Ja, täglich / fast täglich<span>Pflege ist Teil meines Alltags</span></button>
-        <button class="quiz-opt" data-i18n="quiz.step1.opt3" onclick="quizPickAndNext(this, 1, 'Ja, rund um die Uhr')">Ja, rund um die Uhr<span>Vollzeitpflege zuhause</span></button>
-        <button class="quiz-opt" data-i18n="quiz.step1.opt4" onclick="quizPickAndNext(this, 1, 'Nein / bin unsicher')">Nein / bin unsicher<span>Ich bin mir nicht sicher ob ich pflege</span></button>
+        <button class="quiz-opt" onclick="quizPickAndNext(this, 1, 'Ja, regelmässig')">✅ Ja, regelmässig<span>Mehrmals pro Woche oder täglich</span></button>
+        <button class="quiz-opt" onclick="quizPickAndNext(this, 1, 'Ja, gelegentlich')">🔄 Ja, gelegentlich<span>Wenige Male im Monat</span></button>
+        <button class="quiz-opt" onclick="quizPickAndNext(this, 1, 'Plane es zu übernehmen')">📋 Ich plane es zu übernehmen<span>Noch nicht begonnen</span></button>
       </div>
     </div>
 
     <!-- Step 2 -->
     <div class="quiz-step" id="step2">
-      <div class="quiz-question" data-i18n="quiz.step2.q">Wie viele Stunden pflegst du pro Woche?</div>
-      <div class="quiz-sub" data-i18n="quiz.step2.sub">Alle Pflegeaktivitäten zusammengezählt.</div>
+      <div class="quiz-question">Wie viele Stunden pflegst du pro Woche?</div>
+      <div class="quiz-sub">Alle Pflegeaktivitäten zusammengezählt.</div>
       <div class="quiz-slider-wrap">
         <input type="range" min="2" max="60" value="10" class="quiz-slider" id="hoursSlider" oninput="document.getElementById('hoursVal').textContent=this.value">
-        <div class="quiz-slider-val"><span id="hoursVal">10</span> <span data-i18n="quiz.step2.unit">Std. / Woche</span></div>
+        <div class="quiz-slider-val"><span id="hoursVal">10</span> Std. / Woche</div>
         <div class="quiz-slider-labels"><span>2 Std.</span><span>60 Std.</span></div>
       </div>
       <div class="quiz-nav">
-        <button class="quiz-back" data-i18n="quiz.back" onclick="prevStep(2)">← Zurück</button>
-        <button class="quiz-next" data-i18n="quiz.next" onclick="nextStep(2)">Weiter →</button>
+        <button class="quiz-back" onclick="prevStep(2)">← Zurück</button>
+        <button class="quiz-next" onclick="nextStep(2)">Weiter →</button>
       </div>
     </div>
 
     <!-- Step 3 -->
     <div class="quiz-step" id="step3">
-      <div class="quiz-question" data-i18n="quiz.step3.q">Wen pflegst du?</div>
-      <div class="quiz-sub" data-i18n="quiz.step3.sub">Beziehung zur pflegebedürftigen Person.</div>
+      <div class="quiz-question">Wen pflegst du?</div>
+      <div class="quiz-sub">Beziehung zur pflegebedürftigen Person.</div>
       <div class="quiz-options">
-        <button class="quiz-opt" data-i18n="quiz.step3.opt1" onclick="quizPickAndNext(this, 3, 'Elternteil')">👴 Elternteil<span>Mutter oder Vater</span></button>
-        <button class="quiz-opt" data-i18n="quiz.step3.opt2" onclick="quizPickAndNext(this, 3, 'Partner / Ehepartner')">💑 Partner / Ehepartner<span>Lebenspartner:in</span></button>
-        <button class="quiz-opt" data-i18n="quiz.step3.opt3" onclick="quizPickAndNext(this, 3, 'Geschwister / andere Verwandte')">👨‍👩‍👧 Geschwister / andere Verwandte<span>Schwester, Bruder, Grosseltern</span></button>
+        <button class="quiz-opt" onclick="quizPickAndNext(this, 3, 'Elternteil')">👴 Elternteil<span>Mutter oder Vater</span></button>
+        <button class="quiz-opt" onclick="quizPickAndNext(this, 3, 'Partner / Ehepartner')">💑 Partner / Ehepartner<span>Lebenspartner:in</span></button>
+        <button class="quiz-opt" onclick="quizPickAndNext(this, 3, 'Geschwister / andere Verwandte')">👨‍👩‍👧 Geschwister / andere Verwandte<span>Schwester, Bruder, Grosseltern</span></button>
       </div>
-      <div class="quiz-nav"><button class="quiz-back" data-i18n="quiz.back" onclick="prevStep(3)">← Zurück</button></div>
+      <div class="quiz-nav"><button class="quiz-back" onclick="prevStep(3)">← Zurück</button></div>
     </div>
 
     <!-- Step 4 -->
     <div class="quiz-step" id="step4">
-      <div class="quiz-question" data-i18n="quiz.step4.q">Welche Tätigkeiten übernimmst du?</div>
-      <div class="quiz-sub" data-i18n="quiz.step4.sub">Mehrere Antworten möglich.</div>
+      <div class="quiz-question">Welche Tätigkeiten übernimmst du?</div>
+      <div class="quiz-sub">Mehrere Antworten möglich.</div>
       <div class="quiz-options quiz-multi" id="step4-opts">
-        <button class="quiz-opt toggle" data-i18n="quiz.step4.opt1" onclick="toggleOpt(this)">🛁 Körperpflege<span>Waschen, anziehen, Mundhygiene</span></button>
-        <button class="quiz-opt toggle" data-i18n="quiz.step4.opt2" onclick="toggleOpt(this)">🚶 Mobilität &amp; Transfer<span>Gehen begleiten, Lagern, Rollstuhl</span></button>
-        <button class="quiz-opt toggle" data-i18n="quiz.step4.opt3" onclick="toggleOpt(this)">🍽️ Ernährung<span>Essen eingeben, Trinken reichen</span></button>
-        <button class="quiz-opt toggle" data-i18n="quiz.step4.opt4" onclick="toggleOpt(this)">🌙 Nächtliche Betreuung<span>Aufstehen, Überwachung</span></button>
+        <button class="quiz-opt toggle" onclick="toggleOpt(this)">🛁 Körperpflege<span>Waschen, anziehen, Mundhygiene</span></button>
+        <button class="quiz-opt toggle" onclick="toggleOpt(this)">🚶 Mobilität & Transfer<span>Gehen begleiten, Lagern, Rollstuhl</span></button>
+        <button class="quiz-opt toggle" onclick="toggleOpt(this)">🍽️ Ernährung<span>Essen eingeben, Trinken reichen</span></button>
+        <button class="quiz-opt toggle" onclick="toggleOpt(this)">🌙 Nächtliche Betreuung<span>Aufstehen, Überwachung</span></button>
       </div>
       <div id="step4-error" style="display:none;color:#c0392b;font-size:0.8rem;margin-top:0.5rem;"></div>
       <div class="quiz-nav">
-        <button class="quiz-back" data-i18n="quiz.back" onclick="prevStep(4)">← Zurück</button>
-        <button class="quiz-next" data-i18n="quiz.next" onclick="nextStep(4)">Weiter →</button>
+        <button class="quiz-back" onclick="prevStep(4)">← Zurück</button>
+        <button class="quiz-next" onclick="nextStep(4)">Weiter →</button>
       </div>
     </div>
 
     <!-- Step 5 -->
     <div class="quiz-step" id="step5">
-      <div class="quiz-question" data-i18n="quiz.step5.q">In welchem Kanton wohnst du?</div>
-      <div class="quiz-sub" data-i18n="quiz.step5.sub">Wir finden den passenden Spitex-Partner in deiner Region.</div>
-      <select class="quiz-input" id="kantonInput" data-i18n-placeholder="quiz.step5.placeholder">
+      <div class="quiz-question">In welchem Kanton wohnst du?</div>
+      <div class="quiz-sub">Wir finden den passenden Spitex-Partner in deiner Region.</div>
+      <select class="quiz-input" id="kantonInput">
         <option value="" disabled selected>Kanton auswählen…</option>
         <option>Aargau</option>
         <option>Appenzell Ausserrhoden</option>
@@ -841,42 +844,42 @@
       </select>
       <div id="step5-error" style="display:none;color:#c0392b;font-size:0.8rem;margin-top:0.5rem;"></div>
       <div class="quiz-nav">
-        <button class="quiz-back" data-i18n="quiz.back" onclick="prevStep(5)">← Zurück</button>
-        <button class="quiz-next" data-i18n="quiz.next" onclick="nextStep(5)">Weiter →</button>
+        <button class="quiz-back" onclick="prevStep(5)">← Zurück</button>
+        <button class="quiz-next" onclick="nextStep(5)">Weiter →</button>
       </div>
     </div>
 
     <!-- Step 6 -->
     <div class="quiz-step" id="step6">
-      <div class="quiz-question" data-i18n="quiz.step6.q">Wie sollen wir uns melden?</div>
-      <div class="quiz-sub" data-i18n="quiz.step6.sub">Kostenlos. Unverbindlich. Innert 24 Stunden.</div>
+      <div class="quiz-question">Wie sollen wir uns melden?</div>
+      <div class="quiz-sub">Kostenlos. Unverbindlich. Innert 24 Stunden.</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
-        <input type="text"  class="quiz-input" id="quizVorname"  data-i18n-placeholder="quiz.step6.vorname" placeholder="Vorname" style="margin-bottom:0;">
-        <input type="text"  class="quiz-input" id="quizNachname" data-i18n-placeholder="quiz.step6.nachname" placeholder="Nachname" style="margin-bottom:0;">
+        <input type="text"  class="quiz-input" id="quizVorname"  placeholder="Vorname" style="margin-bottom:0;">
+        <input type="text"  class="quiz-input" id="quizNachname" placeholder="Nachname" style="margin-bottom:0;">
       </div>
       <div style="height:0.75rem;"></div>
-      <input type="tel"   class="quiz-input" id="quizPhone" data-i18n-placeholder="quiz.step6.phone" placeholder="+41 79 123 45 67"
+      <input type="tel"   class="quiz-input" id="quizPhone" placeholder="+41 79 123 45 67"
         oninput="this.value=this.value.replace(/[^\d\s+]/g,'')">
-      <input type="email" class="quiz-input" id="quizEmail" data-i18n-placeholder="quiz.step6.email" placeholder="E-Mail-Adresse">
+      <input type="email" class="quiz-input" id="quizEmail" placeholder="E-Mail-Adresse">
       <div id="quizError" style="display:none;color:#c0392b;font-size:0.8rem;margin-top:-0.25rem;margin-bottom:0.5rem;"></div>
-      <p data-i18n="quiz.step6.consent" style="font-size:0.75rem; color:var(--muted); margin-top:1rem; line-height:1.5;">
+      <p style="font-size:0.75rem; color:var(--muted); margin-top:1rem; line-height:1.5;">
         Mit dem Absenden dieses Formulars bestätige ich, dass ich die <a href="agb.html" target="_blank" style="color:var(--muted); text-decoration:underline;">Allgemeinen Geschäftsbedingungen</a> sowie die <a href="datenschutz.html" target="_blank" style="color:var(--muted); text-decoration:underline;">Datenschutzerklärung</a> von cuidesa.ch gelesen habe und damit einverstanden bin.
       </p>
       <div class="quiz-nav">
-        <button class="quiz-back" data-i18n="quiz.back" onclick="prevStep(6)">← Zurück</button>
-        <button class="quiz-next quiz-submit" data-i18n="quiz.submit" id="quizSubmitBtn" onclick="submitQuiz()">Anspruch prüfen lassen →</button>
+        <button class="quiz-back" onclick="prevStep(6)">← Zurück</button>
+        <button class="quiz-next quiz-submit" id="quizSubmitBtn" onclick="submitQuiz()">Anspruch prüfen lassen →</button>
       </div>
     </div>
 
     <!-- Success -->
     <div class="quiz-step" id="stepDone">
       <div class="quiz-success-icon">✓</div>
-      <div class="quiz-question" data-i18n="quiz.done.title">Anfrage erhalten!</div>
-      <div class="quiz-sub" data-i18n="quiz.done.sub">
+      <div class="quiz-question">Anfrage erhalten!</div>
+      <div class="quiz-sub">
         Wir melden uns <strong>innert 24 Stunden</strong> mit einer klaren Einschätzung deines Anspruchs und dem passenden Spitex-Partner in deiner Region.
       </div>
       <p style="margin-top:1rem; font-size:0.8rem; color:var(--muted);">
-        <span data-i18n="quiz.done.id">Deine Anfragen-ID:</span> <span class="quiz-anfragen-id" id="quizAnfragenId"></span>
+        Deine Anfragen-ID: <span class="quiz-anfragen-id" id="quizAnfragenId"></span>
       </p>
     </div>
   </div>
@@ -884,8 +887,8 @@
 
 <!-- TESTIMONIALS -->
 <section class="testimonials">
-  <div class="section-eyebrow" data-i18n="testi.eyebrow">Was Angehörige sagen</div>
-  <h2 class="section-title" data-i18n="testi.title">Echte Stimmen. <em>Echte Entlöhnung.</em></h2>
+  <div class="section-eyebrow">Was Angehörige sagen</div>
+  <h2 class="section-title">Echte Stimmen. <em>Echte Entlöhnung.</em></h2>
   <div class="testi-slider-wrap">
     <div class="testi-track-outer">
       <div class="testi-track" id="testiTrack">
@@ -929,29 +932,29 @@
 <footer>
   <div>
     <div class="footer-logo">Cuide<span>sa</span></div>
-    <div class="footer-desc" data-i18n="footer.desc">Wir helfen pflegenden Angehörigen in der Schweiz, die Entlöhnung zu erhalten, die ihnen zusteht.</div>
+    <div class="footer-desc">Wir helfen pflegenden Angehörigen in der Schweiz, die Entlöhnung zu erhalten, die ihnen zusteht.</div>
   </div>
   <div>
-    <div class="footer-heading" data-i18n="footer.nav.title">Navigation</div>
+    <div class="footer-heading">Navigation</div>
     <ul>
-      <li><a href="#how" data-i18n="footer.nav.how">Wie es funktioniert</a></li>
-      <li><a href="#eligibility" data-i18n="footer.nav.elig">Wer hat Anspruch</a></li>
-      <li><a href="#calc" data-i18n="footer.nav.calc">Anspruch prüfen</a></li>
+      <li><a href="#how">Wie es funktioniert</a></li>
+      <li><a href="#eligibility">Anspruch prüfen</a></li>
+      <li><a href="#calc">Kostenrechner</a></li>
     </ul>
   </div>
   <div>
-    <div class="footer-heading" data-i18n="footer.contact.title">Kontakt</div>
+    <div class="footer-heading">Rechtliches</div>
     <ul>
-      <li><a href="datenschutz.html" data-i18n="footer.datenschutz">Datenschutz</a></li>
-      <li><a href="agb.html" data-i18n="footer.agb">AGB</a></li>
-      <li><a href="impressum.html" data-i18n="footer.impressum">Impressum</a></li>
+      <li><a href="datenschutz.html">Datenschutz</a></li>
+      <li><a href="agb.html">AGB</a></li>
+      <li><a href="impressum.html">Impressum</a></li>
       <li><a href="mailto:info@cuidesa.ch">info@cuidesa.ch</a></li>
     </ul>
   </div>
 </footer>
 <div class="footer-bottom">
-  <div data-i18n="footer.copy">© 2025 Cuidesa. Alle Rechte vorbehalten.</div>
-  <div style="font-size:0.75rem; color: var(--muted);" data-i18n="footer.tagline">Für pflegende Angehörige in der Schweiz</div>
+  <div>© 2025 Cuidesa. Alle Rechte vorbehalten.</div>
+  <div style="font-size:0.75rem; color: var(--muted);">Für pflegende Angehörige in der Schweiz</div>
 </div>
 
 <script>
@@ -1025,8 +1028,7 @@
   }
   function updateHrsLabel() {
     const h = parseInt(document.getElementById('hours').value);
-    const unit = window.t ? window.t('quiz.step2.unit') : 'Std. / Woche';
-    document.getElementById('hrsVal').textContent = h + ' ' + unit;
+    document.getElementById('hrsVal').textContent = h + ' Std. / Woche';
   }
   function formatChf(num) {
     return 'CHF ' + Math.round(num).toLocaleString('de-CH').replace(/,/g, "'");
@@ -1037,7 +1039,7 @@
     const hrs  = parseInt(document.getElementById('hours').value);
     if (!dur || !hrs) {
       document.getElementById('monthly-amount').textContent = '—';
-      document.getElementById('monthly-note').textContent   = window.t ? window.t('calc.monthly.default') : 'Wähle Angaben links';
+      document.getElementById('monthly-note').textContent   = 'Wähle Angaben links';
       document.getElementById('yearly-row').style.display   = 'none';
       document.getElementById('missed-section').style.display = 'none';
       return;
@@ -1106,7 +1108,7 @@
       const selected = [...document.querySelectorAll('#step4-opts .quiz-opt.selected')];
       const err = document.getElementById('step4-error');
       if (selected.length === 0) {
-        err.textContent = window.t ? window.t('quiz.step4.err') : 'Bitte mindestens eine Tätigkeit auswählen.';
+        err.textContent = 'Bitte mindestens eine Tätigkeit auswählen.';
         err.style.display = 'block'; return;
       }
       err.style.display = 'none';
@@ -1116,7 +1118,7 @@
       const kanton = document.getElementById('kantonInput').value;
       const err = document.getElementById('step5-error');
       if (!kanton) {
-        err.textContent = window.t ? window.t('quiz.step5.err') : 'Bitte einen Kanton auswählen.';
+        err.textContent = 'Bitte einen Kanton auswählen.';
         err.style.display = 'block'; return;
       }
       err.style.display = 'none';
@@ -1146,22 +1148,22 @@
 
     // Validation
     if (!vorname || !nachname) {
-      errorEl.textContent = window.t ? window.t('quiz.step6.err.name') : 'Bitte Vorname und Nachname eingeben.';
+      errorEl.textContent = 'Bitte Vorname und Nachname eingeben.';
       errorEl.style.display = 'block'; return;
     }
     if (!/^\+41[\d\s]{7,14}$/.test(telefon)) {
-      errorEl.textContent = window.t ? window.t('quiz.step6.err.phone') : 'Bitte eine gültige Schweizer Nummer eingeben (z.B. +41 79 123 45 67).';
+      errorEl.textContent = 'Bitte eine gültige Schweizer Nummer eingeben (z.B. +41 79 123 45 67).';
       errorEl.style.display = 'block'; return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      errorEl.textContent = window.t ? window.t('quiz.step6.err.email') : 'Bitte eine gültige E-Mail-Adresse eingeben.';
+      errorEl.textContent = 'Bitte eine gültige E-Mail-Adresse eingeben.';
       errorEl.style.display = 'block'; return;
     }
     errorEl.style.display = 'none';
 
     const btn = document.getElementById('quizSubmitBtn');
     btn.disabled = true;
-    btn.textContent = window.t ? window.t('quiz.sending') : 'Wird gesendet...';
+    btn.textContent = 'Wird gesendet...';
 
     // Collect final step data
     quizData.name    = vorname + ' ' + nachname;
@@ -1196,6 +1198,5 @@
     document.getElementById('quizAnfragenId').textContent = anfragenId;
   }
 </script>
-<script src="lang.js"></script>
 </body>
 </html>
