@@ -35,23 +35,26 @@ function doPost(e) {
       data.email        || ''
     ]);
 
+    var pdf = createLeadPDF(data, leadId, now);
+
     MailApp.sendEmail({
       to: 'krasniqiermir1995@gmail.com',
       subject: 'Neuer Lead ist eingegangen!',
       body: [
         'Neuer Lead ist eingegangen!',
         '',
-        'ID:         ' + leadId,
-        'Datum:      ' + now.toLocaleString('de-CH'),
-        'Name:       ' + (data.name      || '–'),
-        'Telefon:    ' + (data.telefon   || '–'),
-        'E-Mail:     ' + (data.email     || '–'),
-        'Kanton/PLZ: ' + (data.kanton    || '–'),
-        'Status:     ' + (data.situation || '–'),
-        'Stunden:    ' + (data.stunden   || '–'),
-        'Beziehung:  ' + (data.beziehung || '–'),
-        'Tätigkeiten:' + (data.taetigkeiten || '–'),
-      ].join('\n')
+        'ID:          ' + leadId,
+        'Datum:       ' + now.toLocaleString('de-CH'),
+        'Name:        ' + (data.name         || '–'),
+        'Telefon:     ' + (data.telefon      || '–'),
+        'E-Mail:      ' + (data.email        || '–'),
+        'Kanton/PLZ:  ' + (data.kanton       || '–'),
+        'Status:      ' + (data.situation    || '–'),
+        'Stunden:     ' + (data.stunden      || '–'),
+        'Beziehung:   ' + (data.beziehung    || '–'),
+        'Tätigkeiten: ' + (data.taetigkeiten || '–'),
+      ].join('\n'),
+      attachments: [pdf]
     });
 
     return ContentService
@@ -63,6 +66,89 @@ function doPost(e) {
       .createTextOutput(JSON.stringify({ status: 'error', message: err.toString() }))
       .setMimeType(ContentService.MimeType.JSON);
   }
+}
+
+function createLeadPDF(data, leadId, now) {
+  var datum = Utilities.formatDate(now, 'Europe/Zurich', 'dd. MMMM yyyy');
+
+  var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><style>'
+    + 'body{font-family:Georgia,serif;color:#1e2d2f;margin:0;padding:40px 50px;font-size:13px;}'
+    + '.header{border-bottom:3px solid #b34a2e;padding-bottom:18px;margin-bottom:30px;}'
+    + '.logo{font-size:30px;font-weight:bold;color:#1e2d2f;display:inline;}'
+    + '.logo-accent{color:#b34a2e;}'
+    + '.header-meta{float:right;text-align:right;font-size:11px;color:#6b7e80;margin-top:4px;}'
+    + '.badge{display:inline-block;background:#b34a2e;color:#fff;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-top:14px;}'
+    + 'h1{font-size:19px;color:#1e2d2f;margin:0 0 4px 0;}'
+    + '.subtitle{color:#6b7e80;font-size:12px;margin:0 0 28px 0;}'
+    + '.section{margin-bottom:22px;}'
+    + '.section-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#b34a2e;'
+    +   'margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid #e8e0d6;}'
+    + 'table{width:100%;border-collapse:collapse;}'
+    + 'td{padding:6px 0;vertical-align:top;font-size:13px;}'
+    + 'td.label{width:160px;color:#6b7e80;}'
+    + 'td.value{color:#1e2d2f;font-weight:bold;}'
+    + '.note{background:#f7f3ee;border-left:3px solid #b34a2e;padding:12px 16px;margin:24px 0;font-size:12px;color:#4a5e60;}'
+    + '.footer{margin-top:36px;padding-top:14px;border-top:1px solid #e8e0d6;font-size:10px;color:#9baeb0;text-align:center;}'
+    + '</style></head><body>'
+
+    // Header
+    + '<div class="header">'
+    +   '<span class="header-meta">cuidesa.ch<br>Datum: ' + datum + '<br>Anfragen-ID: ' + leadId + '</span>'
+    +   '<div class="logo">Cuide<span class="logo-accent">sa</span></div>'
+    +   '<div style="clear:both"></div>'
+    + '</div>'
+
+    // Titel
+    + '<div class="badge">Neue Pflegeanfrage</div>'
+    + '<h1 style="margin-top:16px;">Weiterleitung an Spitex-Partner</h1>'
+    + '<p class="subtitle">Die folgende Person hat über cuidesa.ch eine kostenlose Anspruchsprüfung angefragt.</p>'
+
+    // Kontakt
+    + '<div class="section">'
+    +   '<div class="section-title">Kontaktdaten</div>'
+    +   '<table>'
+    +     row('Name',       data.name     || '–')
+    +     row('Telefon',    data.telefon  || '–')
+    +     row('E-Mail',     data.email    || '–')
+    +     row('Kanton/PLZ', data.kanton   || '–')
+    +   '</table>'
+    + '</div>'
+
+    // Pflegesituation
+    + '<div class="section">'
+    +   '<div class="section-title">Pflegesituation</div>'
+    +   '<table>'
+    +     row('Pflegestatus',  data.situation    || '–')
+    +     row('Stunden/Woche', data.stunden      || '–')
+    +     row('Beziehung',     data.beziehung    || '–')
+    +     row('Tätigkeiten',   data.taetigkeiten || '–')
+    +   '</table>'
+    + '</div>'
+
+    // Hinweis
+    + '<div class="note">'
+    +   'Diese Person pflegt eine nahestehende Person und hat noch keine Entlöhnung erhalten. '
+    +   'Bitte nehmen Sie innert 24 Stunden Kontakt auf, um den Spitex-Anschluss zu koordinieren.'
+    + '</div>'
+
+    // Footer
+    + '<div class="footer">'
+    +   'Dieses Dokument wurde automatisch generiert von cuidesa.ch &nbsp;·&nbsp; Anfragen-ID: ' + leadId
+    + '</div>'
+
+    + '</body></html>';
+
+  var blob = Utilities.newBlob(html, 'text/html', 'offerte.html');
+  var file = DriveApp.createFile(blob);
+  var pdf  = file.getAs('application/pdf');
+  pdf.setName('Cuidesa_Lead_' + leadId + '.pdf');
+  DriveApp.getFileById(file.getId()).setTrashed(true);
+
+  return pdf;
+}
+
+function row(label, value) {
+  return '<tr><td class="label">' + label + '</td><td class="value">' + value + '</td></tr>';
 }
 
 function doGet(e) {
