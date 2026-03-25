@@ -67,7 +67,7 @@
 
   /* ─── HERO ────────────────────────────────────────────── */
   .hero {
-    min-height: 100vh;
+    min-height: auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding-top: 72px;
@@ -143,12 +143,12 @@
     background: var(--cream);
     position: relative; overflow: hidden;
     display: flex; align-items: flex-end; justify-content: center;
+    padding-top: 4rem;
   }
   .hero-right::before { display: none; }
   .hero-photo {
-    width: 80%;
+    width: 78%;
     height: auto;
-    max-height: 85%;
     object-fit: contain;
     object-position: bottom center;
     display: block;
@@ -197,7 +197,7 @@
   .amount-unit { color: var(--sage); font-size: 0.8rem; }
 
   /* ─── SECTION BASE ────────────────────────────────────── */
-  section { padding: 7rem 8%; }
+  section { padding: 6rem 8%; }
   .section-eyebrow {
     font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em;
     text-transform: uppercase; color: var(--terra);
