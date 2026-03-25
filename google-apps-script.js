@@ -35,6 +35,25 @@ function doPost(e) {
       data.email        || ''
     ]);
 
+    MailApp.sendEmail({
+      to: 'krasniqiermir1995@gmail.com',
+      subject: 'Neuer Lead ist eingegangen!',
+      body: [
+        'Neuer Lead ist eingegangen!',
+        '',
+        'ID:         ' + leadId,
+        'Datum:      ' + now.toLocaleString('de-CH'),
+        'Name:       ' + (data.name      || '–'),
+        'Telefon:    ' + (data.telefon   || '–'),
+        'E-Mail:     ' + (data.email     || '–'),
+        'Kanton/PLZ: ' + (data.kanton    || '–'),
+        'Status:     ' + (data.situation || '–'),
+        'Stunden:    ' + (data.stunden   || '–'),
+        'Beziehung:  ' + (data.beziehung || '–'),
+        'Tätigkeiten:' + (data.taetigkeiten || '–'),
+      ].join('\n')
+    });
+
     return ContentService
       .createTextOutput(JSON.stringify({ status: 'ok' }))
       .setMimeType(ContentService.MimeType.JSON);
