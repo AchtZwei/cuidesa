@@ -812,9 +812,15 @@
     <div class="quiz-step" id="step6">
       <div class="quiz-question">Wie sollen wir uns melden?</div>
       <div class="quiz-sub">Kostenlos. Unverbindlich. Innert 24 Stunden.</div>
-      <input type="text"  class="quiz-input" id="quizName"  placeholder="Vorname und Name">
-      <input type="tel"   class="quiz-input" id="quizPhone" placeholder="Telefonnummer">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
+        <input type="text"  class="quiz-input" id="quizVorname"  placeholder="Vorname" style="margin-bottom:0;">
+        <input type="text"  class="quiz-input" id="quizNachname" placeholder="Nachname" style="margin-bottom:0;">
+      </div>
+      <div style="height:0.75rem;"></div>
+      <input type="tel"   class="quiz-input" id="quizPhone" placeholder="+41 79 123 45 67"
+        oninput="this.value=this.value.replace(/[^\d\s+]/g,'')">
       <input type="email" class="quiz-input" id="quizEmail" placeholder="E-Mail-Adresse">
+      <div id="quizError" style="display:none;color:#c0392b;font-size:0.8rem;margin-top:-0.25rem;margin-bottom:0.5rem;"></div>
       <p style="font-size:0.75rem; color:var(--muted); margin-top:1rem; line-height:1.5;">
         Mit dem Absenden dieses Formulars bestätige ich, dass ich die <a href="agb.html" target="_blank" style="color:var(--muted); text-decoration:underline;">Allgemeinen Geschäftsbedingungen</a> sowie die <a href="datenschutz.html" target="_blank" style="color:var(--muted); text-decoration:underline;">Datenschutzerklärung</a> von cuidesa.ch gelesen habe und damit einverstanden bin.
       </p>
@@ -1079,14 +1085,35 @@
   }
 
   function submitQuiz() {
+    const vorname  = document.getElementById('quizVorname').value.trim();
+    const nachname = document.getElementById('quizNachname').value.trim();
+    const telefon  = document.getElementById('quizPhone').value.trim();
+    const email    = document.getElementById('quizEmail').value.trim();
+    const errorEl  = document.getElementById('quizError');
+
+    // Validation
+    if (!vorname || !nachname) {
+      errorEl.textContent = 'Bitte Vorname und Nachname eingeben.';
+      errorEl.style.display = 'block'; return;
+    }
+    if (!/^\+41[\d\s]{7,14}$/.test(telefon)) {
+      errorEl.textContent = 'Bitte eine gültige Schweizer Nummer eingeben (z.B. +41 79 123 45 67).';
+      errorEl.style.display = 'block'; return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errorEl.textContent = 'Bitte eine gültige E-Mail-Adresse eingeben.';
+      errorEl.style.display = 'block'; return;
+    }
+    errorEl.style.display = 'none';
+
     const btn = document.getElementById('quizSubmitBtn');
     btn.disabled = true;
     btn.textContent = 'Wird gesendet...';
 
     // Collect final step data
-    quizData.name    = document.getElementById('quizName').value.trim();
-    quizData.telefon = document.getElementById('quizPhone').value.trim();
-    quizData.email   = document.getElementById('quizEmail').value.trim();
+    quizData.name    = vorname + ' ' + nachname;
+    quizData.telefon = telefon;
+    quizData.email   = email;
 
     const anfragenId = generateAnfragenId();
     const payload = {
