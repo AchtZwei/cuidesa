@@ -330,7 +330,14 @@
   .testi {
     flex: 0 0 calc((100% - 3rem) / 3);
     background: #fff; border: 1px solid var(--border);
-    padding: 1.75rem 1.75rem; border-radius: 4px; box-sizing: border-box;
+    padding: 1.75rem; border-radius: 4px; box-sizing: border-box;
+  }
+  @media (max-width: 900px) {
+    .testi { flex: 0 0 calc((100% - 1.5rem) / 2); }
+  }
+  @media (max-width: 600px) {
+    .testi { flex: 0 0 100%; }
+    .testi-track { gap: 1rem; }
   }
   .testi-stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 0.75rem; }
   .testi-text {
@@ -903,32 +910,52 @@
 
   // ─── TESTIMONIAL SLIDER ────────────────────────────────
   (function() {
-    const track   = document.getElementById('testiTrack');
-    const dotsEl  = document.getElementById('testiDots');
-    const visible = 3;
-    const gap     = 24; // px, matches 1.5rem
-    const slides  = Array.from(track.querySelectorAll('.testi'));
-    const total   = slides.length;
-    const steps   = total - visible + 1; // 4 positions for 6 cards / 3 visible
-    let current   = 0;
+    const track  = document.getElementById('testiTrack');
+    const dotsEl = document.getElementById('testiDots');
+    const slides = Array.from(track.querySelectorAll('.testi'));
+    const total  = slides.length;
+    let current  = 0;
+    let steps, timer;
 
-    for (let i = 0; i < steps; i++) {
-      const d = document.createElement('button');
-      d.className = 'testi-dot' + (i === 0 ? ' active' : '');
-      d.addEventListener('click', () => goTo(i));
-      dotsEl.appendChild(d);
+    function getVisible() {
+      if (window.innerWidth <= 600) return 1;
+      if (window.innerWidth <= 900) return 2;
+      return 3;
+    }
+    function getGap() {
+      return window.innerWidth <= 600 ? 16 : 24;
+    }
+
+    function buildDots(n) {
+      dotsEl.innerHTML = '';
+      for (let i = 0; i < n; i++) {
+        const d = document.createElement('button');
+        d.className = 'testi-dot' + (i === 0 ? ' active' : '');
+        d.addEventListener('click', () => goTo(i));
+        dotsEl.appendChild(d);
+      }
     }
 
     function goTo(n) {
+      steps = total - getVisible() + 1;
       current = (n + steps) % steps;
-      const cardW = (track.parentElement.offsetWidth - gap * (visible - 1)) / visible;
-      const offset = current * (cardW + gap);
-      track.style.transform = 'translateX(-' + offset + 'px)';
+      const gap   = getGap();
+      const cardW = (track.parentElement.offsetWidth - gap * (getVisible() - 1)) / getVisible();
+      track.style.transform = 'translateX(-' + (current * (cardW + gap)) + 'px)';
       dotsEl.querySelectorAll('.testi-dot').forEach((d, i) =>
         d.classList.toggle('active', i === current));
     }
 
-    setInterval(() => goTo(current + 1), 3500);
+    function init() {
+      current = 0;
+      steps = total - getVisible() + 1;
+      buildDots(steps);
+      goTo(0);
+    }
+
+    init();
+    window.addEventListener('resize', init);
+    timer = setInterval(() => goTo(current + 1), 3500);
   })();
 
   // ─── CALCULATOR ────────────────────────────────────────
