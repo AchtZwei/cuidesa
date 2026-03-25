@@ -495,25 +495,63 @@
   /* ─── RESPONSIVE ──────────────────────────────────────── */
   @media (max-width: 900px) {
     .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-right { min-height: 340px; }
-    .how, .calc-inner, .cta-section { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-right { min-height: 300px; }
+    .how, .calc-inner, .cta-section { grid-template-columns: 1fr; gap: 2.5rem; }
     .how-left { position: static; }
     .eligibility-grid { grid-template-columns: 1fr 1fr; }
-    .testi-grid { grid-template-columns: 1fr; }
     footer { grid-template-columns: 1fr 1fr; gap: 2rem; }
     nav ul { display: none; }
   }
   @media (max-width: 600px) {
-    section { padding: 5rem 5%; }
-    nav { padding: 0 5%; }
-    .eligibility-grid { grid-template-columns: 1fr; }
-    footer { grid-template-columns: 1fr; }
+    /* Allgemein */
+    section { padding: 3.5rem 5%; }
+    nav { padding: 0 5%; height: 60px; }
+
+    /* Hero */
+    .hero { padding-top: 60px; }
+    .hero-left { padding: 2.5rem 5% 2rem; }
+    .hero-title { font-size: clamp(1.9rem, 8vw, 2.4rem); }
+    .hero-lead { font-size: 0.95rem; margin-bottom: 1.5rem; }
+    .hero-actions { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+    .hero-actions .btn-primary { text-align: center; }
+    .hero-right { min-height: 240px; }
     .hero-stats {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 1rem;
-      margin-top: 2.5rem; padding-top: 2rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem 1rem;
+      margin-top: 2rem; padding-top: 1.75rem;
     }
-    .stat-num { font-size: 1.6rem; }
-    .stat-label { max-width: none; font-size: 0.75rem; }
+    .stat-num { font-size: 1.5rem; }
+    .stat-label { max-width: none; font-size: 0.72rem; }
+
+    /* Sections Titel */
+    .section-title { font-size: clamp(1.6rem, 6vw, 2rem); }
+
+    /* How */
+    .step { grid-template-columns: 44px 1fr; gap: 1rem; padding: 1.5rem 0; }
+    .step-num { font-size: 2rem; }
+
+    /* Eligibility */
+    .eligibility-grid { grid-template-columns: 1fr; }
+    .crit { padding: 1.25rem; }
+
+    /* Calc */
+    .calc-inner { gap: 2rem; }
+    .calc-display { padding: 1.5rem; }
+
+    /* CTA / Quiz */
+    .cta-section { gap: 2rem; }
+    .quiz-container { padding: 1.25rem; }
+
+    /* Name-Felder nebeneinander → untereinander */
+    #step6 > div[style*="grid-template-columns"] {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* Testimonials */
+    .testi { padding: 1.25rem; }
+
+    /* Footer */
+    footer { grid-template-columns: 1fr; padding: 3rem 5% 2rem; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.25rem 5%; }
   }
 </style>
 </head>
