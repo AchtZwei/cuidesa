@@ -551,7 +551,8 @@
     .testi { padding: 1.25rem; }
 
     /* Footer */
-    footer { grid-template-columns: 1fr; padding: 3rem 5% 2rem; }
+    footer { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; padding: 3rem 5% 2rem; gap: 2rem 1.5rem; }
+    footer > div:first-child { grid-column: 1 / -1; }
     .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.25rem 5%; }
   }
 </style>
