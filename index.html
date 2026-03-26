@@ -725,7 +725,7 @@
           <div class="calc-sub" id="monthly-note">Wähle Angaben links</div>
         </div>
         <hr class="calc-divider">
-        <div class="calc-row"><span>Stundenlohn (Spitex)</span><span>ca. CHF 35–45 / Std.</span></div>
+        <div class="calc-row"><span>Stundenlohn (Spitex)</span><span>ca. CHF 35 / Std.</span></div>
         <div id="yearly-row" style="display:none">
           <div class="calc-row"><span>Pro Jahr</span><span id="yearly-amount">—</span></div>
         </div>
@@ -1045,7 +1045,7 @@
       document.getElementById('missed-section').style.display = 'none';
       return;
     }
-    const hourlyRate   = 37.5;
+    const hourlyRate   = 35;
     const weeksPerMonth = 4.33;
     const monthly = hrs * hourlyRate * weeksPerMonth;
     const yearly  = monthly * 12;
