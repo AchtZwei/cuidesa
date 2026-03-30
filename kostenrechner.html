@@ -18,9 +18,7 @@
     --card-bg: #f7fbf8;
     --border: #d4e8db;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--green-bg);
@@ -28,8 +26,6 @@
     min-height: 100vh;
     padding: 0 0 60px;
   }
-
-  /* HEADER */
   .header {
     background: var(--white);
     padding: 16px 20px;
@@ -50,11 +46,32 @@
     border-radius: 8px; display: flex; align-items: center;
     justify-content: center; color: white; font-size: 20px;
   }
-
-  /* HERO */
-  .hero {
-    padding: 36px 20px 20px;
+  /* LANG SWITCHER */
+  .lang-switcher { position: relative; }
+  .lang-btn {
+    background: none; border: 1px solid var(--border); cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 600;
+    color: var(--text); padding: 0.3rem 0.65rem; border-radius: 6px;
+    display: flex; align-items: center; gap: 0.3rem;
+    transition: border-color 0.2s, color 0.2s;
   }
+  .lang-btn:hover { border-color: var(--green-mid); color: var(--green-mid); }
+  .lang-arrow { font-size: 0.55rem; }
+  .lang-menu {
+    display: none; position: absolute; top: calc(100% + 6px); right: 0;
+    background: #fff; border: 1px solid var(--border); border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1); min-width: 110px; z-index: 200;
+  }
+  .lang-menu.open { display: block; }
+  .lang-opt {
+    display: block; width: 100%; text-align: left; background: none; border: none;
+    cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 0.82rem;
+    font-weight: 500; color: var(--text); padding: 0.5rem 0.9rem; transition: background 0.15s;
+  }
+  .lang-opt:hover { background: var(--green-bg); color: var(--green-mid); }
+  .lang-opt.active { color: var(--green-mid); font-weight: 600; }
+  /* HERO */
+  .hero { padding: 36px 20px 20px; }
   .label {
     font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
     color: var(--green-mid); text-transform: uppercase; margin-bottom: 10px;
@@ -64,18 +81,12 @@
     font-size: 34px; line-height: 1.15;
     color: var(--dark); margin-bottom: 14px;
   }
-  .hero h1 em {
-    font-style: italic; color: var(--green-mid);
-  }
-  .hero p {
-    font-size: 15px; line-height: 1.6; color: var(--muted);
-  }
-
+  .hero h1 em { font-style: italic; color: var(--green-mid); }
+  .hero p { font-size: 15px; line-height: 1.6; color: var(--muted); }
   /* STEP INDICATOR */
   .steps {
     display: flex; align-items: center;
-    padding: 20px 20px 0;
-    gap: 6px;
+    padding: 20px 20px 0; gap: 6px;
   }
   .step-dot {
     width: 28px; height: 4px; border-radius: 2px;
@@ -83,93 +94,53 @@
   }
   .step-dot.active { background: var(--green-mid); }
   .step-dot.done { background: var(--green-light); }
-  .step-label {
-    font-size: 12px; color: var(--muted); margin-left: 8px;
-  }
-
+  .step-label { font-size: 12px; color: var(--muted); margin-left: 8px; }
   /* SECTION */
-  .section {
-    padding: 24px 20px 0;
-  }
+  .section { padding: 24px 20px 0; }
   .section-title {
     font-size: 13px; font-weight: 600; color: var(--muted);
-    text-transform: uppercase; letter-spacing: 0.08em;
-    margin-bottom: 14px;
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px;
   }
-
   /* HOURS GRID */
-  .hours-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-  }
+  .hours-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
   .hour-btn {
-    background: var(--white);
-    border: 2px solid var(--border);
-    border-radius: 12px;
-    padding: 12px 6px;
-    cursor: pointer;
-    text-align: center;
-    transition: all 0.2s;
+    background: var(--white); border: 2px solid var(--border);
+    border-radius: 12px; padding: 12px 6px; cursor: pointer;
+    text-align: center; transition: all 0.2s;
   }
   .hour-btn:active { transform: scale(0.95); }
-  .hour-btn.selected {
-    border-color: var(--green-mid);
-    background: #eaf7ef;
-  }
-  .hour-btn .hb-num {
-    font-size: 18px; font-weight: 700; color: var(--dark);
-  }
-  .hour-btn .hb-label {
-    font-size: 11px; color: var(--muted);
-  }
-
-  /* SPITEX SLIDER */
+  .hour-btn.selected { border-color: var(--green-mid); background: #eaf7ef; }
+  .hour-btn .hb-num { font-size: 18px; font-weight: 700; color: var(--dark); }
+  .hour-btn .hb-label { font-size: 11px; color: var(--muted); }
+  /* SPITEX */
   .slider-row {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 18px 16px;
-    margin-top: 4px;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 14px; padding: 18px 16px; margin-top: 4px;
   }
   .slider-row label {
     font-size: 13px; font-weight: 500; color: var(--text);
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 14px;
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;
   }
   .slider-row label span {
-    background: var(--green-bg);
-    color: var(--green-mid);
+    background: var(--green-bg); color: var(--green-mid);
     font-weight: 600; font-size: 13px;
-    padding: 4px 10px; border-radius: 20px;
-    border: 1px solid var(--border);
+    padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border);
   }
   input[type=range] {
-    -webkit-appearance: none;
-    width: 100%; height: 4px;
+    -webkit-appearance: none; width: 100%; height: 4px;
     background: linear-gradient(to right, var(--green-mid) 0%, var(--green-mid) var(--pct, 0%), var(--border) var(--pct, 0%), var(--border) 100%);
     border-radius: 2px; outline: none;
   }
   input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 22px; height: 22px;
-    background: var(--green-mid);
-    border-radius: 50%;
-    border: 3px solid white;
-    box-shadow: 0 2px 6px rgba(45,106,79,0.35);
-    cursor: pointer;
+    -webkit-appearance: none; width: 22px; height: 22px;
+    background: var(--green-mid); border-radius: 50%;
+    border: 3px solid white; box-shadow: 0 2px 6px rgba(45,106,79,0.35); cursor: pointer;
   }
-  .slider-minmax {
-    display: flex; justify-content: space-between;
-    font-size: 11px; color: var(--muted); margin-top: 8px;
-  }
-
+  .slider-minmax { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 8px; }
   /* RESULT BOX */
   .result-box {
-    background: var(--dark);
-    border-radius: 20px;
-    margin: 24px 20px 0;
-    padding: 28px 24px;
-    color: white;
+    background: var(--dark); border-radius: 20px;
+    margin: 24px 20px 0; padding: 28px 24px; color: white;
     animation: fadeUp 0.4s ease;
   }
   @keyframes fadeUp {
@@ -178,54 +149,35 @@
   }
   .result-row {
     border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding-bottom: 18px;
-    margin-bottom: 18px;
+    padding-bottom: 18px; margin-bottom: 18px;
   }
   .result-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
   .result-row .r-label {
     font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-    text-transform: uppercase; color: rgba(255,255,255,0.5);
-    margin-bottom: 6px;
+    text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 6px;
   }
   .result-row .r-value {
-    font-family: 'DM Serif Display', serif;
-    font-size: 38px; color: white; line-height: 1;
+    font-family: 'DM Serif Display', serif; font-size: 38px; color: white; line-height: 1;
   }
   .result-row .r-value.green { color: var(--green-light); }
-  .result-row .r-sub {
-    font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 4px;
-  }
-
-  /* HINT PILL */
+  .result-row .r-sub { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 4px; }
+  /* HINT */
   .hint {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px 16px;
-    margin: 16px 20px 0;
-    display: flex; gap: 10px; align-items: flex-start;
+    background: white; border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 16px;
+    margin: 16px 20px 0; display: flex; gap: 10px; align-items: flex-start;
   }
   .hint-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
   .hint p { font-size: 13px; color: var(--muted); line-height: 1.5; }
   .hint p strong { color: var(--text); }
-
   /* CTA */
   .cta-btn {
-    display: block;
-    margin: 24px 20px 0;
-    background: var(--green-mid);
-    color: white;
-    text-align: center;
-    padding: 17px;
-    border-radius: 14px;
-    font-size: 16px; font-weight: 600;
-    border: none; cursor: pointer;
-    width: calc(100% - 40px);
-    transition: background 0.2s;
+    display: block; margin: 24px 20px 0;
+    background: var(--green-mid); color: white; text-align: center;
+    padding: 17px; border-radius: 14px; font-size: 16px; font-weight: 600;
+    border: none; cursor: pointer; width: calc(100% - 40px); transition: background 0.2s;
   }
   .cta-btn:active { background: var(--green); }
-
-  /* Divider helper */
   .mt16 { margin-top: 16px; }
   .mt8  { margin-top: 8px; }
 </style>
@@ -237,62 +189,67 @@
     <div class="logo-icon">+</div>
     Cuidesa
   </div>
-  <div style="font-size:13px;color:var(--muted);">🇩🇪 DE</div>
-</div>
-
-<div class="hero">
-  <div class="label">Was du wissen solltest</div>
-  <h1>Ein Kurs. <em>Einmal.</em><br>Amortisiert in Wochen.</h1>
-  <p>Berechne hier, wie schnell sich dein Pflegekurs bezahlt macht – basierend auf deiner Situation.</p>
-</div>
-
-<!-- Step indicator -->
-<div class="steps">
-  <div class="step-dot active" id="dot1"></div>
-  <div class="step-dot" id="dot2"></div>
-  <div class="step-label" id="step-label">Schritt 1 von 2</div>
-</div>
-
-<!-- STEP 1: Stunden -->
-<div class="section">
-  <div class="section-title">Wie viele Stunden pflegst du bereits pro Woche?</div>
-  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.5;">Diese Stunden machst du bereits – nur noch ohne Lohn. Mit Spitex-Anstellung wirst du dafür bezahlt.</p>
-  <div class="hours-grid">
-    <div class="hour-btn" onclick="selectHours(this, 10)">
-      <div class="hb-num">10h</div>
-      <div class="hb-label">~2h/Tag</div>
-    </div>
-    <div class="hour-btn" onclick="selectHours(this, 20)">
-      <div class="hb-num">20h</div>
-      <div class="hb-label">~3h/Tag</div>
-    </div>
-    <div class="hour-btn" onclick="selectHours(this, 30)">
-      <div class="hb-num">30h</div>
-      <div class="hb-label">~4h/Tag</div>
-    </div>
-    <div class="hour-btn" onclick="selectHours(this, 42)">
-      <div class="hb-num">42h</div>
-      <div class="hb-label">~6h/Tag</div>
+  <div class="lang-switcher">
+    <button class="lang-btn" id="langBtn" onclick="toggleLangMenu()">
+      <span id="langLabel">DE</span><span class="lang-arrow">▾</span>
+    </button>
+    <div class="lang-menu" id="langMenu">
+      <button class="lang-opt active" onclick="setLang('de')">🇩🇪 Deutsch</button>
+      <button class="lang-opt" onclick="setLang('al')">🇦🇱 Shqip</button>
     </div>
   </div>
 </div>
 
-<!-- STEP 2: Spitex Übernahme -->
+<div class="hero">
+  <div class="label" data-i18n="heroLabel">Was du wissen solltest</div>
+  <h1 data-i18n-html="heroTitle">Ein Kurs. <em>Einmal.</em><br>Amortisiert in Wochen.</h1>
+  <p data-i18n="heroDesc">Berechne hier, wie schnell sich dein Pflegekurs bezahlt macht – basierend auf deiner Situation.</p>
+</div>
+
+<div class="steps">
+  <div class="step-dot active" id="dot1"></div>
+  <div class="step-dot" id="dot2"></div>
+  <div class="step-label" id="step-label" data-i18n="step1">Schritt 1 von 2</div>
+</div>
+
+<div class="section">
+  <div class="section-title" data-i18n="q1title">Wie viele Stunden pflegst du bereits pro Woche?</div>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.5;" data-i18n="q1desc">Diese Stunden machst du bereits – nur noch ohne Lohn. Mit Spitex-Anstellung wirst du dafür bezahlt.</p>
+  <div class="hours-grid">
+    <div class="hour-btn" onclick="selectHours(this, 10)">
+      <div class="hb-num">10h</div>
+      <div class="hb-label" data-i18n="h10">~2h/Tag</div>
+    </div>
+    <div class="hour-btn" onclick="selectHours(this, 20)">
+      <div class="hb-num">20h</div>
+      <div class="hb-label" data-i18n="h20">~3h/Tag</div>
+    </div>
+    <div class="hour-btn" onclick="selectHours(this, 30)">
+      <div class="hb-num">30h</div>
+      <div class="hb-label" data-i18n="h30">~4h/Tag</div>
+    </div>
+    <div class="hour-btn" onclick="selectHours(this, 42)">
+      <div class="hb-num">42h</div>
+      <div class="hb-label" data-i18n="h42">~6h/Tag</div>
+    </div>
+  </div>
+</div>
+
 <div class="section mt16">
-  <div class="section-title">Kurskosten-Übernahme durch Spitex</div>
+  <div class="section-title" data-i18n="q2title">Kurskosten-Übernahme durch Spitex</div>
   <div class="slider-row">
     <label>
-      Übernahme durch Spitex
+      <span data-i18n="spitexLabel">Übernahme durch Spitex</span>
       <span id="spitex-label">–</span>
     </label>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
       <div class="hour-btn" id="spitex-50" onclick="updateSpitex(50)" style="padding:14px 8px">
         <div class="hb-num">50%</div>
-        <div class="hb-label">Teilübernahme</div>
+        <div class="hb-label" data-i18n="partial">Teilübernahme</div>
       </div>
       <div class="hour-btn" id="spitex-100" onclick="updateSpitex(100)" style="padding:14px 8px">
         <div class="hb-num">100%</div>
-        <div class="hb-label">Vollübernahme</div>
+        <div class="hb-label" data-i18n="full">Vollübernahme</div>
       </div>
     </div>
   </div>
@@ -300,28 +257,27 @@
 
 <div class="hint" style="margin: 12px 20px 0; background: #eaf7ef; border-color: #b7dfc8;">
   <div class="hint-icon">✅</div>
-  <p><strong style="color:var(--green-mid)">Cuidesa-Garantie:</strong> Wenn deine Anstellung über Cuidesa vermittelt wird, garantieren wir, dass die Spitex mindestens <strong style="color:var(--green-mid)">50% der Kurskosten</strong> übernimmt – ohne Wenn und Aber.</p>
+  <p data-i18n-html="guarantee"><strong style="color:var(--green-mid)">Cuidesa-Garantie:</strong> Wenn deine Anstellung über Cuidesa vermittelt wird, garantieren wir, dass die Spitex mindestens <strong style="color:var(--green-mid)">50% der Kurskosten</strong> übernimmt – ohne Wenn und Aber.</p>
 </div>
 
-<!-- RESULT -->
 <div class="result-box" id="result-box">
   <div class="result-row">
-    <div class="r-label">Dein bisheriger Lohn dafür</div>
+    <div class="r-label" data-i18n="r1label">Dein bisheriger Lohn dafür</div>
     <div class="r-value" style="font-size:28px;color:rgba(255,255,255,0.3)">CHF 0</div>
-    <div class="r-sub">Du pflegst bereits – aber noch gratis</div>
+    <div class="r-sub" data-i18n="r1sub">Du pflegst bereits – aber noch gratis</div>
   </div>
   <div class="result-row">
-    <div class="r-label">Dein Lohn mit Spitex-Anstellung</div>
+    <div class="r-label" data-i18n="r2label">Dein Lohn mit Spitex-Anstellung</div>
     <div class="r-value green" id="res-lohn" style="font-size:28px">CHF –</div>
-    <div class="r-sub" id="res-lohn-sub">Bitte Stunden wählen</div>
+    <div class="r-sub" id="res-lohn-sub" data-i18n="r2sub">Bitte Stunden wählen</div>
   </div>
   <div class="result-row">
-    <div class="r-label">Kurskosten amortisiert in</div>
+    <div class="r-label" data-i18n="r3label">Kurskosten amortisiert in</div>
     <div class="r-value" id="res-wochen" style="font-size:32px">–</div>
-    <div class="r-sub">Kursgebühr: <span id="res-kosten">CHF 2'000</span> nach Spitex-Beitrag</div>
+    <div class="r-sub"><span data-i18n="r3sub">Kursgebühr: </span><span id="res-kosten">CHF 2'000</span><span data-i18n="r3sub2"> nach Spitex-Beitrag</span></div>
   </div>
   <div class="result-row">
-    <div class="r-label">Jahresverdienst (nach Kurs)</div>
+    <div class="r-label" data-i18n="r4label">Jahresverdienst (nach Kurs)</div>
     <div class="r-value" id="res-jahr" style="font-size:28px">CHF –</div>
   </div>
 </div>
@@ -331,14 +287,89 @@
   <p id="hint-text"></p>
 </div>
 
-<button class="cta-btn">Jetzt Anspruch prüfen →</button>
+<button class="cta-btn" onclick="window.location.href='/'" data-i18n="ctaBtn">Jetzt Anspruch prüfen →</button>
 
 <script>
-  let lohn = 30;   // CHF/h fixed average
-  let stunden = 0; // h/Woche
-  let spitex = 0;  // %
-
+  let currentLang = 'de';
+  let lohn = 30;
+  let stunden = 0;
+  let spitex = 0;
   const KURSKOSTEN = 2000;
+
+  const T = {
+    de: {
+      heroLabel: 'Was du wissen solltest',
+      heroTitle: 'Ein Kurs. <em>Einmal.</em><br>Amortisiert in Wochen.',
+      heroDesc: 'Berechne hier, wie schnell sich dein Pflegekurs bezahlt macht – basierend auf deiner Situation.',
+      step1: 'Schritt 1 von 2', stepDone: 'Fast fertig!', stepInit: 'Schritt 1 von 2',
+      q1title: 'Wie viele Stunden pflegst du bereits pro Woche?',
+      q1desc: 'Diese Stunden machst du bereits – nur noch ohne Lohn. Mit Spitex-Anstellung wirst du dafür bezahlt.',
+      h10: '~2h/Tag', h20: '~3h/Tag', h30: '~4h/Tag', h42: '~6h/Tag',
+      q2title: 'Kurskosten-Übernahme durch Spitex',
+      spitexLabel: 'Übernahme durch Spitex',
+      partial: 'Teilübernahme', full: 'Vollübernahme',
+      guarantee: '<strong style="color:var(--green-mid)">Cuidesa-Garantie:</strong> Wenn deine Anstellung über Cuidesa vermittelt wird, garantieren wir, dass die Spitex mindestens <strong style="color:var(--green-mid)">50% der Kurskosten</strong> übernimmt – ohne Wenn und Aber.',
+      r1label: 'Dein bisheriger Lohn dafür', r1sub: 'Du pflegst bereits – aber noch gratis',
+      r2label: 'Dein Lohn mit Spitex-Anstellung', r2sub: 'Bitte Stunden wählen',
+      r3label: 'Kurskosten amortisiert in', r3sub: 'Kursgebühr: ', r3sub2: ' nach Spitex-Beitrag',
+      r4label: 'Jahresverdienst (nach Kurs)',
+      ctaBtn: 'Jetzt Anspruch prüfen →',
+      hrsUnit: 'CHF/h × %sh/Woche × 4.33 Wochen',
+      sofort: 'Sofort 🎉',
+      wochen: '~%s Wochen',
+      hint0: '<strong>Spitex übernimmt alle Kosten.</strong> Du startest ohne Eigenaufwand – und verdienst danach monatlich %s.',
+      hint1: 'Schon nach <strong>weniger als einem Monat</strong> hast du die Kurskosten wieder verdient. Das Risiko ist minimal.',
+      hint2: 'Nach etwa <strong>%s Wochen</strong> hast du die Investition wieder drin – danach bleibt alles als Verdienst.',
+      hint3: 'Tipp: Mehr Stunden oder ein höherer Spitex-Beitrag können die Amortisationszeit deutlich verkürzen.'
+    },
+    al: {
+      heroLabel: 'Çfarë duhet të dish',
+      heroTitle: 'Një kurs. <em>Një herë.</em><br>Amortizuar në javë.',
+      heroDesc: 'Llogarit këtu sa shpejt paguhet kursi yt i kujdesit – bazuar në situatën tënde.',
+      step1: 'Hapi 1 nga 2', stepDone: 'Pothuajse gati!', stepInit: 'Hapi 1 nga 2',
+      q1title: 'Sa orë kujdesesh tashmë në javë?',
+      q1desc: 'Këto orë i bën tashmë – por ende pa pagë. Me punësim Spitex do të paguesh për to.',
+      h10: '~2h/ditë', h20: '~3h/ditë', h30: '~4h/ditë', h42: '~6h/ditë',
+      q2title: 'Mbulim i kostove të kursit nga Spitex',
+      spitexLabel: 'Mbulim nga Spitex',
+      partial: 'Mbulim i pjesshëm', full: 'Mbulim i plotë',
+      guarantee: '<strong style="color:var(--green-mid)">Garancia Cuidesa:</strong> Kur punësimi yt ndërmjetësohet nga Cuidesa, garantojmë që Spitex do të mbulojë të paktën <strong style="color:var(--green-mid)">50% të kostove të kursit</strong> – pa asnjë kusht.',
+      r1label: 'Paga jote deri tani për këtë', r1sub: 'Ti kujdesesh tashmë – por ende falas',
+      r2label: 'Rroga jote me punësim Spitex', r2sub: 'Ju lutemi zgjidhni orët',
+      r3label: 'Kostot e kursit amortizuar në', r3sub: 'Tarifa e kursit: ', r3sub2: ' pas kontributit Spitex',
+      r4label: 'Fitimi vjetor (pas kursit)',
+      ctaBtn: 'Kontrollo të drejtën tani →',
+      hrsUnit: 'CHF/orë × %s orë/javë × 4.33 javë',
+      sofort: 'Menjëherë 🎉',
+      wochen: '~%s javë',
+      hint0: '<strong>Spitex mbulon të gjitha kostot.</strong> Fillon pa shpenzime vetjake – dhe fiton çdo muaj %s.',
+      hint1: 'Pas <strong>më pak se një muaji</strong> ke rikuperuar kostot e kursit. Rreziku është minimal.',
+      hint2: 'Pas rreth <strong>%s javësh</strong> ke rikuperuar investimin – pas kësaj gjithçka mbetet si fitim.',
+      hint3: 'Këshillë: Më shumë orë ose një kontribut më i lartë Spitex mund ta shkurtojë ndjeshëm kohën e amortizimit.'
+    }
+  };
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.getElementById('langLabel').textContent = lang === 'al' ? 'AL' : 'DE';
+    document.querySelectorAll('.lang-opt').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.lang-opt').forEach(b => {
+      if ((lang === 'de' && b.textContent.includes('Deutsch')) || (lang === 'al' && b.textContent.includes('Shqip'))) b.classList.add('active');
+    });
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const v = T[lang][el.getAttribute('data-i18n')];
+      if (v !== undefined) el.textContent = v;
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const v = T[lang][el.getAttribute('data-i18n-html')];
+      if (v !== undefined) el.innerHTML = v;
+    });
+    closeLangMenu();
+    updateResult();
+  }
+  function toggleLangMenu() { document.getElementById('langMenu').classList.toggle('open'); }
+  function closeLangMenu() { document.getElementById('langMenu').classList.remove('open'); }
+  document.addEventListener('click', e => { if (!e.target.closest('.lang-switcher')) closeLangMenu(); });
 
   function selectHours(el, value) {
     document.querySelectorAll('.hour-btn').forEach(b => b.classList.remove('selected'));
@@ -356,7 +387,7 @@
   }
 
   function updateResult() {
-    // Update step dots
+    const t = T[currentLang];
     const dot1 = document.getElementById('dot1');
     const dot2 = document.getElementById('dot2');
     const label = document.getElementById('step-label');
@@ -364,11 +395,11 @@
     if (stunden > 0) {
       dot1.className = 'step-dot done';
       dot2.className = 'step-dot active';
-      label.textContent = 'Fast fertig!';
+      label.textContent = t.stepDone;
     } else {
       dot1.className = 'step-dot active';
       dot2.className = 'step-dot';
-      label.textContent = 'Schritt 1 von 2';
+      label.textContent = t.stepInit;
     }
 
     const nettokosten = KURSKOSTEN * (1 - spitex / 100);
@@ -378,11 +409,11 @@
       const monatslohn = lohn * stunden * 4.33;
       document.getElementById('res-lohn').textContent = formatChf(monatslohn);
       document.getElementById('res-lohn-sub').textContent =
-        `${lohn} CHF/h × ${stunden}h/Woche × 4.33 Wochen`;
+        t.hrsUnit.replace('%s', stunden).replace('%s', lohn);
 
       const wochen = nettokosten / (monatslohn / 4.33);
       document.getElementById('res-wochen').textContent =
-        nettokosten === 0 ? 'Sofort 🎉' : `~${wochen.toFixed(1)} Wochen`;
+        nettokosten === 0 ? t.sofort : t.wochen.replace('%s', wochen.toFixed(1));
 
       const jahresverdienst = monatslohn * 12;
       document.getElementById('res-jahr').textContent = formatChf(jahresverdienst);
@@ -392,17 +423,17 @@
       hint.style.display = 'flex';
 
       if (nettokosten === 0) {
-        hintText.innerHTML = '<strong>Spitex übernimmt alle Kosten.</strong> Du startest ohne Eigenaufwand – und verdienst danach monatlich ' + formatChf(monatslohn) + '.';
+        hintText.innerHTML = t.hint0.replace('%s', formatChf(monatslohn));
       } else if (wochen < 4) {
-        hintText.innerHTML = 'Schon nach <strong>weniger als einem Monat</strong> hast du die Kurskosten wieder verdient. Das Risiko ist minimal.';
+        hintText.innerHTML = t.hint1;
       } else if (wochen < 10) {
-        hintText.innerHTML = 'Nach etwa <strong>' + wochen.toFixed(0) + ' Wochen</strong> hast du die Investition wieder drin – danach bleibt alles als Verdienst.';
+        hintText.innerHTML = t.hint2.replace('%s', wochen.toFixed(0));
       } else {
-        hintText.innerHTML = 'Tipp: Mehr Stunden oder ein höherer Spitex-Beitrag können die Amortisationszeit deutlich verkürzen.';
+        hintText.innerHTML = t.hint3;
       }
     } else {
       document.getElementById('res-lohn').textContent = 'CHF –';
-      document.getElementById('res-lohn-sub').textContent = 'Bitte Stunden wählen';
+      document.getElementById('res-lohn-sub').textContent = t.r2sub;
       document.getElementById('res-wochen').textContent = '–';
       document.getElementById('res-jahr').textContent = 'CHF –';
       document.getElementById('hint-box').style.display = 'none';

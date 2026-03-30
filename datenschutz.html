@@ -30,7 +30,7 @@
   }
   nav {
     position: sticky; top: 0; z-index: 100;
-    height: 72px; display: flex; align-items: center;
+    height: 72px; display: flex; align-items: center; justify-content: space-between;
     padding: 0 8%; border-bottom: 1px solid var(--border);
     background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
   }
@@ -40,6 +40,29 @@
     color: var(--slate); letter-spacing: 0.01em; text-decoration: none;
   }
   .logo span { color: var(--terra); }
+  .lang-switcher { position: relative; }
+  .lang-btn {
+    background: none; border: 1px solid var(--border); cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif; font-size: 0.8rem; font-weight: 600;
+    color: var(--slate); padding: 0.35rem 0.75rem; border-radius: 2px;
+    display: flex; align-items: center; gap: 0.35rem; letter-spacing: 0.05em;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .lang-btn:hover { border-color: var(--terra); color: var(--terra); }
+  .lang-arrow { font-size: 0.6rem; }
+  .lang-menu {
+    display: none; position: absolute; top: calc(100% + 6px); right: 0;
+    background: #fff; border: 1px solid var(--border); border-radius: 2px;
+    box-shadow: 0 4px 16px rgba(11,31,58,0.1); min-width: 110px; z-index: 200;
+  }
+  .lang-menu.open { display: block; }
+  .lang-opt {
+    display: block; width: 100%; text-align: left; background: none; border: none;
+    cursor: pointer; font-family: 'Source Sans 3', sans-serif; font-size: 0.82rem;
+    font-weight: 500; color: var(--slate); padding: 0.55rem 1rem; transition: background 0.15s;
+  }
+  .lang-opt:hover { background: #f5f9ff; color: var(--terra); }
+  .lang-opt.active { color: var(--terra); font-weight: 600; }
   main { max-width: 760px; margin: 0 auto; padding: 5rem 5% 8rem; }
   h1 {
     font-family: 'Lora', serif;
@@ -80,53 +103,138 @@
 
 <nav>
   <a class="logo" href="/"><span>Cuide</span>sa</a>
+  <div class="lang-switcher">
+    <button class="lang-btn" id="langBtn" onclick="toggleLangMenu()">
+      <span id="langLabel">DE</span><span class="lang-arrow">▾</span>
+    </button>
+    <div class="lang-menu" id="langMenu">
+      <button class="lang-opt active" onclick="setLang('de')">🇩🇪 Deutsch</button>
+      <button class="lang-opt" onclick="setLang('al')">🇦🇱 Shqip</button>
+    </div>
+  </div>
 </nav>
 
 <main>
-  <h1>Datenschutzerklärung</h1>
-  <p class="meta">Cuidesa – Ermir Krasniqi, Romanshorn TG &nbsp;|&nbsp; Stand: März 2026</p>
+  <h1 data-i18n="h1">Datenschutzerklärung</h1>
+  <p class="meta" data-i18n="meta">Cuidesa – Ermir Krasniqi, Romanshorn TG &nbsp;|&nbsp; Stand: März 2026</p>
 
-  <h2>1. Verantwortliche Stelle</h2>
-  <p>Cuidesa<br>Inhaber: Ermir Krasniqi<br>Romanshorn TG, Schweiz<br>E-Mail: <a href="mailto:info@cuidesa.ch">info@cuidesa.ch</a></p>
+  <h2 data-i18n="s1h">1. Verantwortliche Stelle</h2>
+  <p data-i18n-html="s1p">Cuidesa<br>Inhaber: Ermir Krasniqi<br>Romanshorn TG, Schweiz<br>E-Mail: <a href="mailto:info@cuidesa.ch">info@cuidesa.ch</a></p>
 
-  <h2>2. Erhobene Daten</h2>
-  <p>Beim Ausfüllen unseres Anspruchsformulars erheben wir folgende Daten: Name, Telefonnummer, Standort/Kanton/PLZ sowie Angaben zur Pflegesituation (Pflegebeziehung, Tätigkeiten, Wochenstunden). Zusätzlich werden technische Daten automatisch erfasst (z. B. IP-Adresse, Browsertyp, Besuchszeitpunkt).</p>
+  <h2 data-i18n="s2h">2. Erhobene Daten</h2>
+  <p data-i18n="s2p">Beim Ausfüllen unseres Anspruchsformulars erheben wir folgende Daten: Name, Telefonnummer, Standort/Kanton/PLZ sowie Angaben zur Pflegesituation (Pflegebeziehung, Tätigkeiten, Wochenstunden). Zusätzlich werden technische Daten automatisch erfasst (z. B. IP-Adresse, Browsertyp, Besuchszeitpunkt).</p>
 
-  <h2>3. Zweck der Datenerhebung</h2>
-  <p>Wir verwenden die Daten, um den Anspruch auf Entlöhnung als pflegende Angehörige zu prüfen, Interessentinnen und Interessenten mit passenden Spitex-Organisationen in ihrer Region zu verbinden sowie die Website und Marketingmassnahmen zu optimieren.</p>
+  <h2 data-i18n="s3h">3. Zweck der Datenerhebung</h2>
+  <p data-i18n="s3p">Wir verwenden die Daten, um den Anspruch auf Entlöhnung als pflegende Angehörige zu prüfen, Interessentinnen und Interessenten mit passenden Spitex-Organisationen in ihrer Region zu verbinden sowie die Website und Marketingmassnahmen zu optimieren.</p>
 
-  <h2>4. Weitergabe der Daten</h2>
-  <p>Personendaten werden ausschliesslich an Spitex-Organisationen weitergegeben, die mit Cuidesa zusammenarbeiten und für den jeweiligen Fall relevant sind. Eine Weitergabe an Dritte ausserhalb dieses Zwecks erfolgt nicht.</p>
+  <h2 data-i18n="s4h">4. Weitergabe der Daten</h2>
+  <p data-i18n="s4p">Personendaten werden ausschliesslich an Spitex-Organisationen weitergegeben, die mit Cuidesa zusammenarbeiten und für den jeweiligen Fall relevant sind. Eine Weitergabe an Dritte ausserhalb dieses Zwecks erfolgt nicht.</p>
 
-  <h2>5. Tracking &amp; Cookies</h2>
-  <p>Cuidesa kann Cookies und Tracking-Technologien (z. B. Google Analytics, Meta Pixel) einsetzen, um die Nutzung der Website zu analysieren und Werbung zu optimieren. Nutzer können Cookies in ihrem Browser deaktivieren – dies kann jedoch die Funktionalität der Website einschränken.</p>
+  <h2 data-i18n="s5h">5. Tracking &amp; Cookies</h2>
+  <p data-i18n="s5p">Cuidesa kann Cookies und Tracking-Technologien (z. B. Google Analytics, Meta Pixel) einsetzen, um die Nutzung der Website zu analysieren und Werbung zu optimieren. Nutzer können Cookies in ihrem Browser deaktivieren – dies kann jedoch die Funktionalität der Website einschränken.</p>
 
-  <h2>6. Datenspeicherung</h2>
-  <p>Personendaten werden nur so lange aufbewahrt, wie dies zur Erfüllung des jeweiligen Zwecks erforderlich ist oder gesetzliche Aufbewahrungspflichten bestehen. Formulardaten werden in einer gesicherten Google Sheets Umgebung gespeichert.</p>
+  <h2 data-i18n="s6h">6. Datenspeicherung</h2>
+  <p data-i18n="s6p">Personendaten werden nur so lange aufbewahrt, wie dies zur Erfüllung des jeweiligen Zwecks erforderlich ist oder gesetzliche Aufbewahrungspflichten bestehen. Formulardaten werden in einer gesicherten Google Sheets Umgebung gespeichert.</p>
 
-  <h2>7. Rechte der betroffenen Personen</h2>
-  <p>Betroffene Personen haben das Recht auf Auskunft, Berichtigung, Löschung sowie Widerspruch gegen die Datenbearbeitung. Anfragen bitte an: <a href="mailto:info@cuidesa.ch">info@cuidesa.ch</a></p>
+  <h2 data-i18n="s7h">7. Rechte der betroffenen Personen</h2>
+  <p data-i18n-html="s7p">Betroffene Personen haben das Recht auf Auskunft, Berichtigung, Löschung sowie Widerspruch gegen die Datenbearbeitung. Anfragen bitte an: <a href="mailto:info@cuidesa.ch">info@cuidesa.ch</a></p>
 
-  <h2>8. Datensicherheit</h2>
-  <p>Cuidesa trifft angemessene technische und organisatorische Massnahmen, um gespeicherte Daten vor unbefugtem Zugriff, Verlust oder Missbrauch zu schützen.</p>
+  <h2 data-i18n="s8h">8. Datensicherheit</h2>
+  <p data-i18n="s8p">Cuidesa trifft angemessene technische und organisatorische Massnahmen, um gespeicherte Daten vor unbefugtem Zugriff, Verlust oder Missbrauch zu schützen.</p>
 
-  <h2>9. Anpassungen dieser Datenschutzerklärung</h2>
-  <p>Cuidesa kann diese Datenschutzerklärung jederzeit anpassen. Die aktuelle Version ist stets unter www.cuidesa.ch/datenschutz abrufbar.</p>
+  <h2 data-i18n="s9h">9. Anpassungen dieser Datenschutzerklärung</h2>
+  <p data-i18n="s9p">Cuidesa kann diese Datenschutzerklärung jederzeit anpassen. Die aktuelle Version ist stets unter www.cuidesa.ch/datenschutz abrufbar.</p>
 </main>
 
 <footer>
   <div class="footer-logo"><span>Cuide</span>sa</div>
   <div class="footer-links">
-    <a href="/">Startseite</a>
-    <a href="/agb.html">AGB</a>
-    <a href="/impressum.html">Impressum</a>
+    <a href="/" data-i18n="f.home">Startseite</a>
+    <a href="/agb.html" data-i18n="f.agb">AGB</a>
+    <a href="/impressum.html" data-i18n="f.impressum">Impressum</a>
     <a href="mailto:info@cuidesa.ch">info@cuidesa.ch</a>
   </div>
 </footer>
 <div class="footer-bottom">
-  <div>© 2025 Cuidesa. Alle Rechte vorbehalten.</div>
-  <div>Für pflegende Angehörige in der Schweiz</div>
+  <div data-i18n="f.copy">© 2025 Cuidesa. Alle Rechte vorbehalten.</div>
+  <div data-i18n="f.tag">Für pflegende Angehörige in der Schweiz</div>
 </div>
 
+<script>
+  let currentLang = 'de';
+  const T = {
+    de: {
+      h1: 'Datenschutzerklärung',
+      meta: 'Cuidesa – Ermir Krasniqi, Romanshorn TG \u00a0|\u00a0 Stand: März 2026',
+      s1h: '1. Verantwortliche Stelle',
+      s1p: 'Cuidesa<br>Inhaber: Ermir Krasniqi<br>Romanshorn TG, Schweiz<br>E-Mail: <a href="mailto:info@cuidesa.ch">info@cuidesa.ch</a>',
+      s2h: '2. Erhobene Daten',
+      s2p: 'Beim Ausfüllen unseres Anspruchsformulars erheben wir folgende Daten: Name, Telefonnummer, Standort/Kanton/PLZ sowie Angaben zur Pflegesituation (Pflegebeziehung, Tätigkeiten, Wochenstunden). Zusätzlich werden technische Daten automatisch erfasst (z. B. IP-Adresse, Browsertyp, Besuchszeitpunkt).',
+      s3h: '3. Zweck der Datenerhebung',
+      s3p: 'Wir verwenden die Daten, um den Anspruch auf Entlöhnung als pflegende Angehörige zu prüfen, Interessentinnen und Interessenten mit passenden Spitex-Organisationen in ihrer Region zu verbinden sowie die Website und Marketingmassnahmen zu optimieren.',
+      s4h: '4. Weitergabe der Daten',
+      s4p: 'Personendaten werden ausschliesslich an Spitex-Organisationen weitergegeben, die mit Cuidesa zusammenarbeiten und für den jeweiligen Fall relevant sind. Eine Weitergabe an Dritte ausserhalb dieses Zwecks erfolgt nicht.',
+      s5h: '5. Tracking & Cookies',
+      s5p: 'Cuidesa kann Cookies und Tracking-Technologien (z. B. Google Analytics, Meta Pixel) einsetzen, um die Nutzung der Website zu analysieren und Werbung zu optimieren. Nutzer können Cookies in ihrem Browser deaktivieren – dies kann jedoch die Funktionalität der Website einschränken.',
+      s6h: '6. Datenspeicherung',
+      s6p: 'Personendaten werden nur so lange aufbewahrt, wie dies zur Erfüllung des jeweiligen Zwecks erforderlich ist oder gesetzliche Aufbewahrungspflichten bestehen. Formulardaten werden in einer gesicherten Google Sheets Umgebung gespeichert.',
+      s7h: '7. Rechte der betroffenen Personen',
+      s7p: 'Betroffene Personen haben das Recht auf Auskunft, Berichtigung, Löschung sowie Widerspruch gegen die Datenbearbeitung. Anfragen bitte an: <a href="mailto:info@cuidesa.ch">info@cuidesa.ch</a>',
+      s8h: '8. Datensicherheit',
+      s8p: 'Cuidesa trifft angemessene technische und organisatorische Massnahmen, um gespeicherte Daten vor unbefugtem Zugriff, Verlust oder Missbrauch zu schützen.',
+      s9h: '9. Anpassungen dieser Datenschutzerklärung',
+      s9p: 'Cuidesa kann diese Datenschutzerklärung jederzeit anpassen. Die aktuelle Version ist stets unter www.cuidesa.ch/datenschutz abrufbar.',
+      'f.home': 'Startseite', 'f.agb': 'AGB', 'f.impressum': 'Impressum',
+      'f.copy': '© 2025 Cuidesa. Alle Rechte vorbehalten.',
+      'f.tag': 'Für pflegende Angehörige in der Schweiz'
+    },
+    al: {
+      h1: 'Politika e Privatësisë',
+      meta: 'Cuidesa – Ermir Krasniqi, Romanshorn TG \u00a0|\u00a0 Versioni: Mars 2026',
+      s1h: '1. Institucioni Përgjegjës',
+      s1p: 'Cuidesa<br>Pronari: Ermir Krasniqi<br>Romanshorn TG, Zvicër<br>E-Mail: <a href="mailto:info@cuidesa.ch">info@cuidesa.ch</a>',
+      s2h: '2. Të Dhënat e Mbledhura',
+      s2p: 'Kur plotësoni formularin tonë të kërkesës, mbledhim të dhënat e mëposhtme: emri, numri i telefonit, vendndodhja/kantoni/kodi postar si dhe informacione mbi situatën e kujdesit (lidhja e kujdesit, aktivitetet, orët javore). Përveç kësaj, të dhëna teknike mblidhen automatikisht (p.sh. adresa IP, lloji i shfletuesit, koha e vizitës).',
+      s3h: '3. Qëllimi i Mbledhjes së të Dhënave',
+      s3p: 'Përdorim të dhënat për të kontrolluar të drejtën e shpërblimit si kujdestar i familjes, për të lidhur të interesuarit me organizatat e duhura Spitex në rajonin e tyre dhe për të optimizuar faqen e internetit dhe masat e marketingut.',
+      s4h: '4. Ndarja e të Dhënave',
+      s4p: 'Të dhënat personale u transmetohen ekskluzivisht organizatave Spitex që bashkëpunojnë me Cuidesa dhe janë relevante për rastin përkatës. Nuk bëhet asnjë transmetim tek palët e treta jashtë këtij qëllimi.',
+      s5h: '5. Ndjekja & Cookies',
+      s5p: 'Cuidesa mund të përdorë cookies dhe teknologji ndjekjeje (p.sh. Google Analytics, Meta Pixel) për të analizuar përdorimin e faqes dhe për të optimizuar reklamat. Përdoruesit mund të çaktivizojnë cookies në shfletuesin e tyre – kjo megjithatë mund të kufizojë funksionalitetin e faqes.',
+      s6h: '6. Ruajtja e të Dhënave',
+      s6p: 'Të dhënat personale ruhen vetëm për aq kohë sa është e nevojshme për përmbushjen e qëllimit përkatës ose ekzistojnë detyrime ligjore ruajtjeje. Të dhënat e formularëve ruhen në një mjedis të sigurt Google Sheets.',
+      s7h: '7. Të Drejtat e Personave të Prekur',
+      s7p: 'Personat e prekur kanë të drejtën e informimit, korrigjimit, fshirjes si dhe kundërshtimit ndaj përpunimit të të dhënave. Kërkesat dërgoni te: <a href="mailto:info@cuidesa.ch">info@cuidesa.ch</a>',
+      s8h: '8. Siguria e të Dhënave',
+      s8p: 'Cuidesa merr masa të përshtatshme teknike dhe organizative për të mbrojtur të dhënat e ruajtura nga aksesi i paautorizuar, humbja ose keqpërdorimi.',
+      s9h: '9. Ndryshimet e kësaj Politike të Privatësisë',
+      s9p: 'Cuidesa mund ta përditësojë këtë politikë privatësie në çdo kohë. Versioni aktual është gjithmonë i disponueshëm në www.cuidesa.ch/datenschutz.',
+      'f.home': 'Faqja Kryesore', 'f.agb': 'KPG', 'f.impressum': 'Impresum',
+      'f.copy': '© 2025 Cuidesa. Të gjitha të drejtat e rezervuara.',
+      'f.tag': 'Për të afërmit kujdestarë në Zvicër'
+    }
+  };
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.getElementById('langLabel').textContent = lang === 'al' ? 'AL' : 'DE';
+    document.querySelectorAll('.lang-opt').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.lang-opt').forEach(b => {
+      if ((lang === 'de' && b.textContent.includes('Deutsch')) || (lang === 'al' && b.textContent.includes('Shqip'))) b.classList.add('active');
+    });
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const v = T[lang][el.getAttribute('data-i18n')];
+      if (v !== undefined) el.textContent = v;
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const v = T[lang][el.getAttribute('data-i18n-html')];
+      if (v !== undefined) el.innerHTML = v;
+    });
+    closeLangMenu();
+  }
+  function toggleLangMenu() { document.getElementById('langMenu').classList.toggle('open'); }
+  function closeLangMenu() { document.getElementById('langMenu').classList.remove('open'); }
+  document.addEventListener('click', e => { if (!e.target.closest('.lang-switcher')) closeLangMenu(); });
+</script>
 </body>
 </html>
