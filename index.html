@@ -901,6 +901,8 @@
         oninput="this.value=this.value.replace(/[^\d\s+]/g,'')">
       <input type="email" class="quiz-input" id="quizEmail" placeholder="E-Mail-Adresse" data-i18n-placeholder="quiz.q6email">
       <div id="quizError" style="display:none;color:#c0392b;font-size:0.8rem;margin-top:-0.25rem;margin-bottom:0.5rem;"></div>
+      <label style="font-size:0.8rem;color:var(--muted);font-weight:400;display:block;margin-top:0.75rem;margin-bottom:0.3rem;" data-i18n="quiz.q6noteLabel">Das solltet ihr noch wissen:</label>
+      <textarea class="quiz-input" id="quizNotiz" data-i18n-placeholder="quiz.q6notePlaceholder" placeholder="Ich habe für meine Mutter das Formular ausgefüllt" style="height:80px;resize:none;margin-bottom:0;"></textarea>
       <p id="quiz6Legal" data-i18n-html="quiz.q6legal" style="font-size:0.75rem; color:var(--muted); margin-top:1rem; line-height:1.5;">
         Mit dem Absenden dieses Formulars bestätige ich, dass ich die <a href="agb.html" target="_blank" style="color:var(--muted); text-decoration:underline;">Allgemeinen Geschäftsbedingungen</a> sowie die <a href="datenschutz.html" target="_blank" style="color:var(--muted); text-decoration:underline;">Datenschutzerklärung</a> von cuidesa.ch gelesen habe und damit einverstanden bin.
       </p>
@@ -1066,6 +1068,8 @@
         q5placeholder: 'Kanton auswählen…', q5err: 'Bitte einen Kanton auswählen.',
         q6: 'Wie sollen wir uns melden?', q6sub: 'Kostenlos. Unverbindlich. Innert 48 Stunden.',
         q6fname: 'Vorname', q6lname: 'Nachname', q6email: 'E-Mail-Adresse',
+        q6noteLabel: 'Das solltet ihr noch wissen:',
+        q6notePlaceholder: 'Ich habe für meine Mutter das Formular ausgefüllt',
         q6legal: 'Mit dem Absenden dieses Formulars bestätige ich, dass ich die <a href="agb.html" target="_blank" style="color:var(--muted); text-decoration:underline;">Allgemeinen Geschäftsbedingungen</a> sowie die <a href="datenschutz.html" target="_blank" style="color:var(--muted); text-decoration:underline;">Datenschutzerklärung</a> von cuidesa.ch gelesen habe und damit einverstanden bin.',
         q6submit: 'Anspruch prüfen lassen →',
         errName: 'Bitte Vorname und Nachname eingeben.',
@@ -1161,6 +1165,8 @@
         q5placeholder: 'Zgjidh kantonin…', q5err: 'Ju lutemi zgjidhni një kanton.',
         q6: 'Si duhet të kontaktohemi?', q6sub: 'Falas. Pa detyrim. Brenda 48 orësh.',
         q6fname: 'Emri', q6lname: 'Mbiemri', q6email: 'Adresa e-mail',
+        q6noteLabel: 'Çfarë duhet të dimë tjetër:',
+        q6notePlaceholder: 'E plotësova formularin për nënën time',
         q6legal: 'Duke dërguar këtë formular, konfirmoj se kam lexuar <a href="agb.html" target="_blank" style="color:var(--muted); text-decoration:underline;">Kushtet e Përgjithshme</a> dhe <a href="datenschutz.html" target="_blank" style="color:var(--muted); text-decoration:underline;">Politikën e Privatësisë</a> të cuidesa.ch dhe jam dakord me to.',
         q6submit: 'Lejo kontrollimin e të drejtës →',
         errName: 'Ju lutemi vendosni emrin dhe mbiemrin.',
@@ -1345,7 +1351,8 @@
     kanton:       '',
     name:         '',
     telefon:      '',
-    email:        ''
+    email:        '',
+    notiz:        ''
   };
 
   function showStep(n) {
@@ -1441,6 +1448,7 @@
     quizData.name    = vorname + ' ' + nachname;
     quizData.telefon = telefon;
     quizData.email   = email;
+    quizData.notiz   = document.getElementById('quizNotiz').value.trim();
 
     const anfragenId = generateAnfragenId();
     const payload = {
@@ -1452,7 +1460,8 @@
       kanton:       quizData.kanton,
       name:         quizData.name,
       telefon:      quizData.telefon,
-      email:        quizData.email
+      email:        quizData.email,
+      notiz:        quizData.notiz
     };
 
     // Send to Google Sheets (fire & forget)
