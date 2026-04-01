@@ -38,7 +38,7 @@ function doPost(e) {
     var pdf = createLeadPDF(data, leadId, now);
 
     MailApp.sendEmail({
-      to: 'krasniqiermir1995@gmail.com',
+      to: 'info@cuidesa.ch',
       subject: 'Neuer Lead ist eingegangen!',
       body: [
         'Neuer Lead ist eingegangen!',
