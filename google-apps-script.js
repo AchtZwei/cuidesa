@@ -39,21 +39,10 @@ function doPost(e) {
 
     MailApp.sendEmail({
       to: 'info@cuidesa.ch',
+      replyTo: 'info@cuidesa.ch',
+      name: 'Cuidesa',
       subject: 'Neuer Lead ist eingegangen!',
-      body: [
-        'Neuer Lead ist eingegangen!',
-        '',
-        'ID:          ' + leadId,
-        'Datum:       ' + now.toLocaleString('de-CH'),
-        'Name:        ' + (data.name         || '–'),
-        'Telefon:     ' + (data.telefon      || '–'),
-        'E-Mail:      ' + (data.email        || '–'),
-        'Kanton/PLZ:  ' + (data.kanton       || '–'),
-        'Status:      ' + (data.situation    || '–'),
-        'Stunden:     ' + (data.stunden      || '–'),
-        'Beziehung:   ' + (data.beziehung    || '–'),
-        'Tätigkeiten: ' + (data.taetigkeiten || '–'),
-      ].join('\n'),
+      body: 'Neuer Lead ist eingegangen. Details siehe PDF im Anhang.',
       attachments: [pdf]
     });
 
