@@ -364,12 +364,15 @@
       const v = T[lang][el.getAttribute('data-i18n-html')];
       if (v !== undefined) el.innerHTML = v;
     });
+    localStorage.setItem('cuidesa_lang', lang);
     closeLangMenu();
     updateResult();
   }
   function toggleLangMenu() { document.getElementById('langMenu').classList.toggle('open'); }
   function closeLangMenu() { document.getElementById('langMenu').classList.remove('open'); }
   document.addEventListener('click', e => { if (!e.target.closest('.lang-switcher')) closeLangMenu(); });
+  const _savedLang = localStorage.getItem('cuidesa_lang');
+  if (_savedLang && _savedLang !== 'de') setLang(_savedLang);
 
   function selectHours(el, value) {
     document.querySelectorAll('.hour-btn').forEach(b => b.classList.remove('selected'));
