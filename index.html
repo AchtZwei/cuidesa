@@ -571,7 +571,7 @@
     .quiz-container { padding: 1.25rem; }
 
     /* Name-Felder nebeneinander → untereinander */
-    #step6 > div[style*="grid-template-columns"] {
+    #step7 > div[style*="grid-template-columns"] {
       grid-template-columns: 1fr !important;
     }
 
@@ -790,7 +790,7 @@
     <div class="quiz-progress-wrap">
       <div class="quiz-progress-bar" id="quizProgress"></div>
     </div>
-    <div class="quiz-step-label" id="quizStepLabel">Schritt 1 von 6</div>
+    <div class="quiz-step-label" id="quizStepLabel">Schritt 1 von 7</div>
 
     <!-- Step 1 -->
     <div class="quiz-step active" id="step1">
@@ -830,25 +830,43 @@
       <div class="quiz-nav"><button class="quiz-back" data-i18n="quiz.back" onclick="prevStep(3)">← Zurück</button></div>
     </div>
 
-    <!-- Step 4 -->
+    <!-- Step 4 (NEU) -->
     <div class="quiz-step" id="step4">
-      <div class="quiz-question" data-i18n="quiz.q4">Welche Tätigkeiten übernimmst du?</div>
-      <div class="quiz-sub" data-i18n="quiz.q4sub">Mehrere Antworten möglich.</div>
-      <div class="quiz-options quiz-multi" id="step4-opts">
-        <button class="quiz-opt toggle" onclick="toggleOpt(this)"><span data-i18n="quiz.q4opt1">🛁 Körperpflege</span><span data-i18n="quiz.q4opt1sub">Waschen, anziehen, Mundhygiene</span></button>
-        <button class="quiz-opt toggle" onclick="toggleOpt(this)"><span data-i18n="quiz.q4opt2">🚶 Mobilität & Transfer</span><span data-i18n="quiz.q4opt2sub">Gehen begleiten, Lagern, Rollstuhl</span></button>
-        <button class="quiz-opt toggle" onclick="toggleOpt(this)"><span data-i18n="quiz.q4opt3">🍽️ Ernährung</span><span data-i18n="quiz.q4opt3sub">Essen eingeben, Trinken reichen</span></button>
-        <button class="quiz-opt toggle" onclick="toggleOpt(this)"><span data-i18n="quiz.q4opt4">🌙 Nächtliche Betreuung</span><span data-i18n="quiz.q4opt4sub">Aufstehen, Überwachung</span></button>
+      <div class="quiz-question" data-i18n="quiz.qSpitex">Bist du bereits als Pflegender Angehöriger bei einer Spitex angestellt?</div>
+      <div class="quiz-sub" data-i18n="quiz.qSpitexSub">Gemeint ist eine bestehende offizielle Anstellung bei einer Spitex-Organisation.</div>
+      <div class="quiz-options" id="step4-spitex-opts">
+        <button class="quiz-opt" onclick="pickSpitex(this, 'Nein')"><span data-i18n="quiz.qSpitexNo">❌ Nein</span><span data-i18n="quiz.qSpitexNoSub">Noch nicht bei einer Spitex angestellt</span></button>
+        <button class="quiz-opt" onclick="pickSpitex(this, 'Ja')"><span data-i18n="quiz.qSpitexYes">✅ Ja</span><span data-i18n="quiz.qSpitexYesSub">Ich bin bereits bei einer Spitex angestellt</span></button>
       </div>
-      <div id="step4-error" style="display:none;color:#c0392b;font-size:0.8rem;margin-top:0.5rem;"></div>
-      <div class="quiz-nav">
+      <div id="step4-followup" style="display:none;margin-top:1.25rem;">
+        <label style="font-size:0.85rem;color:var(--muted);font-weight:500;display:block;margin-bottom:0.5rem;" data-i18n="quiz.qSpitexFollowLabel">Was ist der Grund, dass du das Formular ausfüllst?</label>
+        <textarea class="quiz-input" id="spitexGrundInput" data-i18n-placeholder="quiz.qSpitexFollowPlaceholder" placeholder="Bitte beschreibe kurz deinen Grund…" style="height:90px;resize:none;margin-bottom:0;"></textarea>
+      </div>
+      <div class="quiz-nav" id="step4-nav" style="display:none;">
         <button class="quiz-back" data-i18n="quiz.back" onclick="prevStep(4)">← Zurück</button>
         <button class="quiz-next" data-i18n="quiz.next" onclick="nextStep(4)">Weiter →</button>
       </div>
     </div>
 
-    <!-- Step 5 -->
+    <!-- Step 5 (war Step 4) -->
     <div class="quiz-step" id="step5">
+      <div class="quiz-question" data-i18n="quiz.q4">Welche Tätigkeiten übernimmst du?</div>
+      <div class="quiz-sub" data-i18n="quiz.q4sub">Mehrere Antworten möglich.</div>
+      <div class="quiz-options quiz-multi" id="step5-opts">
+        <button class="quiz-opt toggle" onclick="toggleOpt(this)"><span data-i18n="quiz.q4opt1">🛁 Körperpflege</span><span data-i18n="quiz.q4opt1sub">Waschen, anziehen, Mundhygiene</span></button>
+        <button class="quiz-opt toggle" onclick="toggleOpt(this)"><span data-i18n="quiz.q4opt2">🚶 Mobilität & Transfer</span><span data-i18n="quiz.q4opt2sub">Gehen begleiten, Lagern, Rollstuhl</span></button>
+        <button class="quiz-opt toggle" onclick="toggleOpt(this)"><span data-i18n="quiz.q4opt3">🍽️ Ernährung</span><span data-i18n="quiz.q4opt3sub">Essen eingeben, Trinken reichen</span></button>
+        <button class="quiz-opt toggle" onclick="toggleOpt(this)"><span data-i18n="quiz.q4opt4">🌙 Nächtliche Betreuung</span><span data-i18n="quiz.q4opt4sub">Aufstehen, Überwachung</span></button>
+      </div>
+      <div id="step5-error" style="display:none;color:#c0392b;font-size:0.8rem;margin-top:0.5rem;"></div>
+      <div class="quiz-nav">
+        <button class="quiz-back" data-i18n="quiz.back" onclick="prevStep(5)">← Zurück</button>
+        <button class="quiz-next" data-i18n="quiz.next" onclick="nextStep(5)">Weiter →</button>
+      </div>
+    </div>
+
+    <!-- Step 6 (war Step 5) -->
+    <div class="quiz-step" id="step6">
       <div class="quiz-question" data-i18n="quiz.q5">In welchem Kanton wohnst du?</div>
       <div class="quiz-sub" data-i18n="quiz.q5sub">Wir finden den passenden Spitex-Partner in deiner Region.</div>
       <select class="quiz-input" id="kantonInput">
@@ -880,15 +898,15 @@
         <option>Zug</option>
         <option>Zürich</option>
       </select>
-      <div id="step5-error" style="display:none;color:#c0392b;font-size:0.8rem;margin-top:0.5rem;"></div>
+      <div id="step6-error" style="display:none;color:#c0392b;font-size:0.8rem;margin-top:0.5rem;"></div>
       <div class="quiz-nav">
-        <button class="quiz-back" data-i18n="quiz.back" onclick="prevStep(5)">← Zurück</button>
-        <button class="quiz-next" data-i18n="quiz.next" onclick="nextStep(5)">Weiter →</button>
+        <button class="quiz-back" data-i18n="quiz.back" onclick="prevStep(6)">← Zurück</button>
+        <button class="quiz-next" data-i18n="quiz.next" onclick="nextStep(6)">Weiter →</button>
       </div>
     </div>
 
-    <!-- Step 6 -->
-    <div class="quiz-step" id="step6">
+    <!-- Step 7 (war Step 6) -->
+    <div class="quiz-step" id="step7">
       <div class="quiz-question" data-i18n="quiz.q6">Wie sollen wir uns melden?</div>
       <div class="quiz-sub" data-i18n="quiz.q6sub">Kostenlos. Unverbindlich. Innert 48 Stunden.</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
@@ -906,7 +924,7 @@
         Mit dem Absenden dieses Formulars bestätige ich, dass ich die <a href="agb.html" target="_blank" style="color:var(--muted); text-decoration:underline;">Allgemeinen Geschäftsbedingungen</a> sowie die <a href="datenschutz.html" target="_blank" style="color:var(--muted); text-decoration:underline;">Datenschutzerklärung</a> von cuidesa.ch gelesen habe und damit einverstanden bin.
       </p>
       <div class="quiz-nav">
-        <button class="quiz-back" data-i18n="quiz.back" onclick="prevStep(6)">← Zurück</button>
+        <button class="quiz-back" data-i18n="quiz.back" onclick="prevStep(7)">← Zurück</button>
         <button class="quiz-next quiz-submit" id="quizSubmitBtn" data-i18n="quiz.q6submit" onclick="submitQuiz()">Anspruch prüfen lassen →</button>
       </div>
     </div>
@@ -1057,6 +1075,12 @@
         q3opt1: '👴 Elternteil', q3opt1sub: 'Mutter oder Vater',
         q3opt2: '💑 Partner / Ehepartner', q3opt2sub: 'Lebenspartner:in',
         q3opt3: '👨‍👩‍👧 Geschwister / andere Verwandte', q3opt3sub: 'Schwester, Bruder, Grosseltern',
+        qSpitex: 'Bist du bereits als Pflegender Angehöriger bei einer Spitex angestellt?',
+        qSpitexSub: 'Gemeint ist eine bestehende offizielle Anstellung bei einer Spitex-Organisation.',
+        qSpitexNo: '❌ Nein', qSpitexNoSub: 'Noch nicht bei einer Spitex angestellt',
+        qSpitexYes: '✅ Ja', qSpitexYesSub: 'Ich bin bereits bei einer Spitex angestellt',
+        qSpitexFollowLabel: 'Was ist der Grund, dass du das Formular ausfüllst?',
+        qSpitexFollowPlaceholder: 'Bitte beschreibe kurz deinen Grund…',
         q4: 'Welche Tätigkeiten übernimmst du?', q4sub: 'Mehrere Antworten möglich.',
         q4opt1: '🛁 Körperpflege', q4opt1sub: 'Waschen, anziehen, Mundhygiene',
         q4opt2: '🚶 Mobilität & Transfer', q4opt2sub: 'Gehen begleiten, Lagern, Rollstuhl',
@@ -1154,6 +1178,12 @@
         q3opt1: '👴 Prind', q3opt1sub: 'Nënë ose Baba',
         q3opt2: '💑 Partner / Bashkëshort', q3opt2sub: 'Partner/e jete',
         q3opt3: '👨‍👩‍👧 Vëllezër/Motra / të afërm të tjerë', q3opt3sub: 'Motër, Vëlla, Gjyshërit',
+        qSpitex: 'A je tashmë i/e punësuar si kujdestar/e familjar/e pranë një organizate Spitex?',
+        qSpitexSub: 'Kemi parasysh një punësim zyrtar ekzistues pranë një organizate Spitex.',
+        qSpitexNo: '❌ Jo', qSpitexNoSub: 'Ende nuk jam i/e punësuar pranë një Spitex',
+        qSpitexYes: '✅ Po', qSpitexYesSub: 'Jam tashmë i/e punësuar pranë një Spitex',
+        qSpitexFollowLabel: 'Cili është arsyeja që po plotëson këtë formular?',
+        qSpitexFollowPlaceholder: 'Ju lutemi përshkruani shkurtimisht arsyen tuaj…',
         q4: 'Çfarë aktivitetesh kryen ti?', q4sub: 'Shumë përgjigje të mundshme.',
         q4opt1: '🛁 Higjiena personale', q4opt1sub: 'Larje, veshje, higjiena e gojës',
         q4opt2: '🚶 Lëvizshmëri & Transferim', q4opt2sub: 'Shoqërim gjatë ecjes, pozicionim, karrige me rrota',
@@ -1344,19 +1374,21 @@
 
   // ─── QUIZ ──────────────────────────────────────────────
   let currentStep = 1;
-  const totalSteps = 6;
+  const totalSteps = 7;
 
   // Quiz answer storage
   const quizData = {
-    situation:    '',
-    stunden:      '',
-    beziehung:    '',
-    taetigkeiten: '',
-    kanton:       '',
-    name:         '',
-    telefon:      '',
-    email:        '',
-    notiz:        ''
+    situation:       '',
+    stunden:         '',
+    beziehung:       '',
+    spitexAngestellt:'',
+    spitexGrund:     '',
+    taetigkeiten:    '',
+    kanton:          '',
+    name:            '',
+    telefon:         '',
+    email:           '',
+    notiz:           ''
   };
 
   function showStep(n) {
@@ -1385,11 +1417,34 @@
     setTimeout(() => nextStep(fromStep), 600);
   }
 
+  function pickSpitex(btn, value) {
+    // Visual selection
+    document.querySelectorAll('#step4-spitex-opts .quiz-opt').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    quizData.spitexAngestellt = value;
+
+    if (value === 'Ja') {
+      // Show follow-up textarea and nav
+      document.getElementById('step4-followup').style.display = 'block';
+      document.getElementById('step4-nav').style.display = 'flex';
+    } else {
+      // Nein: hide follow-up, auto-advance
+      document.getElementById('step4-followup').style.display = 'none';
+      document.getElementById('step4-nav').style.display = 'none';
+      quizData.spitexGrund = '';
+      setTimeout(() => nextStep(4), 600);
+    }
+  }
+
   function nextStep(from) {
     // Validate before advancing
     if (from === 4) {
-      const selected = [...document.querySelectorAll('#step4-opts .quiz-opt.selected')];
-      const err = document.getElementById('step4-error');
+      // Collect Spitex-Grund if Ja was selected
+      quizData.spitexGrund = document.getElementById('spitexGrundInput').value.trim();
+    }
+    if (from === 5) {
+      const selected = [...document.querySelectorAll('#step5-opts .quiz-opt.selected')];
+      const err = document.getElementById('step5-error');
       if (selected.length === 0) {
         err.textContent = getT('quiz.q4err');
         err.style.display = 'block'; return;
@@ -1397,9 +1452,9 @@
       err.style.display = 'none';
       quizData.taetigkeiten = selected.map(b => b.firstChild.textContent.trim().replace(/^[^\s]+\s/, '')).join(', ');
     }
-    if (from === 5) {
+    if (from === 6) {
       const kanton = document.getElementById('kantonInput').value;
-      const err = document.getElementById('step5-error');
+      const err = document.getElementById('step6-error');
       if (!kanton) {
         err.textContent = getT('quiz.q5err');
         err.style.display = 'block'; return;
@@ -1415,7 +1470,15 @@
   }
 
   function prevStep(from) {
-    if (from > 1) showStep(from - 1);
+    if (from > 1) {
+      // When going back to step 4, reset its state
+      if (from === 5) {
+        document.querySelectorAll('#step4-spitex-opts .quiz-opt').forEach(b => b.classList.remove('selected'));
+        document.getElementById('step4-followup').style.display = 'none';
+        document.getElementById('step4-nav').style.display = 'none';
+      }
+      showStep(from - 1);
+    }
   }
 
   function toggleOpt(btn) {
@@ -1457,15 +1520,17 @@
     const anfragenId = generateAnfragenId();
     const payload = {
       anfragenId,
-      situation:    quizData.situation,
-      stunden:      quizData.stunden,
-      beziehung:    quizData.beziehung,
-      taetigkeiten: quizData.taetigkeiten,
-      kanton:       quizData.kanton,
-      name:         quizData.name,
-      telefon:      quizData.telefon,
-      email:        quizData.email,
-      notiz:        quizData.notiz
+      situation:       quizData.situation,
+      stunden:         quizData.stunden,
+      beziehung:       quizData.beziehung,
+      spitexAngestellt:quizData.spitexAngestellt,
+      spitexGrund:     quizData.spitexGrund,
+      taetigkeiten:    quizData.taetigkeiten,
+      kanton:          quizData.kanton,
+      name:            quizData.name,
+      telefon:         quizData.telefon,
+      email:           quizData.email,
+      notiz:           quizData.notiz
     };
 
     // Send to Google Sheets (fire & forget)

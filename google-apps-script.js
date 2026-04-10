@@ -9,6 +9,8 @@ function doPost(e) {
         'Pflegestatus',
         'Stunden/Woche',
         'Beziehung',
+        'Spitex angestellt',
+        'Grund (Spitex)',
         'Taetigkeiten',
         'Kanton/PLZ',
         'Name',
@@ -25,14 +27,16 @@ function doPost(e) {
     sheet.appendRow([
       leadId,
       now,
-      data.situation    || '',
-      data.stunden      || '',
-      data.beziehung    || '',
-      data.taetigkeiten || '',
-      data.kanton       || '',
-      data.name         || '',
-      data.telefon      || '',
-      data.email        || ''
+      data.situation        || '',
+      data.stunden          || '',
+      data.beziehung        || '',
+      data.spitexAngestellt || '',
+      data.spitexGrund      || '',
+      data.taetigkeiten     || '',
+      data.kanton           || '',
+      data.name             || '',
+      data.telefon          || '',
+      data.email            || ''
     ]);
 
     var pdf = createLeadPDF(data, leadId, now);
@@ -110,10 +114,12 @@ function createLeadPDF(data, leadId, now) {
     + '<div class="section">'
     +   '<div class="section-title">Pflegesituation</div>'
     +   '<table>'
-    +     row('Pflegestatus',  data.situation    || '–')
-    +     row('Stunden/Woche', data.stunden      || '–')
-    +     row('Beziehung',     data.beziehung    || '–')
-    +     row('Tätigkeiten',   data.taetigkeiten || '–')
+    +     row('Pflegestatus',      data.situation        || '–')
+    +     row('Stunden/Woche',     data.stunden          || '–')
+    +     row('Beziehung',         data.beziehung        || '–')
+    +     row('Spitex angestellt', data.spitexAngestellt || '–')
+    +     (data.spitexGrund ? row('Grund (Spitex)', data.spitexGrund) : '')
+    +     row('Tätigkeiten',       data.taetigkeiten     || '–')
     +   '</table>'
     + '</div>'
 
