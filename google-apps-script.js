@@ -15,9 +15,13 @@ function doPost(e) {
         'Kanton/PLZ',
         'Name',
         'Telefon',
-        'E-Mail'
+        'E-Mail',
+        'Bemerkungen'
       ]);
     }
+
+    // Telefon-Spalte (K) als Text formatieren, damit +41... nicht als Formel interpretiert wird
+    sheet.getRange('K:K').setNumberFormat('@');
 
     var data = JSON.parse(e.postData.contents);
 
@@ -36,7 +40,8 @@ function doPost(e) {
       data.kanton           || '',
       data.name             || '',
       data.telefon          || '',
-      data.email            || ''
+      data.email            || '',
+      data.notiz            || ''
     ]);
 
     var pdf = createLeadPDF(data, leadId, now);
@@ -120,6 +125,7 @@ function createLeadPDF(data, leadId, now) {
     +     row('Spitex angestellt', data.spitexAngestellt || '–')
     +     (data.spitexGrund ? row('Grund (Spitex)', data.spitexGrund) : '')
     +     row('Tätigkeiten',       data.taetigkeiten     || '–')
+    +     (data.notiz ? row('Bemerkungen', data.notiz) : '')
     +   '</table>'
     + '</div>'
 
