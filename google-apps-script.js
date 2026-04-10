@@ -123,9 +123,9 @@ function createLeadPDF(data, leadId, now) {
     +     row('Stunden/Woche',     data.stunden          || '–')
     +     row('Beziehung',         data.beziehung        || '–')
     +     row('Spitex angestellt', data.spitexAngestellt || '–')
-    +     (data.spitexGrund ? row('Grund (Spitex)', data.spitexGrund) : '')
-    +     row('Tätigkeiten',       data.taetigkeiten     || '–')
-    +     (data.notiz ? row('Bemerkungen', data.notiz) : '')
+    +     row('Grund (Spitex)',   data.spitexGrund      || '–')
+    +     row('Tätigkeiten',      data.taetigkeiten     || '–')
+    +     row('Bemerkungen',      data.notiz            || '–')
     +   '</table>'
     + '</div>'
 
