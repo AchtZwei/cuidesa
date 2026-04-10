@@ -1257,7 +1257,6 @@
     // Update select placeholder option
     const sel = document.getElementById('kantonInput');
     if (sel && sel.options[0]) sel.options[0].textContent = getT('quiz.q5placeholder') || sel.options[0].textContent;
-    localStorage.setItem('cuidesa_lang', lang);
     closeLangMenu();
     updateDurLabel(); updateHrsLabel(); updateCalc();
   }
@@ -1270,9 +1269,6 @@
   }
   document.addEventListener('click', e => { if (!e.target.closest('.lang-switcher')) closeLangMenu(); });
 
-  // Auto-apply saved language on load
-  const _savedLang = localStorage.getItem('cuidesa_lang');
-  if (_savedLang && _savedLang !== 'de') setLang(_savedLang);
 
   // Generiert eine eindeutige Anfragen-ID (Format: CU-JJ-XXXX)
   function generateAnfragenId() {
