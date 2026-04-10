@@ -119,8 +119,7 @@ function createLeadPDF(data, leadId, now) {
 
     // Hinweis
     + '<div class="note">'
-    +   'Diese Person pflegt eine nahestehende Person und hat noch keine Entlöhnung erhalten. '
-    +   'Bitte nehmen Sie innert 24 Stunden Kontakt auf, um den Spitex-Anschluss zu koordinieren.'
+    +   'Bitte nehmen Sie innert 24 Stunden Kontakt auf, um die weiteren Schritte zu besprechen.'
     + '</div>'
 
     // Footer
