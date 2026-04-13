@@ -1027,7 +1027,8 @@
   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyfjkyG9C0b-k3khnYVLxpwzLtumaZTfvKVKvyWOQyC5kgsRbcuOYchb5eaj1rQfRA/exec';
 
   // ─── TRANSLATIONS ──────────────────────────────────────
-  let currentLang = 'de';
+  const urlLang = new URLSearchParams(window.location.search).get('lang');
+  let currentLang = (urlLang === 'al') ? 'al' : 'de';
 
   const translations = {
     de: {
@@ -1279,6 +1280,9 @@
     document.getElementById('langMenu').classList.remove('open');
   }
   document.addEventListener('click', e => { if (!e.target.closest('.lang-switcher')) closeLangMenu(); });
+
+  // Apply language from URL parameter on load
+  if (urlLang === 'al') setLang('al');
 
 
   // Generiert eine eindeutige Anfragen-ID (Format: CU-JJ-XXXX)
