@@ -835,14 +835,14 @@
       <div class="quiz-question" data-i18n="quiz.qSpitex">Bist du bereits als Pflegender Angehöriger bei einer Spitex angestellt?</div>
       <div class="quiz-sub" data-i18n="quiz.qSpitexSub">Gemeint ist eine bestehende offizielle Anstellung bei einer Spitex-Organisation.</div>
       <div class="quiz-options" id="step4-spitex-opts">
-        <button class="quiz-opt" onclick="pickSpitex(this, 'Nein')"><span data-i18n="quiz.qSpitexNo">❌ Nein</span><span data-i18n="quiz.qSpitexNoSub">Noch nicht bei einer Spitex angestellt</span></button>
         <button class="quiz-opt" onclick="pickSpitex(this, 'Ja')"><span data-i18n="quiz.qSpitexYes">✅ Ja</span><span data-i18n="quiz.qSpitexYesSub">Ich bin bereits bei einer Spitex angestellt</span></button>
+        <button class="quiz-opt" onclick="pickSpitex(this, 'Nein')"><span data-i18n="quiz.qSpitexNo">❌ Nein</span><span data-i18n="quiz.qSpitexNoSub">Noch nicht bei einer Spitex angestellt</span></button>
       </div>
       <div id="step4-followup" style="display:none;margin-top:1.25rem;">
         <label style="font-size:0.85rem;color:var(--muted);font-weight:500;display:block;margin-bottom:0.5rem;" data-i18n="quiz.qPflegekursLabel">Hast du den Pflegekurs bereits absolviert?</label>
         <div class="quiz-options" id="step4-pflegekurs-opts" style="margin-top:0;">
-          <button class="quiz-opt" onclick="pickPflegekurs(this, 'Nein')"><span data-i18n="quiz.qPflegekursNo">❌ Nein</span></button>
           <button class="quiz-opt" onclick="pickPflegekurs(this, 'Ja')"><span data-i18n="quiz.qPflegekursYes">✅ Ja</span></button>
+          <button class="quiz-opt" onclick="pickPflegekurs(this, 'Nein')"><span data-i18n="quiz.qPflegekursNo">❌ Nein</span></button>
         </div>
         <div style="margin-top:1.25rem;">
           <label style="font-size:0.85rem;color:var(--muted);font-weight:500;display:block;margin-bottom:0.5rem;" data-i18n="quiz.qSpitexFollowLabel">Was ist der Grund, dass du das Formular ausfüllst?</label>
