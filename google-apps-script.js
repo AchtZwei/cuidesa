@@ -10,8 +10,8 @@ function doPost(e) {
         'Stunden/Woche',
         'Beziehung',
         'Spitex angestellt',
-        'Grund (Spitex)',
         'Pflegekurs absolviert',
+        'Grund (Spitex)',
         'Taetigkeiten',
         'Kanton/PLZ',
         'Name',
@@ -36,8 +36,8 @@ function doPost(e) {
       data.stunden          || '',
       data.beziehung        || '',
       data.spitexAngestellt        || '',
-      data.spitexGrund             || '',
       data.pflegekursAbsolviert    || '',
+      data.spitexGrund             || '',
       data.taetigkeiten            || '',
       data.kanton           || '',
       data.name             || '',
@@ -125,8 +125,8 @@ function createLeadPDF(data, leadId, now) {
     +     row('Stunden/Woche',     data.stunden          || '–')
     +     row('Beziehung',         data.beziehung        || '–')
     +     row('Spitex angestellt',      data.spitexAngestellt     || '–')
-    +     row('Grund (Spitex)',        data.spitexGrund          || '–')
     +     row('Pflegekurs absolviert', data.pflegekursAbsolviert || '–')
+    +     row('Grund (Spitex)',        data.spitexGrund          || '–')
     +     row('Tätigkeiten',           data.taetigkeiten         || '–')
     +     row('Bemerkungen',      data.notiz            || '–')
     +   '</table>'
