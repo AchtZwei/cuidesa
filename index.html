@@ -841,6 +841,13 @@
       <div id="step4-followup" style="display:none;margin-top:1.25rem;">
         <label style="font-size:0.85rem;color:var(--muted);font-weight:500;display:block;margin-bottom:0.5rem;" data-i18n="quiz.qSpitexFollowLabel">Was ist der Grund, dass du das Formular ausfüllst?</label>
         <textarea class="quiz-input" id="spitexGrundInput" data-i18n-placeholder="quiz.qSpitexFollowPlaceholder" placeholder="Bitte beschreibe kurz deinen Grund…" style="height:90px;resize:none;margin-bottom:0;"></textarea>
+        <div style="margin-top:1.25rem;">
+          <label style="font-size:0.85rem;color:var(--muted);font-weight:500;display:block;margin-bottom:0.5rem;" data-i18n="quiz.qPflegekursLabel">Hast du den Pflegekurs bereits absolviert?</label>
+          <div class="quiz-options" id="step4-pflegekurs-opts" style="margin-top:0;">
+            <button class="quiz-opt" onclick="pickPflegekurs(this, 'Nein')"><span data-i18n="quiz.qPflegekursNo">❌ Nein</span></button>
+            <button class="quiz-opt" onclick="pickPflegekurs(this, 'Ja')"><span data-i18n="quiz.qPflegekursYes">✅ Ja</span></button>
+          </div>
+        </div>
       </div>
       <div class="quiz-nav" id="step4-nav" style="display:none;">
         <button class="quiz-back" data-i18n="quiz.back" onclick="prevStep(4)">← Zurück</button>
@@ -1081,6 +1088,8 @@
         qSpitexYes: '✅ Ja', qSpitexYesSub: 'Ich bin bereits bei einer Spitex angestellt',
         qSpitexFollowLabel: 'Was ist der Grund, dass du das Formular ausfüllst?',
         qSpitexFollowPlaceholder: 'Bitte beschreibe kurz deinen Grund…',
+        qPflegekursLabel: 'Hast du den Pflegekurs bereits absolviert?',
+        qPflegekursNo: '❌ Nein', qPflegekursYes: '✅ Ja',
         q4: 'Welche Tätigkeiten übernimmst du?', q4sub: 'Mehrere Antworten möglich.',
         q4opt1: '🛁 Körperpflege', q4opt1sub: 'Waschen, anziehen, Mundhygiene',
         q4opt2: '🚶 Mobilität & Transfer', q4opt2sub: 'Gehen begleiten, Lagern, Rollstuhl',
@@ -1184,6 +1193,8 @@
         qSpitexYes: '✅ Po', qSpitexYesSub: 'Jam tashmë i/e punësuar pranë një Spitex',
         qSpitexFollowLabel: 'Cili është arsyeja që po plotëson këtë formular?',
         qSpitexFollowPlaceholder: 'Ju lutemi përshkruani shkurtimisht arsyen tuaj…',
+        qPflegekursLabel: 'A e ke përfunduar tashmë kursin e kujdesit?',
+        qPflegekursNo: '❌ Jo', qPflegekursYes: '✅ Po',
         q4: 'Çfarë aktivitetesh kryen ti?', q4sub: 'Shumë përgjigje të mundshme.',
         q4opt1: '🛁 Higjiena personale', q4opt1sub: 'Larje, veshje, higjiena e gojës',
         q4opt2: '🚶 Lëvizshmëri & Transferim', q4opt2sub: 'Shoqërim gjatë ecjes, pozicionim, karrige me rrota',
@@ -1377,8 +1388,9 @@
     situation:       '',
     stunden:         '',
     beziehung:       '',
-    spitexAngestellt:'',
-    spitexGrund:     '',
+    spitexAngestellt:    '',
+    spitexGrund:         '',
+    pflegekursAbsolviert:'',
     taetigkeiten:    '',
     kanton:          '',
     name:            '',
@@ -1428,8 +1440,17 @@
       document.getElementById('step4-followup').style.display = 'none';
       document.getElementById('step4-nav').style.display = 'none';
       quizData.spitexGrund = '';
+      quizData.pflegekursAbsolviert = '';
+      // Reset pflegekurs buttons
+      document.querySelectorAll('#step4-pflegekurs-opts .quiz-opt').forEach(b => b.classList.remove('selected'));
       setTimeout(() => nextStep(4), 600);
     }
+  }
+
+  function pickPflegekurs(btn, value) {
+    document.querySelectorAll('#step4-pflegekurs-opts .quiz-opt').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    quizData.pflegekursAbsolviert = value;
   }
 
   function nextStep(from) {
@@ -1519,8 +1540,9 @@
       situation:       quizData.situation,
       stunden:         quizData.stunden,
       beziehung:       quizData.beziehung,
-      spitexAngestellt:quizData.spitexAngestellt,
-      spitexGrund:     quizData.spitexGrund,
+      spitexAngestellt:    quizData.spitexAngestellt,
+      spitexGrund:         quizData.spitexGrund,
+      pflegekursAbsolviert:quizData.pflegekursAbsolviert,
       taetigkeiten:    quizData.taetigkeiten,
       kanton:          quizData.kanton,
       name:            quizData.name,
